@@ -1,0 +1,39 @@
+.epigrafe{width:145px; height:30px}
+.epigrafe_new{width:730px; height:20px}
+.foto_ppal{float:left; margin:2px 0 0 0}
+.texto10{font-size:10px}
+.centro{text-align:center}
+.fleft{float:left}
+.ml5{margin-left:5px}
+.mr5{margin-right:5px}
+.rojo{color:#900;}
+.row-result-noimg{width:48px; height:35px; background-color:#EEE; font-size:40px; color:#900; font-weight:bold; padding-top:15px; text-align:center;}
+.errores{color: #FF2D2D;}
+#top{
+	text-decoration: none;
+}
+.com_fecha{
+	color:#274fa9; font-weight: bold;
+}
+.inactivo{background-color:#a15f5f !important}
+.inactivo a{color:#fff; text-decoration:none}
+.inactivos{ text-align:center; padding:30px 5px;}
+.child{padding-left:15px}
+.ck-content{min-height: 400px;}
+
+.backend_table{padding:10px}
+.backend_table table{width: 100%;border: 1px solid #aaa;}
+.backend_table table td{width: 50%;border:1px dotted #aaa; padding: 5px;}
+.backend_table table th{background-color: #1a3572; color: white;padding:7px;}
+.backend_table table th a{color: white; text-decoration: underline;}
+
+.barra-derecha{float: right;
+	padding-top: 10px;
+	padding-right: 5px;
+	color: white;
+}
+.barra-derecha i{font-size: 22px;}
+.barra-derecha a{color: #c8ff9b;}
+
+.select_area{height:290px !important}
+#stats{margin:20px}

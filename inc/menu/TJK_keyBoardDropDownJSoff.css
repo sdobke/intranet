@@ -1,0 +1,55 @@
+/****
+TJK_keyBoardDropDown
+Pure CSS Drop Down Menu [TJK_keyBoardDropDown] v1.1
+Copyright 2006, Thierry Koblentz - TJKDesign.com - All rights reserved.
+Read www.TJKDesign.com/articles/Pure_CSS_dropdown_Menu.asp
+****/
+
+/* IF JS IS OFF we need to style the list on current page */
+#TJK_dropDownMenu {position:relative;}
+#TJK_dropDownMenu li a {cursor:pointer}
+#TJK_dropDownMenu li ul {width:50em !important;padding:10px 0 !important;margin-left:10px;border-bottom:1px solid #ccc;}
+/* All LIs */
+#TJK_dropDownMenu li {text-align:center;position:static}
+/* sub-menu LIs */
+#TJK_dropDownMenu li ul li {width:7.5em !important;margin-left:10px;border-top:1px solid #333;}
+/* sub-menu Anchors */
+#TJK_dropDownMenu li ul li a {width:7.5em !important;}
+/* background for top items. creates faux bottom border */
+#TJK_dropDownMenu li,
+#TJK_dropDownMenu a {background-repeat:repeat-x;background-position:0 100%;}
+#AB,#AB li a {background-image:url(../../includes/img/Hor_dropDown_Demo/1.jpg)}
+#CF,#CF li a {background-image:url(../../includes/img/Hor_dropDown_Demo/2.jpg)}
+#GJ,#GJ li a {background-image:url(../../includes/img/Hor_dropDown_Demo/3.jpg)}
+#KR,#KR li a {background-image:url(../../includes/img/Hor_dropDown_Demo/4.jpg)}
+#ST,#ST li a {background-image:url(../../includes/img/Hor_dropDown_Demo/5.jpg)}
+#UZ,#UZ li a {background-image:url(../../includes/img/Hor_dropDown_Demo/6.jpg)}
+/* removing the above for current page */
+.AB #AB,.AB #AB a {background:#e2facd 0 0;}
+.CF #CF,.CF #CF a {background:#fffcd0 0 0;}
+.GJ #GJ,.GJ #GJ a {background:#ffe1cc 0 0;}
+.KR #KR,.KR #KR a {background:#fccae5 0 0;}
+.ST #ST,.ST #ST a {background:#c9c9ff 0 0;}
+.UZ #UZ,.UZ #UZ a {background:#ffcebe 0 0;}
+/* background for sub-menus */
+.AB #TJK_dropDownMenu li#AB ul {top:2em;display:block;background:#e2facd !important}
+.CF #TJK_dropDownMenu li#CF ul {top:2em;display:block;background:#fffcd0 !important}
+.GJ #TJK_dropDownMenu li#GJ ul {top:2em;display:block;background:#ffe1cc !important}
+.KR #TJK_dropDownMenu li#KR ul {top:2em;display:block;background:#fccae5 !important}
+.ST #TJK_dropDownMenu li#ST ul {top:2em;display:block;background:#c9c9ff !important}
+.UZ #TJK_dropDownMenu li#UZ ul {top:2em;display:block;background:#ffcebe !important}
+/* reset */
+#TJK_dropDownMenu li#UZ ul {left:-10px !important;}
+/* reset */
+.AB #TJK_dropDownMenu li#AB ul li a:focus,
+.AB #TJK_dropDownMenu li#AB ul li a:active,
+.CF #TJK_dropDownMenu li#CF ul li a:focus,
+.CF #TJK_dropDownMenu li#CF ul li a:active,
+.GJ #TJK_dropDownMenu li#GJ ul li a:focus,
+.GJ #TJK_dropDownMenu li#GJ ul li a:active,
+.KR #TJK_dropDownMenu li#KR ul li a:focus,
+.KR #TJK_dropDownMenu li#KR ul li a:active,
+.ST #TJK_dropDownMenu li#ST ul li a:focus,
+.ST #TJK_dropDownMenu li#ST ul li a:active,
+.UZ #TJK_dropDownMenu li#UZ ul li a:focus,
+.UZ #TJK_dropDownMenu li#UZ ul li a:active {position:relative !important;top:0 !important;}

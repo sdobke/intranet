@@ -1,0 +1,41 @@
+#home-login #login-logo{padding-top:10%;}
+#by {position: absolute; bottom: 25px;right: 20px;}
+/*#by {text-align: right; padding:15px 10px}*/
+#by a {text-decoration: none;}
+#home-login .loginCentrado{max-width: 500px; margin: 20px auto;}
+#home-login img{width:100%}
+#home-login .card{height:200px }
+#home-login #mailAnim{display: none; text-align: center;padding-top: 30px;}
+#home-login #mailAnim img{width: 50%}
+#restore_error{display: none;}
+#home-login .olvide{width: 500px; margin: 40px auto;text-align: center;}
+/* flip card */
+
+.card{border:0}
+.card-flip > div {
+  backface-visibility: hidden;
+  transition: transform 300ms;
+  transition-timing-function: linear;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  display: flex;
+}
+
+.card-front {
+  transform: rotateY(0deg);
+}
+
+.card-back {
+  transform: rotateY(180deg);
+  position: absolute;
+  top: 0;
+}
+
+.card-flip:hover .card-front {
+  transform: rotateY(-180deg);
+}
+  
+.card-flip:hover .card-back {
+  transform: rotateY(0deg);
+}

@@ -1,0 +1,99 @@
+.site_menu {
+	background: rgb(227,6,19);
+	background: linear-gradient(0deg, rgba(99,10,14,1) 0%, rgba(227,6,19,1) 100%);
+	color: #FFF;
+	height: 40px;
+	padding-left: 18px;
+	border-radius: 5px;
+}
+.site_menu ul, .site_menu li {
+	margin: 0 auto;
+	padding: 0;
+	list-style: none
+}
+.site_menu ul {
+	width: 100%;
+}
+.site_menu li {
+	float: left;
+	display: inline;
+	position: relative;
+	border-right: 1px dotted #444
+}
+.site_menu a {
+	display: block;
+	line-height: 35px;
+	padding: 0 14px;
+	text-decoration: none;
+	color: #FFFFFF;
+	font-size: 13px;
+  font-weight: 500;
+}
+.site_menu a.dropdown-arrow:after {
+	content: "\23F7";
+	margin-left: 5px;
+}
+.site_menu li a:hover {
+	color: #E30613;
+	background: #F2F2F2;
+}
+.site_menu input {
+	display: none;
+	margin: 0;
+	padding: 0;
+	height: 35px;
+	width: 100%;
+	opacity: 0;
+	cursor: pointer
+}
+.site_menu label {
+	display: none;
+	line-height: 35px;
+	text-align: center;
+	position: absolute;
+	left: 35px
+}
+.site_menu label:before {
+	font-size: 1.6em;
+	content: "\2261"; 
+	margin-left: 20px;
+}
+.site_menu ul.sub-menus{
+	height: auto;
+	overflow: hidden;
+	width: 300px;
+	background: rgb(227,6,19);
+	position: absolute;
+	z-index: 99;
+	display: none;
+}
+.site_menu ul.sub-menus li {
+	display: block;
+	width: 100%;
+	border-bottom: 1px dotted #ad9898;
+}
+.site_menu ul.sub-menus a {
+	color: #FFFFFF;
+	font-size: 13px;
+}
+.site_menu li:hover ul.sub-menus {
+	display: block
+}
+.site_menu ul.sub-menus a:hover{
+	background: #F2F2F2;
+	color: #444444;
+}
+@media screen and (max-width: 800px){
+	#footer_menu, #footer_menu ul{height: auto; overflow: hidden;}
+	#footer_menu li{height: 41px;}
+	#menu {position:relative}
+	#menu ul {background:#111;position:absolute;top:100%;right:0;left:0;z-index:3;height:auto;display:none}
+	#menu ul.sub-menus {width:100%;position:static;}
+	#menu ul.sub-menus a {padding-left:30px;}
+	#menu li {display:block;float:none;width:auto;}
+	#menu input, #menu label {position:absolute;top:0;left:0;display:block}
+	#menu input {z-index:4}
+	#menu input:checked + label {color:white}
+	#menu input:checked + label:before {content:"\00d7"}
+	#menu input:checked ~ ul {display:block}
+}

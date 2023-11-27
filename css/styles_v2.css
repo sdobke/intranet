@@ -1,0 +1,134 @@
+
+
+:root {
+	--bs-primary :#e52026;
+	--bs-primary-dark :#b21b26;
+	--bs-primary-subtle :#DEFINIR;
+	--bs-black :#1e1b1c;
+	--bs-dark-grey :#998a8b;
+	--bs-grey :#ccc5c5;
+	--bs-light-grey :#e5e1e2;
+	--bs-white :#fffdfd;
+}
+
+body {font-family: "Public Sans",sans-serif; background-color:#e5e1e294; color:var(--bs-black)   }
+.widget {font-size: .8rem; color: var(--bs-dark-grey); background-color: var(--bs-white); border-radius: 5px; padding: 2rem; margin-bottom: 2rem;}
+
+
+.header {background-color: var(--bs-primary);  margin-bottom: 2rem;  box-shadow: rgba(153,138,139,.25) 0px 0px 8px;}
+#buscador_container .card {background-color: transparent;}
+
+#logo img { max-width: 175px;margin-bottom: 16px}
+
+a {transition: all ease-in-out .15s; text-decoration: none; color:var(--bs-primary);  }
+a:hover {color:var(--bs-primary-dark);  }
+
+.icon-link>.bi {height: 1.25em}
+.widget .icon-link>.bi {height: 1.35em}
+
+.card {border: 0; background-color: var(--bs-white); transition: all ease-in-out .15s}
+.card-body {padding: 2rem}
+.card-text {/*font-size: .8rem; color: var(--bs-dark-grey)*/}
+.card:hover {box-shadow: rgba(153,138,139,.25) 0px 0px 8px;}
+
+.btn-primary {background-color: var(--bs-primary); border-color: var(--bs-primary) }
+.btn-primary:hover, .btn-primary:active {background-color: var(--bs-primary-dark); border-color: var(--bs-primary-dark)}
+.btn-secondary {}
+.btn-outline-dark {color: var(--bs-primary); border-color: var(--bs-primary) }
+.btn-outline-dark:hover, .btn-outline-dark:active {background-color: var(--bs-primary); color: var(--bs-white); border-color: var(--bs-primary)}
+
+
+
+
+
+/*********** BUSCADOR **********
+*******************************/
+#btn_buscador.collapsed {
+	/*color:var(--bs-navbar-color);*/
+	opacity: .55
+}
+#btn_buscador, #btn_buscador.collapsed:hover {
+	/*color:var(--bs-navbar-active-color):*/
+	opacity: 1;
+	border-radius: 50%;
+	transition: all .15s ease-in-out;
+    width: 40px;
+    height: 40px;
+    line-height: 0;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+	margin-right: 1rem
+}
+#buscador_container {padding: 0}
+#buscador_container .card {border-top-left-radius: 0; border-top-right-radius: 0} 
+
+/*********** SIDEBAR **********
+******************************/
+
+
+.sidebar  {}
+.sidebar .card {line-height: 1.25; margin-bottom: 2rem}
+.sidebar .card h4 {margin-bottom: 1.5rem}
+.sidebar .card p {margin-bottom: 0}
+.card .more {}
+.card .datos {margin-bottom: 1.25rem}
+.sidebar .card-body {padding: 1.5rem; line-height: 1.2}
+.sidebar .modal-body {padding: 3rem }
+.modal-body .card {margin-bottom: 0}
+.modal-body .card:hover {box-shadow: none}
+
+/*********** SIDEBAR - widget galeria **********
+************************************************/
+.sidebar_gallery img {width: 100%; height: auto; margin-bottom: 1rem; transition: all .15s ease-in-out}
+.sidebar_gallery img:hover {opacity: .85}
+.sidebar_gallery a.title {color: var(--bs-primary); text-decoration: none; font-size: 1rem;  }
+.sidebar_gallery a.title:hover {color: var(--bs-primary-dark); }
+
+
+/*********** SIDEBAR - widget cumpleaños **********
+**************************************************/
+.sidebar .cusuario { font-size: .8rem; color: var(--bs-dark-grey); line-height: 1.2; margin-bottom: 1.2rem; max-width: 250px; padding: 0}
+.sidebar .cusuario:last-of-type {margin-bottom: 0rem; }
+.sidebar .cusuario .user_pic {border-radius: 50%; max-width: 65px; max-height: 65px; width: 100%; height: auto}
+.user_bday {text-transform: uppercase; color: var(--bs-black);   }
+.user_name a {color: var(--bs-primary); text-decoration: none;     font-size: 1rem;    }
+.user_name a:hover {color: var(--bs-primary-dark);}
+.user_area {}
+.user_suc {}
+.user_phone {}
+.user_mail {}
+
+/*********** SIDEBAR - widget novedades **********
+*************************************************/
+.novedades_sec img {border-radius: 50%; max-width: 65px; max-height: 65px; width: 100%; height: auto}
+.novedades_sec a.title {color: var(--bs-primary); text-decoration: none; font-size: 1rem;  }
+.novedades_sec a.title:hover {color: var(--bs-primary-dark); }
+
+/*********** FOOTER **********
+*****************************/
+#mid-bottom { background-color: var(--bs-white);   padding: 2rem 0; margin-top: 2rem; box-shadow: rgba(153,138,139,.25) 0px 0px 8px;}
+#nav_footer {  border-bottom: 1px solid var(--bs-primary); padding-bottom: 2rem;    margin-bottom: 2rem; }
+
+#nav_footer .nav-link {color:var(--bs-primary)}
+#nav_footer .nav-link:hover {color:var(--bs-primary-dark)}
+
+/*********** PAGINATION **********
+*********************************/
+.pagination .page-link { background-color:var(--bs-white) ; color: var(--bs-primary); border-color: var(--bs-grey)}
+.pagination .page-link:hover {background-color:var(--bs-white); color: var(--bs-primary); border-color: var(--bs-primary)}
+.pagination .active>.page-link, .page-link.active {background-color: var(--bs-primary); color: var(--bs-white); border-color: var(--bs-primary) }
+.pagination .disabled .page-link {background-color: var(--bs-light-grey) ; color: var(--bs-dark-grey); border-color: var(--bs-grey)}
+
+/************* ÁREAS ************
+*********************************/
+.cusuario {font-size: .8rem; color: var(--bs-dark-grey); line-height: 1.4; margin-bottom: 0; padding:1.5rem; align-items: center}
+.cusuario .user_pic {border-radius: 50%; max-width: 100%; width: 100%; height: auto}
+
+@media only screen and (max-width: 1199px) {
+.cusuario {padding:1.5rem; align-items: center; text-align: center}
+.cusuario .user_pic {border-radius: 50%; max-width: 150px; width: 100%; height: auto}
+}
+
+.buscador_interno {background-color: var(--bs-light-grey); border: 1px solid var(--bs-grey); padding: 1.5rem; border-radius: 5px; margin-bottom: 2rem}
+

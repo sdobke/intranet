@@ -1,0 +1,190 @@
+
+
+:root {
+	/*--bs-primary :#e52026;
+	--bs-primary-dark :#b21b26;*/
+	--bs-primary :#4e9c37;
+	--bs-primary-dark :#366328;
+	--bs-primary-subtle :#DEFINIR;
+	--bs-black :#1e1b1c;
+	--bs-dark-grey :#998a8b;
+	--bs-grey :#ccc5c5;
+	--bs-light-grey :#e5e1e2;
+	--bs-white :#fffdfd;
+}
+
+body {font-family: "Public Sans",sans-serif; background-color:#e5e1e294; color:var(--bs-black)   }
+.widget {font-size: .8rem; color: var(--bs-dark-grey); background-color: var(--bs-white); border-radius: 5px; padding: 2rem; margin-bottom: 2rem;}
+
+
+.header {background-color: var(--bs-primary);  margin-bottom: 2rem;  box-shadow: rgba(153,138,139,.25) 0px 0px 8px;}
+#buscador_container .card {background-color: transparent;}
+
+#logo img { max-width: 175px;margin-bottom: 16px}
+
+a {transition: all ease-in-out .15s; text-decoration: none; color:var(--bs-primary);  }
+a:hover{color:var(--bs-primary-dark);  }
+:focus {box-shadow: 0 0 0 0.25rem rgba(229, 32, 38, 0.25)!important}
+.icon-link>.bi {height: 1.25em}
+.widget .icon-link>.bi {height: 1.35em}
+
+
+
+.card {border: 0; background-color: var(--bs-white); transition: all ease-in-out .15s}
+.card-body {padding: 2rem}
+.card-text {/*font-size: .8rem; color: var(--bs-dark-grey)*/}
+.card:hover {box-shadow: rgba(153,138,139,.25) 0px 0px 8px;}
+
+
+
+.btn-primary {background-color: var(--bs-primary); border-color: var(--bs-primary) }
+.btn-primary:hover, .btn-primary:active {color:var(--bs-white);background-color: var(--bs-primary-dark)!important; border-color: var(--bs-primary-dark)!important}
+.btn-secondary {}
+.btn-outline-dark {color: var(--bs-primary); border-color: var(--bs-primary); background-color: var(--bs-white); }
+.btn-outline-dark:hover, .btn-outline-dark:active {background-color: var(--bs-primary); color: var(--bs-white); border-color: var(--bs-primary)}
+
+
+
+
+/************* MENU ************
+*******************************/
+
+
+.dropdown-item:focus, .dropdown-item:hover {background-color:var(--bs-primary); color: var(--bs-white)}
+
+/*********** BUSCADOR **********
+*******************************/
+#btn_buscador.collapsed {
+	/*color:var(--bs-navbar-color);*/
+	opacity: .55
+}
+#btn_buscador, #btn_buscador.collapsed:hover {
+	/*color:var(--bs-navbar-active-color):*/
+	opacity: 1;
+	border-radius: 50%;
+	transition: all .15s ease-in-out;
+    width: 40px;
+    height: 40px;
+    line-height: 0;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+	margin-right: 1rem
+}
+#buscador_container {padding: 0}
+#buscador_container .card {border-top-left-radius: 0; border-top-right-radius: 0} 
+
+/*********** SIDEBAR **********
+******************************/
+
+
+.sidebar  {}
+.sidebar .card {line-height: 1.25; margin-bottom: 2rem}
+.sidebar .card h4 {margin-bottom: 1.5rem}
+.sidebar .card p {margin-bottom: 0}
+.card .more {}
+.card .datos {margin-bottom: 1.25rem}
+.sidebar .card-body {padding: 1.5rem; line-height: 1.2}
+.sidebar .modal-body {padding: 3rem }
+.modal-body .card {margin-bottom: 0}
+.modal-body .card:hover {box-shadow: none}
+
+/*********** SIDEBAR - widget galeria **********
+************************************************/
+.sidebar_gallery img {width: 100%; height: auto; margin-bottom: 1rem; transition: all .15s ease-in-out}
+.sidebar_gallery img:hover {opacity: .85}
+.sidebar_gallery a.title {color: var(--bs-primary); text-decoration: none; font-size: 1rem;  }
+.sidebar_gallery a.title:hover {color: var(--bs-primary-dark); }
+
+
+/*********** SIDEBAR - widget cumpleaños **********
+**************************************************/
+.sidebar .user { font-size: .8rem; color: var(--bs-dark-grey); line-height: 1.2; margin-bottom: 1.2rem; max-width: 250px; padding: 0}
+.sidebar .user:last-of-type {margin-bottom: 0rem; }
+.sidebar .user .user_pic {border-radius: 50%; max-width: 65px; max-height: 65px; width: 100%; height: auto}
+.user_bday {text-transform: uppercase; color: var(--bs-black);   }
+.user_name {margin-bottom: 0.2rem;}
+.user_name a {color: var(--bs-primary); text-decoration: none;     font-size: 1rem;     line-height: 1.2;      }
+.user_name a:hover {color: var(--bs-primary-dark);}
+.user_area {}
+.user_suc {}
+.user_phone {}
+.user_mail {}
+
+/*********** SIDEBAR - widget novedades **********
+*************************************************/
+.novedades_sec img {border-radius: 50%; max-width: 65px; max-height: 65px; width: 100%; height: auto}
+.novedades_sec a.title {color: var(--bs-primary); text-decoration: none; font-size: 1rem;  }
+.novedades_sec a.title:hover {color: var(--bs-primary-dark); }
+
+/*********** FOOTER **********
+*****************************/
+#mid-bottom { background-color: var(--bs-white);   padding: 2rem 0; margin-top: 2rem; box-shadow: rgba(153,138,139,.25) 0px 0px 8px;}
+#nav_footer {  border-bottom: 1px solid var(--bs-primary); padding-bottom: 2rem;    margin-bottom: 2rem; }
+
+#nav_footer .nav-link {color:var(--bs-primary)}
+#nav_footer .nav-link:hover {color:var(--bs-primary-dark)}
+
+/*********** PAGINATION **********
+*********************************/
+.pagination .page-link { background-color:var(--bs-white) ; color: var(--bs-primary); border-color: var(--bs-grey)}
+.pagination .page-link:hover {background-color:var(--bs-white); color: var(--bs-primary); border-color: var(--bs-primary)}
+.pagination .active>.page-link, .page-link.active {background-color: var(--bs-primary); color: var(--bs-white); border-color: var(--bs-primary) }
+.pagination .disabled .page-link {background-color: var(--bs-light-grey) ; color: var(--bs-dark-grey); border-color: var(--bs-grey)}
+
+/************* ÁREAS ************
+*********************************/
+.cusuario {font-size: .8rem; color: var(--bs-dark-grey); line-height: 1.4; margin-bottom: 0; padding:1.5rem; align-items: center}
+.cusuario .user_pic {border-radius: 50%; max-width: 100%; width: 100%; height: auto}
+
+@media only screen and (max-width: 1199px) {
+.cusuario {padding:1.5rem; align-items: center; text-align: center}
+.cusuario .user_pic {border-radius: 50%; max-width: 150px; width: 100%; height: auto}
+}
+
+.buscador_interno {background-color: var(--bs-light-grey); border: 1px solid var(--bs-grey); padding: 1.5rem; border-radius: 5px; margin-bottom: 3rem}
+@media only screen and (max-width: 767px) {
+	.buscador_interno .fields div {margin-bottom: 1rem}
+	.buscador_interno .fields div:last-of-type {margin-bottom: 0}
+}
+
+
+/************* DOCS ************
+*********************************/
+
+.file-icon {font-size:4rem}
+
+/************* SINGLE ************
+*********************************/
+
+.fecha {opacity:.75; font-size: .85rem; margin-bottom: 1rem}
+.copete {   font-weight: bold;    font-size: 1.5rem;    margin-bottom: 1em;}
+
+.nota-media-container {position:relative;     margin-bottom: 2.5rem;}
+.nota-cuerpo .image, .nota-cuerpo .image img {max-width:100%!important; width:100%!important}
+.link-foto {right: 1rem; position: absolute; bottom: 1rem;}
+.megusta {padding-top: 2rem;  padding-bottom: 2rem;;   border-top: 1px solid #ccc;     border-bottom: 1px solid #ccc;     margin-bottom: 3rem;    margin-top: 2rem;}
+#comentar #comentario  {width:100%; margin-bottom:1rem}
+.comentario {    border-bottom: 1px dotted #ccc;   margin-bottom: 1rem;}
+.comentar {margin-top: 2rem}
+#iframe-documento iframe {    width: 100%;    height: 600px;}
+.video-responsive {
+    height: 0;
+    overflow: hidden;
+    padding-bottom: 56.25%;
+    padding-top: 30px;
+    position: relative;
+}
+.nota-media-container .video-responsive iframe,  .nota-media-container .video-responsive object,  .nota-media-container .video-responsive embed { width: 100%; height: 100%; left: 0;  position: absolute;   top: 0;
+}
+
+
+.bi-file-excel {color:#217346}
+.bi-file-word, .bi-file-richtext {color:#2b579a}
+.bi-file-pdf {color:#f40f02}
+.bi-file-ppt {color:#d24726}
+.bi-file-html, .bi-filetype-html {color:#ff6600}
+.bi-file-zip {color:#FC9319}
+.bi-file-image {color:#3e4fb1}
+.bi-image {color:#3e4fb1}
+.bi-file {color:#000}

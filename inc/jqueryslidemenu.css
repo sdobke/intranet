@@ -1,0 +1,147 @@
+.jqueryslidemenu{
+font-family:Georgia, "Times New Roman", Times, serif;
+/*background-color: #036;*/
+width: 100%;
+}
+
+.jqueryslidemenu ul{
+margin: 0;
+padding: 0;
+list-style-type: none;
+}
+
+/*Top level list items*/
+.jqueryslidemenu ul li{
+position: relative;
+display: inline;
+float: left;
+}
+
+/*Top level menu link items style*/
+.jqueryslidemenu ul li a{
+display: block;
+background: #036; /*background of tabs (default state)*/
+/*border-right: 1px solid #778;*/
+color: #2d2b2b;
+text-decoration: none;
+/*
+padding-top: 4px;
+padding-right: 15px;
+padding-left: 15px;
+padding-bottom: 14px;
+*/
+height:43px;
+font-size:12px;
+}
+
+.premenu_ie_3 .jqueryslidemenu ul li a{ /*sin login*/
+	padding-right: 38px;
+	padding-left: 39px;
+}
+.premenu_ie_1 .jqueryslidemenu ul li a{ /*ofi*/
+	padding-right: 12px;
+	padding-left: 12px;
+}
+.premenu_ie_2 .jqueryslidemenu ul li a{ /*empleos*/
+	padding-right: 12px;
+	padding-left: 13px;
+}
+.premenu_ie_4 .jqueryslidemenu ul li a{ /*locales*/
+	padding-right: 18px;
+	padding-left: 18px;
+}
+.premenu_ie6_3 .jqueryslidemenu ul li a{ /*sin login*/
+	padding-right: 40px;
+	padding-left: 40px;
+}
+.premenu_ie6_1 .jqueryslidemenu ul li a{ /*ofi*/
+	padding-right: 13px;
+	padding-left: 13px;
+}
+.premenu_ie6_2 .jqueryslidemenu ul li a{ /*empleos*/
+	padding-right: 14px;
+	padding-left: 13px;
+}
+.premenu_ie6_4 .jqueryslidemenu ul li a{ /*locales*/
+	padding-right: 18px;
+	padding-left: 19px;
+}
+.premenu_ie9_3 .jqueryslidemenu ul li a{ /*sin login*/
+	padding-right: 43px;
+	padding-left: 42px;
+}
+.premenu_ie9_1 .jqueryslidemenu ul li a{ /*ofi*/
+	padding-right: 16px;
+	padding-left: 16px;
+}
+.premenu_ie9_2 .jqueryslidemenu ul li a{ /*empleos*/
+	padding-right: 17px;
+	padding-left: 17px;
+}
+.premenu_ie9_4 .jqueryslidemenu ul li a{ /*locales*/
+	padding-right: 22px;
+	padding-left: 22px;
+}
+
+* html .jqueryslidemenu ul li a{ /*IE6 hack to get sub menu links to behave correctly*/
+display: inline-block;
+}
+
+.jqueryslidemenu ul li a:link, .jqueryslidemenu ul li a:visited{
+color: white;
+}
+
+.jqueryslidemenu ul li a:hover{
+background: #69F; /*tab link background during hover state*/
+color: white;
+}
+	
+/*1st sub level menu*/
+.jqueryslidemenu ul li ul{
+position: absolute;
+left: 0;
+display: block;
+visibility: hidden;
+}
+
+/*Sub level menu list items (undo style from Top level List Items)*/
+.jqueryslidemenu ul li ul li{
+display: list-item;
+float: none;
+}
+
+/*All subsequent sub menu levels vertical offset after 1st level sub menu */
+.jqueryslidemenu ul li ul li ul{
+top: 0;
+}
+
+/* Sub level menu links style */
+.jqueryslidemenu ul li ul li a{
+font-family:Georgia, "Times New Roman", Times, serif;
+font-size:12px;
+font-weight:bold;
+width: 160px; /*width of sub menus*/
+padding: 5px;
+padding-left:10px;
+margin: 0;
+background-color: #69F;
+text-align:left;
+}
+
+.jqueryslidemenu ul li ul li a:hover{ /*sub menus hover style*/
+background-color: #06F;
+}
+
+/* ######### CSS classes applied to down and right arrow images  ######### */
+
+.downarrowclass{
+position: absolute;
+top: 16px;
+right: 7px;
+}
+
+.rightarrowclass{
+position: absolute;
+top: 6px;
+right: 5px;
+}

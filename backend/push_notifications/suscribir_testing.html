@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>PUSH Notifications Client</title>
+  <link rel="stylesheet" href="/backend/bootstrap/css/bootstrap.min.css" media="all">
+	<script src="PNClient.js"></script>
+	<script>
+		function Load() {
+			var msg = 'Secure context: ';
+			msg += window.isSecureContext ? 'true<br/>' : 'false<br/>';
+			msg += 'Notification: ';
+			msg += ('Notification' in window) ? 'defined<br/>' : 'not defined<br/>';
+			msg += 'PushManager: ';
+			msg += ('PushManager' in window) ? 'defined<br/>' : 'not defined<br/>';
+			msg += 'serviceWorker: ';
+			msg += ('serviceWorker' in navigator) ? 'defined<br/>' : 'not defined<br/>';
+			msg += 'Notification.permission: ' + window.Notification.permission + '<br/>';
+
+			window.Notification.permission
+
+			document.getElementById('msg').innerHTML = msg;
+
+			if (window.Notification.permission === "denied") {
+				//document.getElementById('subscribe').innerHTML = 'Permission was denied in the past...';
+			} else {
+				var strMsg;
+				pnSubscribed()
+					.then(function (subscribed) {
+						if (subscribed) {
+							document.getElementById('msg').innerHTML = 'PUSH Notifications are subscribed<br/><br/>' + msg;
+						} else {
+							document.getElementById('msg').innerHTML = 'PUSH Notifications not subscribed so far<br/><br/>' + msg;
+              document.getElementById('subscribe').style.display = 'block';
+						}
+					});
+			}
+		}
+	</script>
+</head>
+
+<body onload="Load()">
+	<div id="subscribe" style="display: block">
+		<button id="reg-btn" class="btn btn-primary" onclick="pnSubscribe()">Permitir notificaciones</button><br /><br />
+		<button id="unreg-btn" onclick="pnUnsubscribe()">Unregister Service worker</button><br /><br />
+		<button id="unreg-btn" onclick="pnUpdate()">Update Service worker</button><br /><br />
+	</div>
+	<div id=msg style="font-weight: bold;"></div>
+
+<script src="/backend/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>

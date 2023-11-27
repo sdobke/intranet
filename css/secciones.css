@@ -1,0 +1,32 @@
+/*** EMPLEADOS ***/
+
+.empleados{ margin:0px; padding:0px; width:100%; list-style-type:none; display:block; }
+.empleados li{ float:left; width:190px; margin-right:8px; margin-left:9px; margin-bottom:20px; font-size:12px;}
+.empleados .box1{ padding:10px; background-color:#fff }
+.empleados .box1 h4{ text-align:center; margin-bottom:0px;}
+.empleados .box2{ padding:10px; text-align:left; line-height:17px; height:35px; overflow:hidden; border-bottom:1px solid #e6e6e6; border-top:1px solid #e6e6e6; background:#f8f8f8; color:#263248; font-size:10px; font-weight:bold}
+.empleados .gal { font-size:9px !important; min-height:50px !important; }
+.empleados .box3{ padding:5px 10px; background:url(../img_new/bg_headers.png) repeat-x bottom; height:35px }
+.empleados .box4{ padding:5px 10px; background:#fff; min-height:15px }
+.empleados .box5{ padding:5px 10px; background:#ccc; color:#444 !important; font-size:11px; min-height:15px }
+.empleados img { margin:0; padding:0 }
+.empleados .date{ float:left; font-size:11px; line-height:14px; width:100%}
+.empleados .button{ float:right; }
+.empleados li{border:1px solid #ccc;}
+.empleados li .button a{ color:#555}
+.clear { clear: both; display: block; overflow: hidden; visibility: hidden; width: 0; height: 0; }
+
+.buscador_areas {width:100%; padding:10px; border:1px solid #ccc; background:#f8f8f8; border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px;}
+.buscador_areas select {border:1px solid #ccc; padding:5px; width:610px; color:#666; background:#fff; outline:none; webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;}
+
+.alert_box {width:585px; padding:10px 35px 10px 10px; border:1px solid #e87057; background:#fbc9be url(../img_new/alert_box.png) no-repeat right; border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; color:#C00}
+.info_box, .info_box_mini {width:585px; padding:10px 35px 10px 10px; border:1px solid #5d9bc2; background:#cfe4f5 url(../img_new/info_box.png) no-repeat right; border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; color:#5d9bc2; margin-bottom:20px}
+.success_box {width:585px; padding:10px 35px 10px 10px; border:1px solid #a5c613; background:#effeb9 url(../img_new/success_box.png) no-repeat right; border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; color:#a5c613}
+
+.formularios {width:100%; padding:10px; border:1px solid #ccc; background:#f8f8f8; border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px;}
+.formularios input[type="text"] {border:1px solid #ccc; padding:5px; color:#666; background:#fff; outline:none; webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; height: 25px}
+.formularios textarea {border:1px solid #ccc; padding:5px; width:598px; color:#666; background:#fff; outline:none; webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; font-family:Arial, Helvetica, sans-serif; font-size:12px}
+.formularios select {border:1px solid #ccc; padding:4px 5px; color:#666; background:#fff; outline:none; webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;}
+.inputcortos select{width:80px;}
+
+.bkrev{width:auto}

@@ -1,0 +1,26 @@
+/* **
+
+INTRANET
+font CSS
+v1.0
+
+
+/* Netto Office */
+@font-face {
+	font-family: 'NettoOffc';
+	src: url('../font/nettooffc-webfont.eot');
+	src: local('?'), url('../font/nettooffc-webfont.woff') format('woff'), url('../font/nettooffc-webfont.ttf') format('truetype'), url('../font/nettooffc-webfont.svgz#webfontpp7XQBEj') format('svg'), url('../font/nettooffc-webfont.svg#webfontpp7XQBEj') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'NettoOffc';
+	src: url('../font/nettooffc-bold-webfont.eot');
+	src: local('?'), url('../font/nettooffc-bold-webfont.woff') format('woff'), url('../font/nettooffc-bold-webfont.ttf') format('truetype'), url('../font/nettooffc-bold-webfont.svgz#webfont9jnn9OIs') format('svg'), url('../font/nettooffc-bold-webfont.svg#webfont9jnn9OIs') format('svg');
+	font-weight: bold;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'NettoOffcB';
+	src: url('../font/nettooffc-bold-webfont.eot');
+}

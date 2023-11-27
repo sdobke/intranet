@@ -1,0 +1,173 @@
+.hd-minisitio {width:918px; padding:25px 15px; font-size:32px; font-family:'NettoOffc'; border-radius:5px;-moz-border-radius:5px;	-webkit-border-radius:5px; border:1px solid #ccc; background:#f8f8f8}
+.menu-minisitio {width:938px; padding:5px; font-size:14px; border-radius:5px;-moz-border-radius:5px; -webkit-border-radius:5px; border:1px solid #036; background:#006699}
+.buscador-minisitio {width:918px; padding:10px 15px; font-size:14px; border-radius:5px;-moz-border-radius:5px; -webkit-border-radius:5px; border:1px solid #ccc; background:#f8f8f8 url(../img_new/bg_headers.png) repeat-x}
+
+/* TABLAS  */
+table.tablesorter {
+	width: 100%;
+	text-align: left;
+	border: 1px solid #d6dde2;
+	border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px;
+	margin: 20px 0 0 0;
+	color: #a1a7ac;
+	font: 14px "Helvetica Neue", Helvetica, Arial, Verdana, sans-serif;
+}
+table.tablesorter thead tr th, table.tablesorter tfoot tr th {
+	margin: 0;
+}
+table.tablesorter thead tr .header {
+	/* background: #e7ebee url(../img_new/arrows-both.png) no-repeat center right;*/
+	background: #e7ebee;
+	cursor: pointer;
+	height: 60px;
+	color: #63676b;
+	text-shadow: 0 1px 1px #ffffff;
+	padding-left: 20px;
+	-moz-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+	-webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+	box-shadow: inset 0px 0px 0px 1px rgba(255,255,255,0.5), 0 2px 2px rgba(0, 0, 0, 0.08);
+	border-bottom: 1px solid #d6dde2;
+}
+table.tablesorter tbody td {
+	padding: 20px;
+	vertical-align: top;
+}
+table.tablesorter tbody tr.even td {
+	background: #f6f8f9;
+}
+table.tablesorter thead tr .headerSortUp {
+	background-image: url(../img_new/arrow-up.png);
+}
+table.tablesorter thead tr .headerSortDown {
+	background-image: url(../img_new/arrow-down.png);
+}
+table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
+}
+
+/* MENU */
+.subnav{
+	margin:0;
+	padding:0;
+	list-style-type:none;
+	overflow:visible;
+	position:relative;
+	font-size:12px;
+	width:auto;
+  }
+.subnav li li{ font-size:12px; text-transform:none;}
+.ms-menu, .ms-menu * {
+	margin:			0;
+	padding:		0;
+	list-style:		none;
+}
+.ms-menu {
+	line-height:	1.0;
+}
+.ms-menu ul {
+	position:		absolute;
+	top:			-999em;
+	width:			20em; /* left offset of submenus need to match (see below) */
+}
+.ms-menu ul li {
+	width:			100%;
+}
+.ms-menu li:hover {
+	visibility:		inherit; /* fixes IE7 'sticky bug' */
+}
+.ms-menu li {
+	float:			left;
+	position:		relative;
+}
+.ms-menu a {
+	display:		block;
+	position:		relative;
+}
+.ms-menu a.bot, .ms-menu a.botsel { 
+	color: #fff !important;
+	margin:0;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	padding:5px 15px;
+ 	border:1px solid #004a6a;
+	margin-right:5px;
+	background:#006699;
+}
+.ms-menu a.botsel {
+	color:#fff !important; background:#036
+}
+.ms-menu a.bot:hover, .ms-menu a.bot2:hover { 
+	color:#fff !important; background:#036
+}
+.ms-menu li:hover ul,
+.ms-menu li.sfHover ul {
+	left:			0;
+	top:			1.9em; /* match top ul list item height */
+	z-index:		99;
+}
+ul.ms-menu li:hover li ul,
+ul.ms-menu li.sfHover li ul {
+	top:			-999em;
+}
+ul.ms-menu li li:hover ul,
+ul.ms-menu li li.sfHover ul {
+	left:			10em; /* match ul width */
+	top:			0;
+}
+ul.ms-menu li li:hover li ul,
+ul.ms-menu li li.sfHover li ul {
+	top:			-999em;
+}
+ul.ms-menu li li li:hover ul,
+ul.ms-menu li li li.sfHover ul {
+	left:			10em; /* match ul width */
+	top:			0;
+}
+#subnav a{color:#fff;}
+#subnav a:hover{color:#FC0;}
+#subnav.ms-menu li.current li a{color:#fff;}
+#subnav.ms-menu .current a, #subnav.ms-menu li li.current a, #subnav.ms-menu li li a:hover{color:#2d6191;}
+.ms-menu a, .ms-menu a:visited  { /* visited pseudo selector so IE6 applies text colour*/
+	color:#248fbd;
+}
+.ms-menu a:hover  { /* visited pseudo selector so IE6 applies text colour*/
+	color:#000;
+}
+.ms-menu ul{ border:1px solid #eee; width:90px; border-bottom:0px; -webkit-border-radius:3px; -moz-border-radius:3px; border-radius:3px;}
+.ms-menu li li {background:	#fff; border-bottom:1px solid #eee; width:80px; padding:10px 5px;}
+.ms-menu li li li {	background:	#fafafa;}
+
+/* GRILLA */
+
+.grid_1 {
+  width: 300px;
+}
+
+.grid_2 {
+  width: 600px;
+}
+
+.grid_3 {
+  width: 918px;
+}
+
+.grid_4 {
+  width: 200px;
+}
+
+.grid_5 {
+  width: 215px;
+}
+
+.grid_6 {
+  width: 100px;
+}
+
+.grid_7 {
+  width: 150px;
+}
+.success_box,.alert_box,.info_box{width: 900px /*!important;*/}
+
+.loginger, .loginger a{color: #ffffff; font-family: 'NettoOffc'; font-weight: normal; font-size: 14px}
+
+.titulo{margin:20px 0; font-size:22px; font-family: 'NettoOffc'; font-weight: bold;} 

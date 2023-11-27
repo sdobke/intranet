@@ -1,0 +1,26 @@
+.nombre, .nombre2, .nombre3{
+	margin:0px 1px 0px 3px; float:left;
+	background-color:#DCEEFC;
+	height:25px;
+	margin-bottom:10px;
+	padding-top:10px;
+	padding-left:5px;
+}
+.nombre2{
+	background-color:#E7FEF1;
+}
+.nombre3{
+	background-color:#4061E3;
+	color:#EEE;
+	font-weight:bold;
+}
+.nombre, .nombre2, .nombre3{
+	width:700px;
+}
+.tabla_answer tr{
+	height:10px;
+}
+.neg{
+	font-weight:bold;
+}
+	

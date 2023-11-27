@@ -1,0 +1,115 @@
+/* CABECERA NOTA  */
+.cabecera_nota {float:left; width: 632px; padding:0px 0px; margin:0; background: #fff; text-align: left;}
+.cabecera_nota h2{padding: 0px; font-weight: bold; font-size: 30px; margin: 0 0 20px 0; color: #263248; line-height: 50px; font-family: 'NettoOffc';}
+.cabecera_nota h3{padding: 0px; font-weight: normal; font-size: 18px; margin: 0px 0px 15px 0px; color: #263248; line-height:16px; font-family: 'NettoOffc';}
+.cabecera_nota h3 a:link, #cabecera_nota h3 a:visited, #cabecera_nota h3 a:hover {text-decoration:underline}
+.cabecera_nota p{font-weight: normal; font-size: 14px; margin: 10px 0px 0px 0px; color: #263248; line-height: 19px; font-family:Helvetica, Arial, sans-serif; text-align:justify}
+.cabecera_nota img{margin-right:10px}
+.herramientas_nota {padding: 5px 10px; width: 928px; background: #fafafa url(../img_new/bg-herramientas.png) repeat-x; border:1px solid #ccc; text-align: left; margin:5px auto 0 auto; height:20px}
+.cabecera_nota h3 a:link, .cabecera_nota h3 a:visited, .cabecera_nota h3 a:active {color:#ff9800; text-decoration:none}
+.cabecera_nota h3 a:hover {color:#263248; text-decoration:none}
+.cabecera_nota h2 a:link, .cabecera_nota h2 a:visited, .cabecera_nota h2 a:active {color:#263248; text-decoration:none}
+.cabecera_nota h2 a:hover {color:#ff9800; text-decoration:none}
+
+/* CUERPO NOTA  */
+.cuerpo_nota, .cuerpo_nota_redes {float:left; width: 632px; margin-top:0}
+.cuerpo_nota p {font-weight: normal; font-size: 13px; margin: 0px 0px 0px 0px; color: #666; line-height: 18px; font-family:Helvetica, Arial, sans-serif; text-align:justify}
+.cuerpo_nota h4{padding: 0px; font-weight: bold; font-size: 11px; margin: 10px 0px; color: #7e8aa2; line-height:20px; font-family:Arial, Helvetica, sans-serif}
+.cuerpo_nota h3{padding: 0px; font-weight: bold; font-size: 18px; margin: 0px 0px 15px 0px; color: #263248; line-height:16px; font-family: 'NettoOffc';}
+.claves {float:right!important; margin:10px 0 20px 20px; width:230px!important; font: normal 12px/17px 'Arial'; position:relative;
+clear:both; background:#f8f8f8; border:1px solid #eee}
+.claves_row {float:left; width:210px; border-bottom:1px solid #fff; color:#999; font-size:11px; padding:10px}
+.claves_tit {float:left; padding:5px 10px; width:210px; background:url(../img_new/bg_headers.png) repeat-x; border-bottom:1px solid #eee; color:#263248; font-size:12px;}
+.cuerpo_nota p a:link, .cuerpo_nota p a:visited, .cuerpo_nota p a:active {color:#3f9aff; text-decoration:none}
+.cuerpo_nota p a:hover {color:#000; text-decoration:none}
+
+/* FOTO DE LA NOTA  */
+#cuerpo_nota_foto {float:left;	width:300px; padding:0; border:1px solid #000}
+#cuerpo_nota_foto_epigrafe {float:left;	width:280px; padding: 10px; color:#FFF; display:inline; background:#333; border-top:1px solid #fff}
+
+/* HEADER SECCION  */
+.hd-seccion {float:left; width:608px; margin-bottom:15px; padding:10px; font-size:26px; font-family:'NettoOffc'; background:#f8f8f8 url(../img_new/bg_headers.png) repeat-x; border:1px solid #ccc; display:inline; line-height:normal; color:#666}
+
+/* FORMATO 1: NOTAS SECCION (CON FOTO)  */
+.formato1 {float:left; width:100%; display:inline; border-bottom:1px dotted #ccc; line-height:normal; color:#999}
+.formato1 .texto{float: left; width: 525px;}
+.formato1 h2{padding:5px 0 0 0; font-weight:bold; font-size:20px; margin:0px 0px 5px 0px; color:#e44302; line-height:20px; font-family: 'NettoOffc'; text-transform:none !important;}
+.formato1 .leermas{padding: 0; font-weight: normal; font-size: 14px; margin: 0px; color: #999; line-height:20px �important; font-family:Arial, Helvetica, sans-serif; text-align:right !important; width:auto}
+.formato1 .leermas a:link {color:#39C}
+.formato1 .leermas a:hover {color:#333}
+.formato1 p{padding:0px; font-weight:normal; font-size:13px; color:#666; line-height:18px !important; margin: 0px; font-family:Arial, Helvetica, sans-serif;}
+.formato1 a:link, .formato1 a:visited {color:#e09a2b}
+.formato1 a:hover {color:#333; text-decoration:none}
+.formato1 .img {border:1px solid #ccc; width:85px; margin-right:10px; margin-top:2px}
+.tdest2{background:#f2f2f2; width:auto; border:1px solid #ccc; clear:both; margin-bottom:8px; margin-top:2px}
+.tdest2-h{padding: 5px 10px; font-size: 12px; margin: 0px; margin-right:5px; color: #fff; width:auto; font-family:Arial, Helvetica, sans-serif; background:#036}
+.tdest2-titular{font-weight: normal; font-size: 12px; width:auto; color: #511; font-family:Arial, Helvetica, sans-serif;/*padding: 5px 10px; */}
+
+/* FORMATO 2: NOTAS SECCION (SIN FOTO)  */
+.formato2 {float:left; width:100%; display:inline; border-bottom:1px dotted #ccc; line-height:normal; color:#999}
+.formato2 h2{padding-right:0px; padding-left:0px; font-weight:bold; font-size:20px; padding-bottom:0px; margin:0px 0px 5px 0px; color:#e44302; line-height:20px; padding-top:0px; font-family: 'NettoOffc'; text-transform:none !important;}
+.formato2 .leermas{padding: 0; font-weight: normal; font-size: 14px; margin: 0px; color: #999; line-height:20px �important; font-family:Arial, Helvetica, sans-serif; text-align:right !important; width:auto}
+.formato2 .leermas a:link {color:#39C}
+.formato2 .leermas a:hover {color:#333}
+.formato2 p{padding:0px; font-weight:normal; font-size:13px; color:#666; line-height:18px !important; margin: 0px; font-family:Arial, Helvetica, sans-serif;}
+.formato2 a:link, .formato1 a:visited {color:#e09a2b}
+.formato2 a:hover {color:#333; text-decoration:none}
+.status-sug{padding: 5px 10px; font-size: 12px; margin: 0px; color: #fff; width:auto; font-family:Arial, Helvetica, sans-serif;}
+
+/* FORMATO PAGINADOR */
+.paginador {color:#666; border:0px;	float:left;	width:100%;	padding:10px 0px;}
+.paginador a:link,.paginador a:visited,.paginador a:hover,.paginador a:active {text-decoration:none; color: #636363; background:#F9F9F9; border:1px solid #E6E6E6; padding:3px 6px;	font-size:11px}
+.paginador a:hover {background:#ccc; color:#FFFFFF;	border-color:#E6E6E6;}
+.paginador span {text-decoration:none;background:#fff;padding:3px 6px;border:1px solid #E6E6E6;color:#ccc;font-size:11px;}
+
+
+.notagal{color:#EEE; background-color:#000000; padding:5px; font-family:Tahoma, Geneva, sans-serif; font-size:11px; width:290px}
+.notagal a{color:#EEE}
+
+/* Pestañas */
+.tabs {
+    width:640px;
+    height:24px;
+    margin-bottom:7px;
+    border-bottom:1px solid #ccc;
+
+    float:left;
+    margin-right:5px;
+}
+.tabs li a {
+    border:1px solid #ccc;
+    padding:3px 13px;
+    background:white;
+    float:left;
+    margin-right:-1px;
+}
+.tabs li a:hover {
+    background:#fafafa;
+}
+.tabs li a.active {
+    color:#0066cc;
+    border-bottom-color:white;
+}
+.panes {
+    clear:both;
+    float:left;
+    height:240px;
+}
+
+/* COMENTARIOS */
+.titcomentario{float: left; width: 460px; height:23px; background-image: url(../ima/tit_gris.gif); background-repeat:repeat-x; display:inline}
+.titcomentario h1{font-family:"Trebuchet MS"; font-size:16px; color:#B41C1C; margin:0px; font-weight:normal; display:inline}
+.comentario {width:610px; BACKGROUND: #f8f8f8; float:left; display:inline; border:1px solid #eee}
+.comentario p {COLOR: #666; line-height:17px; display:inline}
+
+/* TABS */
+ul.tabs_mn {margin: 0 0 0 1px; padding: 0; float: right; list-style: none; width: 100%;}
+ul.tabs_mn li {float: right; margin: 0 1px; width:135px; line-height:16px; border: 1px solid #555;overflow: hidden; text-align:center; position: relative; background: #111;}
+ul.tabs_mn li a {text-decoration: none; color: #fff; display: block; font-size: 12px; padding: 5px;}
+ul.tabs_mn li a:hover {background: #333;}
+html ul.tabs_mn li.active, html ul.tabs_mn li.active a:hover  { /*--Estate seguro de que a la tab activa no se le aplicarán estas propiedades hover--*/
+background: #333;}
+.tab_content_mn {float:left; width:100%; background:#000}
+
+.link, .link a{font-size: 16px; color: #8e0000}
+.link a{font-weight: bold;}

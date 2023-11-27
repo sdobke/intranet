@@ -1,0 +1,6 @@
+[03-May-2022 01:01:35 America/Buenos_Aires] PHP Notice:  Trying to access array offset on value of type null in /home/intraberco/public_html/backend/inc/recorte/recorte.php on line 61
+[03-May-2022 01:01:35 America/Buenos_Aires] PHP Warning:  copy(): The first argument to copy() function cannot be a directory in /home/intraberco/public_html/backend/inc/recorte/recorte.php on line 66
+[03-May-2022 01:05:39 America/Buenos_Aires] PHP Fatal error:  Uncaught Error: Class 'SimpleImage' not found in /home/intraberco/public_html/backend/inc/recorte/save-thumb.php:174
+Stack trace:
+#0 {main}
+  thrown in /home/intraberco/public_html/backend/inc/recorte/save-thumb.php on line 174

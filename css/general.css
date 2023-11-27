@@ -1,0 +1,62 @@
+body{font-size:12px;line-height:17px;font-family:Arial,Helvetica,"Helvetica Neue",Tahoma;background:#f8f8f8;color:#666}
+img{border:none}
+form{margin:0;padding:0}
+A:link{color:#069;text-decoration:none}
+A:active{color:#069;text-decoration:none}
+A:visited{color:#069;text-decoration:none}
+A:hover{color:#06C;text-decoration:none}
+a{outline:0;cursor:pointer}
+.mas_novedades a:link,.mas_novedades a:visited,.mas_novedades a:active{color:#fff;text-decoration:none}
+.mas_novedades a:hover{color:#FC0;text-decoration:none}
+#middle{background:rgba(0,0,0,0.03);width:99%;padding:9px;margin:20px auto 0;position:relative;overflow:hidden;border-radius:10px;-moz-border-radius:10px;-webkit-border-radius:10px}
+.middle_inner{background:#fff;border:1px solid #d4d4d3;width:950px;border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;-webkit-box-shadow:0 2px 0 rgba(0,0,0,.05);-moz-box-shadow:0 2px 0 rgba(0,0,0,.05);box-shadow:0 2px 0 rgba(0,0,0,.05);min-height:500px;padding:15px}
+.footer_inner{width:982px;padding:10px 20px 20px;margin:0 auto;text-align:right;color:#999}
+.container{width:950px;float:left}
+.container_inner{width:950px;float:left;background:url(../img_new/container_inner.gif) repeat-y}
+.container_inner_2{width:950px;float:left;background:url(../img_new/container_inner_2.gif) repeat-y}
+.container630{width:632px;float:left}
+.col_ppal{width:632px}
+.sidebar{width:300px}
+#header{width:930px;float:left;height:75px}
+#logo{width:175px;height:75px;float:left;margin-left:15px;vertical-align:central}
+#login_head{width:370px;height:60px;margin-top:12px;line-height:16px;text-align:right;font-family:Tahoma,Arial;font-size:11px;color:#999}
+.foto_usr{border:solid 1px #333;border-radius:5px}
+#login_head input[type="text"]{border:1px solid #ccc;padding:5px;color:#999;background:#f8f8f8;outline:none;webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;margin:5px;height:18px;font-size:14px;font-family:Helvetica,Arial,sans-serif}
+#login_head input[type="password"]{border:1px solid #ccc;padding:5px;color:#999;background:#f8f8f8;outline:none;webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;margin:5px;height:18px;font-size:14px;font-family:Helvetica,Arial,sans-serif}
+#headerpop{background-color:#0057b8;padding:10px;float:left;height:75px;width:610px}
+.containerpop{float:left;width:630px}
+.col_ppalpop{width:630px}
+.cabecera_notapop{background:#fff none repeat scroll 0 0;float:left;margin:0;padding:0;text-align:left;width:630px}
+.poptxt{margin-top:25px;clear:both;text-align:justify;color:rgba(40,40,40,1.00)}
+.poptit{font-size:20px;margin:10px 0 20px}
+.middle_innerpop{background:#fff;border:1px solid #d4d4d3;border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;-webkit-box-shadow:0 2px 0 rgba(0,0,0,.05);-moz-box-shadow:0 2px 0 rgba(0,0,0,.05);box-shadow:0 2px 0 rgba(0,0,0,.05);min-height:500px;padding:15px;width:630px}
+#menu_minisitios{float:left;width:279px;height:45px;padding-top:30px;border-left:1px dotted #ccc;padding-left:20px;margin-left:15px}
+.img-list{margin:0}
+.img-list li{float:left;margin-left:15px;padding-left:15px;border-left:1px dotted #ccc}
+.img-list .icon1{background:url(../img_new/logos/bk-off.png) no-repeat 0 0 transparent;display:block;height:55px;width:52px}
+.img-list .icon1:hover{background:url(../img_new/logos/bk-on.png) no-repeat 0 0 transparent}
+.img-list li .icon2{background:url(../img_new/logos/sb-off.png) no-repeat 0 0 transparent;display:block;height:55px;width:52px}
+.img-list .icon2:hover{background:url(../img_new/logos/sb-on.png) no-repeat 0 0 transparent}
+.img-list li .icon3{background:url(../img_new/logos/pf-off.png) no-repeat 0 0 transparent;display:block;height:55px;width:100px}
+.img-list .icon3:hover{background:url(../img_new/logos/pf-on.png) no-repeat 0 0 transparent}
+#menu{float:left;width:950px;margin-top:5px;display:inline;background:url(../img_new/topnav_bg.gif) repeat-x;border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px}
+ul.topnav{list-style:none;padding:0 20px;margin:0;float:left;position:relative;width:620px;_width:645px;font-size:13px;font-weight:400;font-family:'NettoOffc';z-index:9999;color:#00577d}
+ul.topnav li{float:left;margin:0;padding:0 15px 0 0;position:relative}
+ul.topnav li a{padding:8px 2px;color:#fff;display:block;text-decoration:none;float:left}
+ul.topnav li a:hover{background:url(../img_new/topnav_hover.gif) no-repeat center top}
+ul.topnav li span{width:17px;height:35px;float:left;background:url(../img_new/subnav_btn.gif) no-repeat center top}
+ul.topnav li span.subhover{background-position:center bottom;cursor:pointer}
+ul.topnav li ul.subnav{list-style:none;position:absolute;left:0;top:35px;background:#036;margin:0;padding:0;display:none;float:left;width:170px;-moz-border-radius-bottomleft:5px;-moz-border-radius-bottomright:5px;-webkit-border-bottom-left-radius:5px;-webkit-border-bottom-right-radius:5px;border:1px solid #003;font-weight:400}
+ul.topnav li ul.subnav li{margin:0;padding:0;border-top:1px solid #069;border-bottom:1px solid #003;clear:both;width:170px}
+html ul.topnav li ul.subnav li a{float:left;width:145px;background:#036 url(../img_new/dropdown_linkbg.png) no-repeat 10px center;padding-left:20px}
+html ul.topnav li ul.subnav li a:hover{background:#069 url(../img_new/dropdown_linkbg.png) no-repeat 10px center}
+#searchwrapper{width:279px;height:30px;background-image:url(../img_new/searchbar.png);background-repeat:no-repeat;padding:0;margin:0;position:relative;float:right}
+#searchwrapper form{display:inline;outline:none}
+#searchwrapper input{outline:none}
+.searchbox{border:0!important;background-color:transparent!important;position:absolute;top:4px;left:9px;width:200px;height:16px;font-size:11px;color:#999;padding:0 4px 0 0 !important}
+.searchbox_submit{border:0;background-color:transparent;position:absolute;top:0;left:223px;width:52px;height:24px}
+.botazul{background-color:#00577d!important;border:1px solid #d9d9d9;border-radius:2px;color:#EEE;cursor:pointer;display:inline-block;font:12px/17px Helvetica,Arial,sans-serif;height:25px;margin:0 5px;padding:0 6px;text-decoration:none;transition:border-color .2s ease 0}
+.botazul:hover{background-color:#70C0FF!important;color:#333}
+.coltit{background:#004a69 url(../img_new/topnav_bg.gif) repeat-x scroll 0 0;border-bottom:1px solid #d1d4d3;border-top-left-radius:3px;border-top-right-radius:3px;color:#fff;display:inline;float:left;padding:5px 10px;width:280px}
+.colfec{color:rgba(114,42,44,1.00)}
+.coltxt{margin-top:5px;color:#222}

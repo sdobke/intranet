@@ -1,0 +1,6 @@
+div#bookmark ul,
+div#bookmark li {display:inline;margin:0;padding:0;}
+div#bookmark,
+div#bookmark ul {margin-left:10px;}
+div#bookmark li img {display:inline;margin:0;vertical-align:bottom;border:none;}
+div#bookmark li a {border:none;}

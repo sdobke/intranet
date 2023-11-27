@@ -1,0 +1,15 @@
+# Logs and databases #
+###################
+*.txt
+*.sql
+*.log
+
+# Sitemaps #
+###################
+*.xml
+
+# Files & Folders #
+###################
+.vscode/
+cliente/
+cnfg/

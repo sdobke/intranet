@@ -1,0 +1,15 @@
+[11-Aug-2022 15:35:59 America/Buenos_Aires] PHP Fatal error:  Uncaught Error: Call to undefined function fullQuery() in /home/intraberco/public_html/backend/push_notifications/push.php:92
+Stack trace:
+#0 {main}
+  thrown in /home/intraberco/public_html/backend/push_notifications/push.php on line 92
+[11-Aug-2022 15:36:52 America/Buenos_Aires] PHP Warning:  Illegal string offset 'link' in /home/intraberco/public_html/backend/push_notifications/push.php on line 101
+[11-Aug-2022 15:37:30 America/Buenos_Aires] PHP Warning:  Illegal string offset 'link' in /home/intraberco/public_html/backend/push_notifications/push.php on line 102
+[11-Aug-2022 19:33:54 America/Buenos_Aires] PHP Fatal error:  Uncaught Error: Cannot use object of type stdClass as array in /home/intraberco/public_html/backend/push_notifications/PNSubscriber.php:55
+Stack trace:
+#0 {main}
+  thrown in /home/intraberco/public_html/backend/push_notifications/PNSubscriber.php on line 55
+[11-Aug-2022 19:36:09 America/Buenos_Aires] PHP Fatal error:  Uncaught Error: Cannot use object of type stdClass as array in /home/intraberco/public_html/backend/push_notifications/PNSubscriber.php:55
+Stack trace:
+#0 {main}
+  thrown in /home/intraberco/public_html/backend/push_notifications/PNSubscriber.php on line 55
+[11-Aug-2022 19:39:52 America/Buenos_Aires] PHP Warning:  trim() expects parameter 1 to be string, object given in /home/intraberco/public_html/backend/push_notifications/PNSubscriber.php on line 56

@@ -1,0 +1,35 @@
+.question {
+	color: black;
+	font-family: verdana;
+	font-weight: bold;
+	font-size: 10px;
+	padding-left: 5px;
+}
+
+.answer {
+	color: black;
+	font-family: verdana;	
+	font-size: 10px;
+}
+
+
+.options {
+	padding-left: 15px;
+	font-family: verdana;	
+	font-size: 10px;
+}
+
+.cross {
+	padding-left: 280px;
+	cursor:hand;
+	cursor:pointer;
+}
+
+
+#polldiv {
+	width: 300px;
+	height: 230px;
+	color: red;
+	background-color: #E2EBED;	
+	border-style: ridge double;
+}

@@ -1,0 +1,27 @@
+label.myLabel input[type="file"] {
+    position: fixed;
+    top: -1000px;
+}
+.myLabel {
+    border: 2px solid #AAA;
+    padding: 6px 8px;
+    margin: 2px;
+    background: #247CB4;
+    display: inline-block;
+}
+.myLabel:hover {
+    background: #CCC;
+}
+.myLabel:active {
+    background: #CCC;
+}
+.myLabel :invalid + span {
+    color: #FFF;
+	font-weight:bold;
+	font-size:14px;
+}
+.myLabel :valid + span {
+    color: #FFF;
+	font-weight:bold;
+	font-size:14px;
+}

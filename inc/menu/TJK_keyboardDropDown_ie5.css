@@ -1,0 +1,12 @@
+/* [TJK_dropDown] Copyright 2006, Thierry Koblentz - TJKDesign.com. all rights reserved. */
+body {text-align:center;}
+#wrapper {text-align:left;width:50.1em;font-size:.8em !important;}
+#TJK_dropDownMenu ul li a {width:100% !important;}
+#google {display:none !important}
+
+.AB #TJK_dropDownMenu li#AB ul li a,
+.CF #TJK_dropDownMenu li#CF ul li a,
+.GJ #TJK_dropDownMenu li#GJ ul li a,
+.KR #TJK_dropDownMenu li#KR ul li a,
+.ST #TJK_dropDownMenu li#ST ul li a,
+.UZ #TJK_dropDownMenu li#UZ ul li a {width:10em !important;}

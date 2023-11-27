@@ -1,0 +1,24 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML xmlns="http://www.w3.org/1999/xhtml" xml:lang="es">
+<HEAD> 
+	<TITLE>Ajax Poll</TITLE>
+	<link rel="stylesheet" href="inc/encuestas/stylesheet.css" type="text/css"/>
+	<SCRIPT src="inc/encuestas/prototype.js" type="text/javascript"></SCRIPT>
+	<SCRIPT src="inc/encuestas/javascript.js" type="text/javascript"></SCRIPT>
+</HEAD>
+
+<BODY>
+		<div class="question" id="ques" align="center" style="margin-bottom:0; padding-bottom:0;">{question}</div>
+		<div style="margin: 10px">
+		<SPAN id="options" class="options">
+		<BR />
+			{options}			
+		<BR />
+		</SPAN>
+		</div>
+        <input type="hidden" value="1" name="votado" id="votado" />
+		<div id="voteimg" align="center"><IMG src="../img/vote.gif" alt="Responder" title="Responder" onclick="return submitPoll()" /></div>
+		<SPAN id="result" class="answer"></SPAN>
+		<br />
+</BODY>
+</HTML>

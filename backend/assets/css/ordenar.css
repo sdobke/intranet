@@ -1,0 +1,38 @@
+/* ORDENADOR */
+.row-result-ord {float:left; /*min-width:180px;*/ color:#999; font-size:11px}
+#sortable1, #sortable2 { min-width:250px; min-height:400px; background:#fff;list-style-type: none; margin: 0; padding: 0; float: left; margin-right: 10px; }
+#sortable1 li, #sortable2 li {
+	display: block;
+	border: 1px solid #DDD;
+	background-color: #F8F8F8;
+	margin-right: 5px;
+	margin-left: 5px;
+	margin-bottom: 10px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	padding: 2px;
+	height: 35px;
+	padding-top: 2px;
+	cursor: move;
+}
+.nom {
+	color: #0053A6;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 13px;
+}
+.row-result-img, .row_result-noimg {
+	float:left; margin-right:10px; border:1px solid #666; margin: 1px 8px 5px 2px;
+}
+.row_result-noimg {
+	width:30px; height:25px; background-color:#EEE; font-size:11px; line-height:11px; padding-top:5px; text-align:center;
+}
+.ordencol{
+	/*min-width:270px;*/ height:600px; overflow: scroll;
+}
+.ordentot{
+	/*min-width:270px;*/ float:left; margin-left:10px; overflow: hidden;
+}
+.ordentit{
+	text-align:center; padding-top:15px; margin-bottom:15px; color:#333; font-size:12px; font-weight:bold; font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+}
