@@ -172,7 +172,7 @@ function getDia($dato)
 																	var options = {
 																		title: "Total de Accesos a información por medio",
 																		width: 600,
-																		height: 800, // generar funcion que retorne el valor del height basado en la cantidad de medios que se van a renderizar
+																		height: 700, // generar funcion que retorne el valor del height basado en la cantidad de medios que se van a renderizar
 																		bar: { groupWidth: "95%" },
 																		legend: { position: "none" },
 																	};
@@ -187,7 +187,7 @@ function getDia($dato)
 														google.charts.setOnLoadCallback(drawVisualization);
 												</script>
 																				
-												<div id="medio" style="width: 900px; height: 500px;"></div>
+												<div id="medio" style="width: 900px; height: 800px;"></div>
 											</div>
 										</div>
 									</div>
