@@ -85,7 +85,7 @@ function getDia($dato)
 								</ul>
 
 								<h1 id="main-heading">
-									<?PHP echo ucwords(txtcod($nombredet)); ?> <span>Accesos por d&iacute;a (s&oacute;lo usuarios que loguearon)</span>
+									<?PHP echo ucwords(txtcod($nombredet)); ?> <span>Accesos a información por medio</span>
 								</h1>
 							</div>
 							<div id="main-content">
