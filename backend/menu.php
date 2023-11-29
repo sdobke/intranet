@@ -159,7 +159,7 @@ $encadm = 0;
 						<li <?PHP echo ActMenu('estadisticas09.php','nada',0);?>><a href="estadisticas09.php"><i class="icol-dashboard"></i> Por genero</a></li>
 						<li <?PHP echo ActMenu('estadisticas10.php','nada',0);?>><a href="estadisticas10.php"><i class="icol-dashboard"></i> Por rango etario</a></li>
 						<li <?PHP echo ActMenu('estadisticas11.php','nada',0);?>><a href="estadisticas11.php"><i class="icol-dashboard"></i> Por Area</a></li>
-						<li <?PHP echo ActMenu('estadisticas12.php','nada',0);?>><a href="estadisticas12.php"><i class="icol-dashboard"></i> Accesos a información por medio</a></li>
+						<!-- <li <?PHP// echo ActMenu('estadisticas12.php','nada',0);?>><a href="estadisticas12.php"><i class="icol-dashboard"></i> Accesos a información por medio</a></li> -->
                     </ul>
                 </li>
             <?PHP //} ?>
