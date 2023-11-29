@@ -29,11 +29,11 @@ if($ord == 2){
 function selectorTablas($on_off,$variable,$order_by,$titulo,$tabla,$cantidad=0){
 	$tablas = "SELECT * FROM ".$_SESSION['prefijo']."tablas WHERE id = ".$tabla;
 	$result = fullQuery($tablas);
-	$campo_orden = '';
+	// $campo_orden = '';
 	$pos = strpos($order_by, "DESC");
-	if ($pos !== false) {
-		$campo_orden = ', '.substr($order_by, 0, -5);	
-	}
+	// if ($pos !== false) {
+	// 	$campo_orden = ', '.substr($order_by, 0, -5);	
+	// }
 	$contar_tab = 1;
 	$query = '';
 	while($rowtab = mysqli_fetch_array($result)){
@@ -41,11 +41,11 @@ function selectorTablas($on_off,$variable,$order_by,$titulo,$tabla,$cantidad=0){
 		$usafec = ($rowtab['fecha'] == 1) ? ', fecha' : '';
 		$tipo = $rowtab['id'];
 		if($contar_tab > 1){$query.= ' UNION ';}
-		$query.= '(SELECT '.$tipo.' AS tipo, id '.$campo_orden.', '.$variable.', '.$titulo.', del '.$usafec.' FROM '.$_SESSION['prefijo'].$rowtab['nombre'].' WHERE 1 AND del = 0 '.$estado.' AND '.$variable.' = '.$on_off.')';
+		$query.= 'SELECT '.$tipo.' AS tipo, id '. $campo_orden.', '.$variable.', '.$titulo.', del '.$usafec.' FROM '.$_SESSION['prefijo'].$rowtab['nombre'].' WHERE 1 AND del = 0 '.$estado.' AND '.$variable.' = '.$on_off;
 		$contar_tab++;
 	}
 	$cant = ($cantidad == 0) ? '' : ' LIMIT '.$cantidad;
-	$query.= ' ORDER BY '.$order_by.$cant;
+	$query.= ' ORDER BY '. $order_by . $cant ;
 	return $query;
 }
 $sql_cant = "SELECT SUM(valor) AS suma FROM ".$_SESSION['prefijo']."config WHERE parametro = 'novedades_slider' OR parametro = 'novedades_home' OR parametro = 'novedades_mas' OR parametro = 'home_latam'";
