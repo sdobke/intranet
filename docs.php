@@ -47,6 +47,7 @@ if (isset($_GET['cl'])) {
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title>
 		<?PHP echo $cliente; ?> Intranet | Documentos Utiles</title>
@@ -57,6 +58,7 @@ if (isset($_GET['cl'])) {
 	<link href="/css/jstip.css" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" type="text/css" href="/assets/css/lightbox.css">
 </head>
+
 <body id="docs">
 	<div class="flex-wrapper">
 		<?PHP include("sitio/header.php"); ?>
@@ -121,25 +123,27 @@ if (isset($_GET['cl'])) {
 									}
 								}
 								if (isset($docurl) && $docurl != '') {
+									$nom_emp = '';
+									if ($cantemp > 1) {
+										$nom_emp = obtenerDato('nombre', 'empresas', $docs['empresa']) . ' - ';
+									}
+									//$urlink = txtcod($nom_emp.' - '.$areaver.' - '.$sectver);
+									$urlink = txtcod($nom_emp . $areaver . ' - ' . $tipover);
+									$sqlde = "SELECT id FROM intranet_docs_emp WHERE doc = " . $id . " AND emp = " . $_SESSION['usrfrontend'];
+									$resde = fullQuery($sqlde);
+									$conflec = 'Lectura confirmada';
+									if (mysqli_num_rows($resde) == 0) {
+										$conflec = 'cl=' . $id . '&tipo=' . $tipo . $vars;
+									}
 									$link = 'javascript:void(0)';
 									$urlframe = "'" . $docurl . "'";
-									$onclick = 'onClick="abrirFrame(' . $urlframe . ',' . $tipo . ',' . $id . ')"';
+									$conflec = "'" . $conflec . "'";
+									$onclick = 'onClick="abrirFrame(' . $urlframe . ',' . $tipo . ',' . $id . ',' . $conflec . ')"';
 									//$peso = '';
 									$target = '';
 								}
-								$nom_emp = '';
-								if ($cantemp > 1) {
-									$nom_emp = obtenerDato('nombre', 'empresas', $docs['empresa']) . ' - ';
-								}
-								//$urlink = txtcod($nom_emp.' - '.$areaver.' - '.$sectver);
-								$urlink = txtcod($nom_emp . $areaver . ' - ' . $tipover);
-								$sqlde = "SELECT id FROM intranet_docs_emp WHERE doc = " . $id . " AND emp = " . $_SESSION['usrfrontend'];
-								$resde = fullQuery($sqlde);
-								$conflec = 'Lectura confirmada';
-								if (mysqli_num_rows($resde) == 0) {
-									$conflec = '<a href="?cl=' . $id . '&tipo=' . $tipo . $vars . '" class="btn btn-info btn-small">Confirmar lectura</a>';
-								}
-								$divconfir .= '
+
+								$divconfir .= ' 
 											<div class="btn-der ocultos" id="oculto_' . $id . '">' . $conflec . '</div>';
 								//$confirm = 'conflec' . '_' . $id;
 								//$$confirm = $conflec;
@@ -155,7 +159,7 @@ if (isset($_GET['cl'])) {
 											</div>
 											<div class="col-xl-8 col-lg-12">
 												<div class="user_name">
-													<a class="" href="<?PHP echo $link; ?>" <?php echo $onclick; ?><?php echo $target; ?>>
+													<a href="<?PHP echo $link; ?>" <?php echo $onclick; ?><?php echo $target; ?>>
 														<span onmouseover="tooltip.show('<?PHP echo $nombre; ?>');" onmouseout="tooltip.hide();">
 															<?PHP echo cortarTxt($nombre, 75, '...' . $lupa); ?>
 														</span>
@@ -169,7 +173,8 @@ if (isset($_GET['cl'])) {
 													<span onmouseover="tooltip.show('<?PHP echo $urlink; ?>');" onmouseout="tooltip.hide();">
 														<?PHP echo cortarTxt($urlink, 100, '...' . $lupa); ?>
 													</span>
-													<!--<div class="btn-der"><?php echo $conflec; ?></div>-->
+													<!--<div class="btn-der"><?php //echo $conflec; 
+																										?></div>-->
 												</div>
 											</div>
 										</div>
@@ -190,7 +195,9 @@ if (isset($_GET['cl'])) {
 								</div>
 								<div class="modal-footer">
 									<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-									<?php echo $divconfir; ?>
+									<div class="btn-der" id="botconf"></div>
+									<?php //echo $divconfir; 
+									?>
 								</div>
 							</div>
 						</div>
@@ -222,9 +229,11 @@ if (isset($_GET['cl'])) {
 		function sendForm() {
 			document.getElementById("buscador").submit();
 		}
-		function abrirFrame(link, tipo, id) {
+
+		function abrirFrame(link, tipo, id, confirma) {
 			var full = '<iframe id="' + id + '" src="' + link + '<?php echo '&' . date('d-m-y-h-i-s'); ?>"></iframe>';
 			$('#iframe-documento-contenidos').html(full);
+			$('#botconf').html('<a href="'+confirma+'" class="btn btn-info btn-small">Confirmar lectura</a>');
 			$('#iframe-documento').show();
 			$('#iframe-documento').modal('show');
 			$.ajax({
@@ -242,4 +251,5 @@ if (isset($_GET['cl'])) {
 		}
 	</script>
 </body>
+
 </html>
