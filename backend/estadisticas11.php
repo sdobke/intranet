@@ -84,7 +84,7 @@ function getDia($dato)
 								</ul>
 
 								<h1 id="main-heading">
-									<?PHP echo ucwords(txtcod($nombredet)); ?> <span>Accesos por genero</span>
+									<?PHP echo ucwords(txtcod($nombredet)); ?> <span>Accesos por areas</span>
 								</h1>
 							</div>
 							<div id="main-content">
@@ -105,60 +105,89 @@ function getDia($dato)
 										<div class="widget-content table-container">
 										
 											<div style="width:728px; margin:auto; height:auto">
-												<h1 align="center">Accesos por genero</h1>
+												<h1 align="center">Accesos por areas</h1>
 												<?PHP
 
-													$sql .= " SELECT intranet_generos.nombre as genero, intranet_generos.id, SUM(intranet_accesos_detalle.accesos) AS total_accesos ";
+													$sql = " SELECT intranet_areas.nombre AS areas, intranet_areas.id AS total_accesos";
 													$sql .= " FROM intranet_accesos_detalle ";
-													$sql .= " INNER JOIN intranet_empleados ON intranet_empleados.id = intranet_accesos_detalle.empleado ";
-													$sql .= " INNER JOIN intranet_generos ON intranet_generos.id = intranet_empleados.genero ";
-													$sql .= " WHERE DATE(intranet_accesos_detalle.fecha) BETWEEN '$fechadesde' AND '$fechahasta' ";
-													$sql .= " GROUP BY intranet_generos.id ";
-
+													$sql .= " inner JOIN intranet_empleados_areas ON intranet_accesos_detalle.empleado = intranet_empleados_areas.empleado ";
+													$sql .= " INNER JOIN intranet_areas ON  intranet_empleados_areas.area = intranet_areas.id ";
+													$sql .= " WHERE intranet_accesos_detalle.fecha BETWEEN '$fechadesde' AND '$fechahasta' "; 
+													$sql .= " GROUP BY intranet_areas.id, intranet_areas.nombre ";
+													
 													$res = fullQuery($sql);
 													$chartData  = '';
 													$contador = 0;
-													$chartData = "['Genero', 'Visitas'],";
+													$chartData = " [['Areas', 'Total Accesos', { role: 'style' }],";
+
+													//Pasarla a un fichero para poder consumirla de ambos ficheros de estadisticas
+													function generateRandomColor() {
+														$red = rand(0, 255);
+														$green = rand(0, 255);
+														$blue = rand(0, 255);
+														
+														return "rgb({$red}, {$green}, {$blue})";
+													}
+
+
 													while ($dato = mysqli_fetch_array($res)) {
-													
-													$chartData .= "['{$dato['genero']}', {$dato['total_accesos']}],";
+														$color = generateRandomColor();
+														$chartData .= "['{$dato['areas']}', {$dato['total_accesos']}, 'color: $color'],";
 												?>
 												<?php
 													} 
 													
 													$chartData = rtrim($chartData, ','); 
+													$chartData .= "]";
 												?>
 											</div>
 											<div style="clear:both;"></div>
 											<div style="width:728px; margin:auto; height:auto">
 											<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
 												<script type="text/javascript">
-											 		google.charts.load('current', {'packages':['corechart']});
-												</script>
-												<script type="text/javascript">
+													google.charts.load('current', {'packages':['corechart']});
 													
 													function drawVisualization() {
 														
-														if (typeof google.visualization !== 'undefined') {
-															var chartData = [<?php echo $chartData; ?>];
-															var data = google.visualization.arrayToDataTable(chartData);
+														var chartData = <?php echo $chartData; ?>;
+														console.log(chartData[1]);
+														if(chartData[1] != undefined) { 
+															google.charts.setOnLoadCallback(function() {
+																var data = google.visualization.arrayToDataTable(chartData);
 
-															var options = {
-																title: ''
-															};
+																var view = new google.visualization.DataView(data);
+																	view.setColumns([
+																		0,
+																		1,
+																		{
+																		calc: "stringify",
+																		sourceColumn: 1,
+																		type: "string",
+																		role: "annotation",
+																		},
+																		2,
+																	]);
 
-															var chart = new google.visualization.PieChart(document.getElementById('generos'));
-															chart.draw(data, options);
+																	var options = {
+																		title: "Total de Accesos por areas",
+																		width: 600,
+																		height: 400,
+																		bar: { groupWidth: "95%" },
+																		legend: { position: "none" },
+																	};
 
-														} else {
-        												    console.error('Error: google.visualization is undefined. Google Charts may not have loaded properly.');
+																	var chart = new google.visualization.BarChart(document.getElementById("rango"));
+																	chart.draw(view, options);
+																});
+															}
 														}
-													}
-													google.charts.setOnLoadCallback(drawVisualization);
-													drawVisualization();
+
+														drawVisualization();
+														google.charts.setOnLoadCallback(drawVisualization);
 												</script>
-												
-												<div id="generos" style="width: 900px; height: 500px;"></div>
+																				
+												<div id="rango" style="width: 900px; height: 500px;"></div>
 											</div>
 										</div>
 									</div>
