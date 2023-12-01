@@ -20,7 +20,24 @@ $cad_are = ($area > 0) ? " AND area = " . $area : "";
 $tipodoc = getPost('bus_tipos_docs', 0);
 $cad_tipodoc = ($tipodoc > 0) ? " AND tipodoc = " . $tipodoc : "";
 $vars = "&bus_empresas=" . $empre . "&bus_areas=" . $area . "&bus_tipodoc=" . $tipodoc;
-$otro_query = $cad_emp . $cad_are . $cad_tipodoc;
+
+$busext = getPost('bus_ext');
+$cad_ext = "";
+if ($busext > 0) {
+	switch ($busext) {
+		case 'doc':
+			$cad_ext =  " AND tipoarc = 'doc' AND tipoarc = 'docx' ";
+		break;
+		case 'xls':
+			$cad_ext =  " AND tipoarc = 'xls' AND tipoarc = 'docx' ";
+		break;
+		default:
+			$cad_ext =  " AND tipoarc = $busext ";
+		break;
+	}
+}
+
+$otro_query = $cad_emp . $cad_are . $cad_tipodoc. $cad_ext;
 $otro_query = '';
 //$empre = getPost('bus_empresas',0);
 $cad_emp = ($empre > 0) ? " AND empresa = " . $empre : "";
@@ -43,6 +60,7 @@ $result = fullQuery($query);
 if (isset($_GET['cl'])) {
 
 	$sqlcl = "UPDATE intranet_docs_emp SET status = 1 WHERE emp = " . $_SESSION['usrfrontend'] . " AND doc = " .$_GET['cl'];
+	
 	$rescl = fullQuery($sqlcl);
 }
 ?>
