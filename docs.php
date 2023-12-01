@@ -42,7 +42,7 @@ $result = fullQuery($query);
 
 if (isset($_GET['cl'])) {
 
-	$sqlcl = "INSERT INTO intranet_docs_emp	(doc,emp) VALUES (" . $_GET['cl'] . "," . $_SESSION['usrfrontend'] . ")";
+	$sqlcl = "UPDATE intranet_docs_emp SET status = 1 WHERE emp = " . $_SESSION['usrfrontend'] . " AND doc = " .$_GET['cl'];
 	$rescl = fullQuery($sqlcl);
 }
 ?>
@@ -130,16 +130,25 @@ if (isset($_GET['cl'])) {
 									}
 									//$urlink = txtcod($nom_emp.' - '.$areaver.' - '.$sectver);
 									$urlink = txtcod($nom_emp . $areaver . ' - ' . $tipover);
-									$sqlde = "SELECT id FROM intranet_docs_emp WHERE doc = " . $id . " AND emp = " . $_SESSION['usrfrontend'];
+									$sqlde = "SELECT count(*) AS leido FROM intranet_docs_emp WHERE doc = " . $id . " AND emp = " . $_SESSION['usrfrontend'] . " AND status = 1";
 									$resde = fullQuery($sqlde);
+									
+									$fila = $resde->fetch_assoc();
+									$leido = $fila['leido'];
 									$conflec = 'Lectura confirmada';
-									if (mysqli_num_rows($resde) == 0) {
+									$confirmada = 0;
+
+									if ($leido != "1") {
 										$conflec = 'cl=' . $id . '&tipo=' . $tipo . $vars;
+										$confirmada = 1;
 									}
+
 									$link = 'javascript:void(0)';
 									$urlframe = "'" . $docurl . "'";
 									$conflec = "'" . $conflec . "'";
-									$onclick = 'onClick="abrirFrame(' . $urlframe . ',' . $tipo . ',' . $id . ',' . $conflec . ')"';
+									$confirmada = "'" . $confirmada . "'";
+									
+									$onclick = 'onClick="abrirFrame(' . $urlframe . ',' . $tipo . ',' . $id . ',' . $conflec . ',' . $confirmada . ')"';
 									//$peso = '';
 									$target = '';
 								}
@@ -231,10 +240,16 @@ if (isset($_GET['cl'])) {
 			document.getElementById("buscador").submit();
 		}
 
-		function abrirFrame(link, tipo, id, confirma) {
+		function abrirFrame(link, tipo, id, confirma, confirmada) {
 			var full = '<iframe id="' + id + '" src="' + link + '<?php echo '&' . date('d-m-y-h-i-s'); ?>"></iframe>';
 			$('#iframe-documento-contenidos').html(full);
-			$('#botconf').html('<a href="'+confirma+'" class="btn btn-info btn-small">Confirmar lectura</a>');
+			if(confirmada == 1) {
+				$('#botconf').html('<a href="?' + confirma + '" class="btn btn-info btn-small">Confirmar Lectura</a>');
+			} else {
+				$('#botconf').html('<button class="btn btn-secondary btn-small disabled">Lectura confirmada</button>');
+			}
+			
+
 			$('#iframe-documento').show();
 			$('#iframe-documento').modal('show');
 
