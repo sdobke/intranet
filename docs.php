@@ -39,8 +39,9 @@ include "inc/prepara_paginador.php";
 $query4 = $query;
 $contdocs = 0;
 $result = fullQuery($query);
-// Confirmación de lectura
+
 if (isset($_GET['cl'])) {
+
 	$sqlcl = "INSERT INTO intranet_docs_emp	(doc,emp) VALUES (" . $_GET['cl'] . "," . $_SESSION['usrfrontend'] . ")";
 	$rescl = fullQuery($sqlcl);
 }
@@ -236,6 +237,7 @@ if (isset($_GET['cl'])) {
 			$('#botconf').html('<a href="'+confirma+'" class="btn btn-info btn-small">Confirmar lectura</a>');
 			$('#iframe-documento').show();
 			$('#iframe-documento').modal('show');
+
 			$.ajax({
 				type: "POST",
 				url: "agregar_acceso.php",
