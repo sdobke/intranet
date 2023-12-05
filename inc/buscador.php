@@ -188,8 +188,9 @@ $inner_extra = '';
 
 							echo '</div>';
 
-						}else{ // Botones
 
+						}else{ // Botones
+			
 							echo '<div class="col-12 col-xs-6 col-md-3 col-lg-3">';
 
 							$sql_combo = "SELECT tabla.* FROM " . $_SESSION['prefijo'] . $tabla_combo . " AS tabla " . $inner_extra . " WHERE 1 AND tabla.del = 0 " . $where_crop . $where_extra . " GROUP BY tabla.id ORDER BY tabla." . $tit_cbo;
@@ -257,6 +258,27 @@ $inner_extra = '';
 					<input type="submit" name="search" value="Buscar" class="btn  btn-primary  btn-small" />
 
 				</div>
+				
+					<?php
+						$fileTypes = array(
+							'xls' => 'Excel',
+							'doc' => 'Word',
+							'pdf' => 'PDF',
+							'form' => 'Form'
+						);
+					?>
+
+					<div class="col-12 col-xs-6 col-md-3 col-lg-3 mt-1">
+					
+						<select class="form-select" id="bus_ext" name="bus_ext" onChange="this.form.submit()">
+						<?php 
+							foreach ($fileTypes as $extension => $tipo) {
+								echo '<option value="' . $extension . '">' . $tipo . '</option>';
+							}
+						?>
+						</select>
+
+					</div>
 
 			</div>
 
