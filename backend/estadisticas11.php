@@ -144,12 +144,45 @@ function getDia($dato)
 											<div style="clear:both;"></div>
 											<div style="width:728px; margin:auto; height:auto">
 											<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+											<script type="text/javascript" src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+											<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 												<script type="text/javascript">
 													google.charts.load('current', {'packages':['corechart']});
-													
+
+													$(document).ready(function() {
+
+														function descargarImagenAlDispositivo() {
+															let mes = $('#mes option:selected').text();
+															let ano = $('#ano option:selected').val();
+															let imageUrl = `/backend/img/estadisticas/${mes}_${ano}.png`;
+
+															let link = $('<a>', {
+																href: imageUrl,
+																download: `${mes}_${ano}.png`
+															});
+
+															$('body').append(link);
+
+															link[0].click();
+
+															setTimeout(function() {
+																link.remove();
+															}, 100);
+														}
+
+														$('#downloadToDeviceButton').on('click', function() {
+															descargarImagenAlDispositivo();
+														});
+													});
+												
 													function drawVisualization() {
-														
+														let mes = document.getElementById('mes');
+														let mesOpcion = mes.options[mes.selectedIndex].text;
+
+														let ano = document.getElementById('ano');
+														let anoOpcion = ano.options[ano.selectedIndex].text;
+
 														var chartData = <?php echo $chartData; ?>;
 														console.log(chartData[1]);
 														if(chartData[1] != undefined) { 
@@ -169,25 +202,72 @@ function getDia($dato)
 																		2,
 																	]);
 
-																	var options = {
-																		title: "Total de Accesos por areas",
-																		width: 600,
-																		height: 400,
-																		bar: { groupWidth: "95%" },
-																		legend: { position: "none" },
-																	};
+																var options = {
+																	title: "Total de Accesos por areas",
+																	width: 600,
+																	height: 400,
+																	bar: { groupWidth: "95%" },
+																	legend: { position: "none" },
+																};
 
-																	var chart = new google.visualization.BarChart(document.getElementById("rango"));
-																	chart.draw(view, options);
+																var chart = new google.visualization.BarChart(document.getElementById("rango"));
+																chart.draw(view, options);
+																
+																$.ajax({
+																	url: 'validar_existencia_imagen.php',
+																	type: 'GET',
+																	dataType: 'json',
+																	data: { nombreImagen: `${mesOpcion}_${anoOpcion}.png` },
+																	success: function(response) {
+																		if (response.existe) {
+																			console.log('La imagen ya existe en el servidor');
+																			document.getElementById('downloadToDeviceButton').style.display = 'block';
+																		} else {
+																			descargarImagen();
+																			document.getElementById('downloadToDeviceButton').style.display = 'block';
+
+																		}
+																	},
+																	error: function(error) {
+																		console.error('Error en la solicitud AJAX');
+																	}
 																});
-															}
+															});
 														}
+													}
 
-														drawVisualization();
-														google.charts.setOnLoadCallback(drawVisualization);
+													drawVisualization();
+													google.charts.setOnLoadCallback(drawVisualization);
+
+													function descargarImagen() {
+														let mes = document.getElementById('mes');
+														let mesOpcion = mes.options[mes.selectedIndex].text;
+														
+														let ano = document.getElementById('ano');
+														let anoOpcion = ano.options[ano.selectedIndex].text;
+
+														html2canvas(document.getElementById('rango')).then(function(canvas) {
+															var imageData = canvas.toDataURL('image/png');
+															
+															var xhr = new XMLHttpRequest();
+															xhr.onreadystatechange = function() {
+																if (xhr.readyState === 4 && xhr.status === 200) {
+																	console.log('Imagen exportada correctamente');
+																}
+															};
+															
+															xhr.open('POST', 'guardar_imagen_exportacion.php', true);
+															xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+															xhr.send('image=' + imageData + '&mes=' + mesOpcion + '&ano=' + anoOpcion);
+															
+														});
+													}
+
 												</script>
 																				
 												<div id="rango" style="width: 900px; height: 500px;"></div>
+												<button id="downloadToDeviceButton" class="btn btn-primary btn-small">Descargar al Dispositivo</button>
+
 											</div>
 										</div>
 									</div>
