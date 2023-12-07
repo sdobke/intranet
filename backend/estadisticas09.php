@@ -143,8 +143,6 @@ function getDia($dato)
 												</script>
 												<script type="text/javascript">
 													
-												
-
 													function drawVisualization() {
 														let mes = document.getElementById('mes');
 														let mesOpcion = mes.options[mes.selectedIndex].text;
