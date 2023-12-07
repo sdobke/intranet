@@ -3,6 +3,7 @@ include_once("../cnfg/config.php");
 include_once("../inc/funciones.php");
 include_once("../clases/clase_error.php");
 include_once("inc/sechk.php");
+include_once("inc/libreriasJs.php");
 $backend = 1;
 $emp_nom = config('nombre');
 $nombredet = "Estad&iacute;sticas";
@@ -50,6 +51,7 @@ function getDia($dato)
 <head>
 	<?PHP include("inc/head.php"); ?>
 	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	
 </head>
 <?PHP include("inc/estadisticas_read.php"); ?>
 
@@ -132,41 +134,16 @@ function getDia($dato)
 											<div style="clear:both;"></div>
 											<div style="width:728px; margin:auto; height:auto">
 											<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-											<script type="text/javascript" src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
-											<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+											<?php
+												include_once("inc/export_estadisticas.php");
+											?>
 
 												<script type="text/javascript">
 											 		google.charts.load('current', {'packages':['corechart']});
 												</script>
 												<script type="text/javascript">
 													
-													$(document).ready(function() {
-														
-														function descargarImagenAlDispositivo() {
-															let mes = $('#mes option:selected').text();
-															let ano = $('#ano option:selected').val();
-
-															
-															let imageUrl = `/backend/img/estadisticas/genero/${mes}${ano}.png`;
-															
-															let link = $('<a>', {
-																href: imageUrl,
-																download: `${mes}${ano}.png`
-															});
-
-															$('body').append(link);
-
-															link[0].click();
-
-															setTimeout(function() {
-																link.remove();
-															}, 100);
-														}
-
-														$('#downloadToDeviceButton').on('click', function() {
-															descargarImagenAlDispositivo();
-														});
-													});
+												
 
 													function drawVisualization() {
 														let mes = document.getElementById('mes');
@@ -183,28 +160,9 @@ function getDia($dato)
 																title: ''
 															};
 
-															var chart = new google.visualization.PieChart(document.getElementById('generos'));
+															var chart = new google.visualization.PieChart(document.getElementById('grafico'));
 															chart.draw(data, options);
-																
-															$.ajax({
-																	url: 'validar_existencia_imagen.php',
-																	type: 'GET',
-																	dataType: 'json',
-																	data: { nombreImagen: `genero/${mesOpcion}${anoOpcion}.png` },
-																	success: function(response) {
-																		if (response.existe) {
-																			console.log('La imagen ya existe en el servidor');
-																			document.getElementById('downloadToDeviceButton').style.display = 'block';
-																		} else {
-																			descargarImagen();
-																			document.getElementById('downloadToDeviceButton').style.display = 'block';
-
-																		}
-																	},
-																	error: function(error) {
-																		console.error('Error en la solicitud AJAX');
-																	}
-																});
+															verificarExistenciaImagen('genero',mesOpcion, anoOpcion)
 
 														} else {
         												    console.error('Error: google.visualization is undefined. Google Charts may not have loaded properly.');
@@ -213,33 +171,10 @@ function getDia($dato)
 													google.charts.setOnLoadCallback(drawVisualization);
 													drawVisualization();
 
-													function descargarImagen() {
-														let mes = document.getElementById('mes');
-														let mesOpcion = mes.options[mes.selectedIndex].text;
-														
-														let ano = document.getElementById('ano');
-														let anoOpcion = ano.options[ano.selectedIndex].text;
-
-														html2canvas(document.getElementById('generos')).then(function(canvas) { //cambiar generos por el alias que se usara de manera global
-															var imageData = canvas.toDataURL('image/png');
-															
-															var xhr = new XMLHttpRequest();
-															xhr.onreadystatechange = function() {
-																if (xhr.readyState === 4 && xhr.status === 200) {
-																	console.log('Imagen exportada correctamente');
-																}
-															};
-															
-															xhr.open('POST', 'guardar_imagen_exportacion.php', true);
-															xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-															xhr.send('image=' + imageData + '&mes=' + mesOpcion + '&ano=' + anoOpcion + '&imgFolder=genero');
-															
-														});
-													}
 
 												</script>
 												
-												<div id="generos" style="width: 900px; height: 500px;"></div>
+												<div id="grafico" style="width: 900px; height: 500px;"></div>
 												<button id="downloadToDeviceButton" class="btn btn-primary btn-small">Descargar al Dispositivo</button>
 											</div>
 										</div>
