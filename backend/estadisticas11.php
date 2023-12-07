@@ -200,7 +200,7 @@ function getDia($dato)
 												</script>
 																				
 												<div id="grafico" style="width: 900px; height: 500px;"></div>
-												<button id="downloadToDeviceButton" class="btn btn-primary btn-small">Descargar al Dispositivo</button>
+												<button id="downloadToDeviceButton" data-location="areas" class="btn btn-primary btn-small">Descargar al Dispositivo</button>
 
 											</div>
 										</div>

@@ -23,14 +23,16 @@
     }
 
 
-    function descargarImagen() {
+    function descargarImagen(imgFolder) {
+
+        console.log("imgFolder: "+imgFolder);
         let mes = document.getElementById('mes');
         let mesOpcion = mes.options[mes.selectedIndex].text;
         
         let ano = document.getElementById('ano');
         let anoOpcion = ano.options[ano.selectedIndex].text;
 
-        html2canvas(document.getElementById('generos')).then(function(canvas) { //cambiar generos por el alias que se usara de manera global
+        html2canvas(document.getElementById('grafico')).then(function(canvas) { //cambiar generos por el alias que se usara de manera global
             var imageData = canvas.toDataURL('image/png');
             
             var xhr = new XMLHttpRequest();
@@ -49,12 +51,11 @@
 
     $(document).ready(function() {
 														
-        function descargarImagenAlDispositivo() {
+        function descargarImagenAlDispositivo(imgLocation) {
             let mes = $('#mes option:selected').text();
             let ano = $('#ano option:selected').val();
-
             
-            let imageUrl = `/backend/img/estadisticas/genero/${mes}${ano}.png`;
+            let imageUrl = `/backend/img/estadisticas/${imgLocation}/${mes}${ano}.png`;
             
             let link = $('<a>', {
                 href: imageUrl,
@@ -71,7 +72,8 @@
         }
 
         $('#downloadToDeviceButton').on('click', function() {
-            descargarImagenAlDispositivo();
+            let imgLocation = $(this).data('location');
+            descargarImagenAlDispositivo(imgLocation);
         });
     });
 </script>
