@@ -219,7 +219,7 @@ function getDia($dato)
 																	url: 'validar_existencia_imagen.php',
 																	type: 'GET',
 																	dataType: 'json',
-																	data: { nombreImagen: `${mesOpcion}${anoOpcion}.png` },
+																	data: { nombreImagen: `areas/${mesOpcion}${anoOpcion}.png` },
 																	success: function(response) {
 																		if (response.existe) {
 																			console.log('La imagen ya existe en el servidor');
@@ -248,7 +248,7 @@ function getDia($dato)
 														let ano = document.getElementById('ano');
 														let anoOpcion = ano.options[ano.selectedIndex].text;
 
-														html2canvas(document.getElementById('rango')).then(function(canvas) {
+														html2canvas(document.getElementById('rango')).then(function(canvas) { //cambiar rango por el alias que se usara de manera global
 															var imageData = canvas.toDataURL('image/png');
 															
 															var xhr = new XMLHttpRequest();
@@ -260,7 +260,7 @@ function getDia($dato)
 															
 															xhr.open('POST', 'guardar_imagen_exportacion.php', true);
 															xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-															xhr.send('image=' + imageData + '&mes=' + mesOpcion + '&ano=' + anoOpcion);
+															xhr.send('image=' + imageData + '&mes=' + mesOpcion + '&ano=' + anoOpcion + '&imgFolder=areas');
 															
 														});
 													}
