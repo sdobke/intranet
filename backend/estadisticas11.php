@@ -151,15 +151,17 @@ function getDia($dato)
 													google.charts.load('current', {'packages':['corechart']});
 
 													$(document).ready(function() {
-
+														
 														function descargarImagenAlDispositivo() {
 															let mes = $('#mes option:selected').text();
 															let ano = $('#ano option:selected').val();
-															let imageUrl = `/backend/img/estadisticas/${mes}_${ano}.png`;
 
+															
+															let imageUrl = `/backend/img/estadisticas/areas/${mes}${ano}.png`;
+															
 															let link = $('<a>', {
 																href: imageUrl,
-																download: `${mes}_${ano}.png`
+																download: `${mes}${ano}.png`
 															});
 
 															$('body').append(link);
@@ -184,7 +186,7 @@ function getDia($dato)
 														let anoOpcion = ano.options[ano.selectedIndex].text;
 
 														var chartData = <?php echo $chartData; ?>;
-														console.log(chartData[1]);
+														
 														if(chartData[1] != undefined) { 
 															google.charts.setOnLoadCallback(function() {
 																var data = google.visualization.arrayToDataTable(chartData);
@@ -217,7 +219,7 @@ function getDia($dato)
 																	url: 'validar_existencia_imagen.php',
 																	type: 'GET',
 																	dataType: 'json',
-																	data: { nombreImagen: `${mesOpcion}_${anoOpcion}.png` },
+																	data: { nombreImagen: `${mesOpcion}${anoOpcion}.png` },
 																	success: function(response) {
 																		if (response.existe) {
 																			console.log('La imagen ya existe en el servidor');
