@@ -1,6 +1,6 @@
 
 <script>
-    function verificarExistenciaImagen(imgFolder, mesOpcion, anoOpcion) {
+    function verificarExistenciaImagen(imgFolder, mesOpcion, anoOpcion, grafico = 'grafico') {
         $.ajax({
             url: "inc/validar_existencia_imagen.php",
             type: "GET",
@@ -11,7 +11,7 @@
                     console.log("La imagen ya existe en el servidor");
                     document.getElementById("downloadToDeviceButton").style.display = "block";
                 } else {
-                    descargarImagen(imgFolder);
+                    descargarImagen(imgFolder, grafico);
                     document.getElementById("downloadToDeviceButton").style.display = "block";
                 }
             },
@@ -23,8 +23,8 @@
     }
 
 
-    function descargarImagen(imgFolder) {
-
+    function descargarImagen(imgFolder, grafico) {
+        grafico = (grafico == 'grafico' ? 'grafico' : grafico);
         console.log("imgFolder: "+imgFolder);
         let mes = document.getElementById('mes');
         let mesOpcion = mes.options[mes.selectedIndex].text;
@@ -32,7 +32,7 @@
         let ano = document.getElementById('ano');
         let anoOpcion = ano.options[ano.selectedIndex].text;
 
-        html2canvas(document.getElementById('grafico')).then(function(canvas) { //cambiar generos por el alias que se usara de manera global
+        html2canvas(document.getElementById(`${grafico}`)).then(function(canvas) { //cambiar generos por el alias que se usara de manera global
             var imageData = canvas.toDataURL('image/png');
             
             var xhr = new XMLHttpRequest();
