@@ -130,9 +130,9 @@ $error = new Errores();
 													<h3>Ranking de comentarios en </h3>
 													<?PHP
 													$sql = "SELECT COUNT(nov.id) AS canti, nov.titulo FROM intranet_comentarios AS img
-                          INNER JOIN intranet_beneficios AS nov ON nov.id = img.item
-                          WHERE img.tipo = 9
-                          GROUP BY img.item ORDER BY canti DESC";
+															INNER JOIN intranet_beneficios AS nov ON nov.id = img.item
+															WHERE img.tipo = 9
+															GROUP BY img.item ORDER BY canti DESC";
 													$res = fullQuery($sql);
 													while ($dato = mysqli_fetch_array($res)) {
 														$accesos = $dato['canti'];
