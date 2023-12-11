@@ -3,6 +3,7 @@ include_once("../cnfg/config.php");
 include_once("../inc/funciones.php");
 include_once("../clases/clase_error.php");
 include_once("inc/sechk.php");
+include_once("inc/libreriasJs.php");
 $backend = 1;
 $emp_nom = config('nombre');
 $nombredet = "Estad&iacute;sticas";
@@ -144,14 +145,21 @@ function getDia($dato)
 											<div style="clear:both;"></div>
 											<div style="width:728px; margin:auto; height:auto">
 											<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
+											<?php
+												include_once("inc/export_estadisticas.php");
+											?>
 												<script type="text/javascript">
 													google.charts.load('current', {'packages':['corechart']});
-													
+
 													function drawVisualization() {
-														
+														let mes = document.getElementById('mes');
+														let mesOpcion = mes.options[mes.selectedIndex].text;
+
+														let ano = document.getElementById('ano');
+														let anoOpcion = ano.options[ano.selectedIndex].text;
+
 														var chartData = <?php echo $chartData; ?>;
-														console.log(chartData[1]);
+														
 														if(chartData[1] != undefined) { 
 															google.charts.setOnLoadCallback(function() {
 																var data = google.visualization.arrayToDataTable(chartData);
@@ -169,25 +177,31 @@ function getDia($dato)
 																		2,
 																	]);
 
-																	var options = {
-																		title: "Total de Accesos por areas",
-																		width: 600,
-																		height: 400,
-																		bar: { groupWidth: "95%" },
-																		legend: { position: "none" },
-																	};
+																var options = {
+																	title: "Total de Accesos por areas",
+																	width: 600,
+																	height: 400,
+																	bar: { groupWidth: "95%" },
+																	legend: { position: "none" },
+																};
 
-																	var chart = new google.visualization.BarChart(document.getElementById("rango"));
-																	chart.draw(view, options);
-																});
-															}
+																var chart = new google.visualization.BarChart(document.getElementById("grafico"));
+																chart.draw(view, options);
+																
+																verificarExistenciaImagen('areas', mesOpcion, anoOpcion)
+															});
 														}
+													}
 
-														drawVisualization();
-														google.charts.setOnLoadCallback(drawVisualization);
+													drawVisualization();
+													google.charts.setOnLoadCallback(drawVisualization);
+
+
 												</script>
 																				
-												<div id="rango" style="width: 900px; height: 500px;"></div>
+												<div id="grafico" style="width: 900px; height: 500px;"></div>
+												<button id="downloadToDeviceButton" data-location="areas" class="btn btn-primary btn-small">Descargar al Dispositivo</button>
+
 											</div>
 										</div>
 									</div>

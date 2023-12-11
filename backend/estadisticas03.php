@@ -3,6 +3,7 @@ include_once("../cnfg/config.php");
 include_once("../inc/funciones.php");
 include_once("../clases/clase_error.php");
 include_once("inc/sechk.php");
+include_once("inc/libreriasJs.php");
 $backend = 1;
 $emp_nom = config('nombre');
 $nombredet = "Estad&iacute;sticas";
@@ -78,20 +79,17 @@ $error = new Errores();
 										</div>
 										<div class="widget-content table-container">
 											<?PHP
-											$sql2 = "
-							SELECT sum(acc.accesos) AS accesos, sec.nombre AS nombre, sec.id AS secid
-								FROM intranet_accesos_detalle AS acc
-								INNER JOIN intranet_tablas AS sec ON acc.seccion = sec.id 
-								INNER JOIN intranet_empleados AS emp ON emp.id = acc.empleado
-								INNER JOIN intranet_areas AS are ON emp.area = are.id
-							WHERE 1 ";
+											$sql2 = "SELECT sum(acc.accesos) AS accesos, sec.nombre AS nombre, sec.id AS secid
+													FROM intranet_accesos_detalle AS acc
+													INNER JOIN intranet_tablas AS sec ON acc.seccion = sec.id 
+													INNER JOIN intranet_empleados AS emp ON emp.id = acc.empleado
+													INNER JOIN intranet_areas AS are ON emp.area = are.id
+												WHERE 1 ";
 											//if($fecha != 'tot'){
 											$sql2 .= " AND (DATE(acc.fecha) BETWEEN '" . $fechadesde . "' AND '" . $fechahasta . "')";
 											//	}
-											$sql2 .= "
-							GROUP BY acc.seccion
-							ORDER BY accesos DESC
-							"; //LIMIT 1,1000";
+											$sql2 .= " GROUP BY acc.seccion
+													ORDER BY accesos DESC "; //LIMIT 1,1000";
 											$res2 = fullQuery($sql2);
 											$all_secc = array();
 											while ($dato2 = mysqli_fetch_array($res2)) { // MUESTRA DATOS DE CADA SECCION
@@ -110,7 +108,11 @@ $error = new Errores();
 											//if($meses > 0){ // Si hay más de 1 mes de período
 											if ($fecha == 'mes') { // Si es un mes solamente
 												$res3 = fullQuery($sql2);
+												include_once("inc/export_estadisticas.php");
 											?>
+											
+											
+											
 												<script type="text/javascript">
 													google.load("visualization", "1", {
 														packages: ["corechart"]
@@ -118,6 +120,12 @@ $error = new Errores();
 													google.setOnLoadCallback(drawChart);
 
 													function drawChart() {
+														let mes = document.getElementById('mes');
+														let mesOpcion = mes.options[mes.selectedIndex].text;
+
+														let ano = document.getElementById('ano');
+														let anoOpcion = ano.options[ano.selectedIndex].text;
+
 														var data = google.visualization.arrayToDataTable([
 															['Sección', 'Accesos'],
 															<?PHP
@@ -143,18 +151,25 @@ $error = new Errores();
 															},
 														};
 														var view = new google.visualization.DataView(data);
-														var chart = new google.visualization.ColumnChart(document.getElementById("secmesesofi"));
+														var chart = new google.visualization.ColumnChart(document.getElementById("grafico"));
 														chart.draw(view, options);
+														console.log("paso 1");
+
+														verificarExistenciaImagen('seccion_meses',mesOpcion, anoOpcion)
 													}
 												</script>
 												<div style="overflow: hidden; width:1130px; margin:5px" id="marco_grafico">
 													<!--[if !IE]><!-->
-													<div id="secmesesofi" style="height:650px; position:relative; top:-110px; left:-110px; width:1300px"></div>
+													<div id="grafico" style="height:650px; position:relative; top:-110px; left:-110px; width:1300px"></div>
+													
+
+
 													<!--<![endif]-->
 													<!--[if IE]>
                             	<div id="secmesesofi" style="height:650px; position:relative; top:0px; left:-10px; width:950px"></div>
                             <![endif]-->
 												</div>
+												<button id="downloadToDeviceButton" data-location="seccion_meses" class="btn btn-primary btn-small">Descargar al Dispositivo</button>
 											<?PHP
 											} else { // período
 												$conso_inicio = $conso_mes = strtotime($fechadesde);

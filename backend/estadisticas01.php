@@ -3,6 +3,7 @@ include_once("../cnfg/config.php");
 include_once("../inc/funciones.php");
 include_once("../clases/clase_error.php");
 include_once("inc/sechk.php");
+include_once("inc/libreriasJs.php");
 $backend = 1;
 $emp_nom = config('nombre');
 $nombredet = "Estad&iacute;sticas";
@@ -128,7 +129,9 @@ function getDia($dato)
 				';
 												$contador++;
 												?>
-											<?PHP } ?>
+											<?PHP } 
+												include_once("inc/export_estadisticas.php");
+											?>
 											<div style="width:728px; margin:auto; height:auto">
 												<script type="text/javascript">
 													google.load('visualization', '1', {
@@ -137,6 +140,13 @@ function getDia($dato)
 												</script>
 												<script type="text/javascript">
 													function drawVisualization() {
+
+														let mes = document.getElementById('mes');
+														let mesOpcion = mes.options[mes.selectedIndex].text;
+
+														let ano = document.getElementById('ano');
+														let anoOpcion = ano.options[ano.selectedIndex].text;
+
 														// Create and populate the data table.
 														var data = new google.visualization.DataTable();
 														data.addColumn('string', 'Días');
@@ -148,21 +158,22 @@ function getDia($dato)
 															width: 700,
 															height: 300
 														});
+														verificarExistenciaImagen('dia_semanas', mesOpcion, anoOpcion, 'semanas')
 													}
 													google.setOnLoadCallback(drawVisualization);
 												</script>
 												<div id="semanas"></div>
+												<button id="downloadToDeviceButton" data-location="dia_semanas" class="btn btn-primary btn-small">Descargar al Dispositivo</button>
 											</div>
 											<div style="width:728px; margin:auto; height:auto">
 												<h1 align="center">Accesos por d&iacute;a del mes</h1>
 												<?PHP
 												$sql = "SELECT SUM(accesos) AS cant, DAYOFMONTH(fecha) AS dia FROM intranet_accesos_detalle 
-						WHERE 1 ";
+														WHERE 1 ";
 												if ($fecha != 'tot') {
 													$sql .= " AND (DATE(fecha) BETWEEN '$fechadesde' AND '$fechahasta')";
 												}
-												$sql .= "
-			AND empleado > 0 GROUP BY DAYOFMONTH(fecha) ORDER BY DAYOFMONTH(fecha)";
+												$sql .= " AND empleado > 0 GROUP BY DAYOFMONTH(fecha) ORDER BY DAYOFMONTH(fecha)";
 												//echo $sql;
 												$res = fullQuery($sql);
 												$chart = '';
@@ -188,6 +199,13 @@ function getDia($dato)
 												</script>
 												<script type="text/javascript">
 													function drawVisualization() {
+
+														let mes = document.getElementById('mes');
+														let mesOpcion = mes.options[mes.selectedIndex].text;
+
+														let ano = document.getElementById('ano');
+														let anoOpcion = ano.options[ano.selectedIndex].text;
+														
 														// Create and populate the data table.
 														var data = new google.visualization.DataTable();
 														data.addColumn('string', 'Días');
@@ -199,10 +217,12 @@ function getDia($dato)
 															width: 700,
 															height: 300
 														});
+														verificarExistenciaImagen('dia_mes', mesOpcion, anoOpcion, 'meses')
 													}
 													google.setOnLoadCallback(drawVisualization);
 												</script>
 												<div id="meses"></div>
+												<button id="downloadToDeviceButtonDos" data-location="dia_mes" class="btn btn-primary btn-small">Descargar al Dispositivo</button>
 											</div>
 										</div>
 									</div>

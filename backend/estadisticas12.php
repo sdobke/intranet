@@ -179,15 +179,32 @@ function getDia($dato)
 
 																	var chart = new google.visualization.BarChart(document.getElementById("medio"));
 																	chart.draw(view, options);
+
+																document.getElementById('exportButton').addEventListener('click', function() {
+																	html2canvas(document.getElementById('medio')).then(function(canvas) {
+																		var imageData = canvas.toDataURL('image/png');
+
+																		var xhr = new XMLHttpRequest();
+																		xhr.onreadystatechange = function() {
+																			if (xhr.readyState === 4 && xhr.status === 200) {
+																				console.log('Imagen exportada correctamente');
+																			}
+																		};
+																		xhr.open('POST', 'guardar_imagen.php', true);
+																		xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+																		xhr.send('image=' + imageData);
+																	});
 																});
-															}
+															});
 														}
+													}
 
 														drawVisualization();
 														google.charts.setOnLoadCallback(drawVisualization);
 												</script>
 																				
 												<div id="medio" style="width: 900px; height: 800px;"></div>
+												<button id="exportButton" class="btn btn-success btn-small">Descargar</button>
 											</div>
 										</div>
 									</div>
