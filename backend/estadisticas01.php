@@ -222,7 +222,7 @@ function getDia($dato)
 													google.setOnLoadCallback(drawVisualization);
 												</script>
 												<div id="meses"></div>
-												<button id="downloadToDeviceButton" data-location="dia_mes" class="btn btn-primary btn-small">Descargar al Dispositivo</button>
+												<button id="downloadToDeviceButtonDos" data-location="dia_mes" class="btn btn-primary btn-small">Descargar al Dispositivo</button>
 											</div>
 										</div>
 									</div>

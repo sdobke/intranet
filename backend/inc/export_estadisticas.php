@@ -71,7 +71,7 @@
             }, 100);
         }
 
-        $('#downloadToDeviceButton').on('click', function() {
+        $('#downloadToDeviceButton, #downloadToDeviceButtonDos').on('click', function() {
             let imgLocation = $(this).data('location');
             descargarImagenAlDispositivo(imgLocation);
         });
