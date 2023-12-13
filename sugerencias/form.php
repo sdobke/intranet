@@ -3,6 +3,9 @@ if(isset($_POST['suge_sent'])){
   include("sugerencias/post.php");
 }
 ?>
+
+
+
 <form name="sugerencias" method="post">
   <div class="row gy-2 gx-3 align-items-center">
     <div class="col-6">
@@ -11,7 +14,7 @@ if(isset($_POST['suge_sent'])){
     </div>
     <div class="col-4">
       <label class="visually-hidden" for="tema">Tema</label>
-      <select class="form-select" name="tema" id="tema">
+      <select class="form-select js-select2" name="tema" id="tema">
         <option value="0">Tema</option>
         <?php
         $sql_te = "SELECT * FROM intranet_sugerencias_temas WHERE del = 0 ORDER BY nombre";
@@ -40,3 +43,23 @@ if(isset($_POST['suge_sent'])){
     </div>
   </div>
 </form>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" defer></script>
+<script>
+
+if (typeof jQuery != 'undefined') {
+   
+    $(document).ready(function() {
+      $('.js-select2').select2({
+        tags: true,
+        placeholder: 'Selecciona o ingresa texto',
+        allowClear: true,
+      });
+    });
+} else {
+    console.error('Error: jQuery no está definido.');
+}
+  
+</script>
