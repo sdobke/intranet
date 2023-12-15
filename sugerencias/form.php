@@ -3,13 +3,27 @@ if(isset($_POST['suge_sent'])){
   include("sugerencias/post.php");
 }
 ?>
+
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+
 <form name="sugerencias" method="post">
   <div class="row gy-2 gx-3 align-items-center">
     <div class="col-6">
       <label class="visually-hidden" for="titulo">Título</label>
       <input class="form-control" name="titulo" placeholder="Título">
     </div>
-    <div class="col-4">
+
+    <div class="col-4" id="otroTemaInput" style="display:none">
+        <label class="visually-hidden" for="otroTema">Otro Tema</label>
+        <input class="form-control" name="otroTema" placeholder="Otro Tema">
+    </div>
+    <div class="col-2" id="volverSelectBtn" style="display:none">
+        <button type="button" class="btn btn-secondary"><span class="bi bi-x"></span></button>
+    </div>
+
+    <div class="col-4" id="selectTema">
       <label class="visually-hidden" for="tema">Tema</label>
       <select class="form-select" name="tema" id="tema">
         <option value="0">Tema</option>
@@ -21,6 +35,8 @@ if(isset($_POST['suge_sent'])){
             <option value="<?php echo $row_te['id']; ?>"><?php echo txtcod($row_te['nombre']); ?></option>
         <?php }
         } ?>
+
+        <option value="otro">otro</option>
       </select>
     </div>
     <div class="col-2">
@@ -40,3 +56,24 @@ if(isset($_POST['suge_sent'])){
     </div>
   </div>
 </form>
+<script>  
+$(document).ready(function(){
+    $('#tema').change(function(){
+        if($(this).val() === 'otro'){
+            $('#otroTemaInput, #volverSelectBtn').show();
+            $('#selectTema').hide();
+            $('#suge_send').hide();
+        } else {
+            $('#otroTemaInput, #volverSelectBtn').hide();
+            $('#suge_send').show();
+        }
+    });
+
+    $('#volverSelectBtn').click(function(){
+        $('#tema').val('0');
+        $('#otroTemaInput, #volverSelectBtn').hide();
+        $('#selectTema').show();
+        $('#suge_send').show();
+    });
+});
+</script>
