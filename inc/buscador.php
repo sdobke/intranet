@@ -131,11 +131,11 @@ $inner_extra = '';
 					?>
 					<div class="col-12 col-xs-6 col-md-3 col-lg-3 mt-1">
 						<select class="form-select" id="bus_ext" name="bus_ext" onChange="this.form.submit()">
-						
-						<?php 
-							echo '<option value="">Seleccionar tipo de archivo</option>';
+							<option value="" <?php if($busext == 'null'){echo 'selected="selected"';}?>>Seleccionar tipo de archivo</option>
+							<?php
 							foreach ($fileTypes as $extension => $tipo) {
-								echo '<option value="' . $extension . '">' . $tipo . '</option>';
+								$tipar = ($extension == $busext) ? 'selected = "selected"' : '';
+								echo '<option value="' . $extension . '" '.$tipar.'>' . $tipo . '</option>';
 							}
 						?>
 						</select>

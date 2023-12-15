@@ -21,28 +21,30 @@ $tipodoc = getPost('bus_tipos_docs', 0);
 $cad_tipodoc = ($tipodoc > 0) ? " AND tipodoc = " . $tipodoc : "";
 $vars = "&bus_empresas=" . $empre . "&bus_areas=" . $area . "&bus_tipodoc=" . $tipodoc;
 
-$busext = $_GET["bus_ext"];
+$busext = getPost("bus_ext",'null',0,0);
 $cad_ext = "";
 
-if (!empty($busext)) {
-    switch ($busext) {
-        case 'doc':
-            $cad_ext = ' AND (tipoarc = "doc" OR tipoarc = "docx") ';
-            break;
-        case 'xls':
-            $cad_ext = ' AND (tipoarc = "xls" OR tipoarc = "xlsx") ';
-            break;
-        default:
-            // Utilizar una sentencia preparada para evitar inyección de SQL
-			$cad_ext = " AND tipoarc = '$busext' ";
-            break;
-    }
+if ($busext != 'null') {
+	switch ($busext) {
+		case 'doc':
+			$cad_ext = ' AND (tipoarc = "doc" OR tipoarc = "docx") ';
+			break;
+		case 'xls':
+			$cad_ext = ' AND (tipoarc = "xls" OR tipoarc = "xlsx") ';
+			break;
+		case 'pdf':
+			$cad_ext = " AND tipoarc = 'pdf' ";
+			break;
+		case 'form':
+			$cad_ext = " AND tipoarc = 'form' ";
+			break;
+	}
 }
 
 $otro_query = '';
 //$empre = getPost('bus_empresas',0);
 $cad_emp = ($empre > 0) ? " AND empresa = " . $empre : "";
-$otro_query = $cad_emp . $cad_tipodoc . $cad_are. $cad_ext;
+$otro_query = $cad_emp . $cad_tipodoc . $cad_are . $cad_ext;
 
 //$restriccion = (isset($_SESSION['tipoemp'])) ? $_SESSION['tipoemp'] : 0;
 //$otro_query .= " AND FIND_IN_SET(" . $restriccion . ",il.part) ";
@@ -61,8 +63,8 @@ $result = fullQuery($query);
 
 if (isset($_GET['cl'])) {
 
-	$sqlcl = "UPDATE intranet_docs_emp SET status = 1 WHERE emp = " . $_SESSION['usrfrontend'] . " AND doc = " .$_GET['cl'];
-	
+	$sqlcl = "UPDATE intranet_docs_emp SET status = 1 WHERE emp = " . $_SESSION['usrfrontend'] . " AND doc = " . $_GET['cl'];
+
 	$rescl = fullQuery($sqlcl);
 }
 ?>
@@ -152,7 +154,7 @@ if (isset($_GET['cl'])) {
 									$urlink = txtcod($nom_emp . $areaver . ' - ' . $tipover);
 									$sqlde = "SELECT count(*) AS leido FROM intranet_docs_emp WHERE doc = " . $id . " AND emp = " . $_SESSION['usrfrontend'] . " AND status = 1";
 									$resde = fullQuery($sqlde);
-									
+
 									$fila = $resde->fetch_assoc();
 									$leido = $fila['leido'];
 									$conflec = 'Lectura confirmada';
@@ -167,7 +169,7 @@ if (isset($_GET['cl'])) {
 									$urlframe = "'" . $docurl . "'";
 									$conflec = "'" . $conflec . "'";
 									$confirmada = "'" . $confirmada . "'";
-									
+
 									$onclick = 'onClick="abrirFrame(' . $urlframe . ',' . $tipo . ',' . $id . ',' . $conflec . ',' . $confirmada . ')"';
 									//$peso = '';
 									$target = '';
@@ -263,12 +265,12 @@ if (isset($_GET['cl'])) {
 		function abrirFrame(link, tipo, id, confirma, confirmada) {
 			var full = '<iframe id="' + id + '" src="' + link + '<?php echo '&' . date('d-m-y-h-i-s'); ?>"></iframe>';
 			$('#iframe-documento-contenidos').html(full);
-			if(confirmada == 1) {
+			if (confirmada == 1) {
 				$('#botconf').html('<a href="?' + confirma + '" class="btn btn-info btn-small">Confirmar Lectura</a>');
 			} else {
 				$('#botconf').html('<button class="btn btn-secondary btn-small disabled">Lectura confirmada</button>');
 			}
-			
+
 
 			$('#iframe-documento').show();
 			$('#iframe-documento').modal('show');
