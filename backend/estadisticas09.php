@@ -110,7 +110,7 @@ function getDia($dato)
 												<h1 align="center">Accesos por genero</h1>
 												<?PHP
 
-													$sql .= " SELECT intranet_generos.nombre as genero, intranet_generos.id, SUM(intranet_accesos_detalle.accesos) AS total_accesos ";
+													$sql = " SELECT intranet_generos.nombre as genero, intranet_generos.id, SUM(intranet_accesos_detalle.accesos) AS total_accesos ";
 													$sql .= " FROM intranet_accesos_detalle ";
 													$sql .= " INNER JOIN intranet_empleados ON intranet_empleados.id = intranet_accesos_detalle.empleado ";
 													$sql .= " INNER JOIN intranet_generos ON intranet_generos.id = intranet_empleados.genero ";

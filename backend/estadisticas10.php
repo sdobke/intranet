@@ -110,7 +110,7 @@ function getDia($dato)
 												<?PHP
 
 
-													$sql .= " SELECT FLOOR((YEAR(CURDATE()) - YEAR(intranet_empleados.fechanac)) / 10) * 10 AS rango_etario, ";
+													$sql = " SELECT FLOOR((YEAR(CURDATE()) - YEAR(intranet_empleados.fechanac)) / 10) * 10 AS rango_etario, ";
 													$sql .= " SUM(intranet_accesos_detalle.accesos) AS total_accesos ";
 													$sql .= " FROM intranet_accesos_detalle ";
 													$sql .= " INNER JOIN intranet_empleados ON intranet_empleados.id = intranet_accesos_detalle.empleado ";
