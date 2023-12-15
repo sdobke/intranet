@@ -21,27 +21,29 @@ $tipodoc = getPost('bus_tipos_docs', 0);
 $cad_tipodoc = ($tipodoc > 0) ? " AND tipodoc = " . $tipodoc : "";
 $vars = "&bus_empresas=" . $empre . "&bus_areas=" . $area . "&bus_tipodoc=" . $tipodoc;
 
-$busext = getPost('bus_ext');
+$busext = $_GET["bus_ext"];
 $cad_ext = "";
-if ($busext > 0) {
-	switch ($busext) {
-		case 'doc':
-			$cad_ext =  " AND tipoarc = 'doc' AND tipoarc = 'docx' ";
-		break;
-		case 'xls':
-			$cad_ext =  " AND tipoarc = 'xls' AND tipoarc = 'docx' ";
-		break;
-		default:
-			$cad_ext =  " AND tipoarc = $busext ";
-		break;
-	}
+
+if (!empty($busext)) {
+    switch ($busext) {
+        case 'doc':
+            $cad_ext = ' AND (tipoarc = "doc" OR tipoarc = "docx") ';
+            break;
+        case 'xls':
+            $cad_ext = ' AND (tipoarc = "xls" OR tipoarc = "xlsx") ';
+            break;
+        default:
+            // Utilizar una sentencia preparada para evitar inyección de SQL
+			$cad_ext = " AND tipoarc = '$busext' ";
+            break;
+    }
 }
 
-$otro_query = $cad_emp . $cad_are . $cad_tipodoc. $cad_ext;
 $otro_query = '';
 //$empre = getPost('bus_empresas',0);
 $cad_emp = ($empre > 0) ? " AND empresa = " . $empre : "";
-$otro_query = $cad_emp . $cad_tipodoc . $cad_are;
+$otro_query = $cad_emp . $cad_tipodoc . $cad_are. $cad_ext;
+
 //$restriccion = (isset($_SESSION['tipoemp'])) ? $_SESSION['tipoemp'] : 0;
 //$otro_query .= " AND FIND_IN_SET(" . $restriccion . ",il.part) ";
 $query_orden = 'nombre';
