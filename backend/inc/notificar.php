@@ -1,6 +1,7 @@
 <?PHP
 //$sql_confirmar = "SELECT * FROM ".$_SESSION['prefijo'] . $nombretab . " WHERE del = 0 ";
 $debug = 0; // 0 envía, 1 envía y muestra log, 2 envía solamente a cuenta testing, 3 no envía
+$site_link = 'https://' . $server;
 $sql_areas = "SELECT part FROM intranet_link WHERE item = " . $id . " AND tipo = " . $tipo;
 $res_areas = fullQuery($sql_areas);
 if (mysqli_num_rows($res_areas) == 1) {
@@ -11,17 +12,20 @@ if (mysqli_num_rows($res_areas) == 1) {
     $areas_ok = explode(',', $row_areas['part']);
     foreach ($areas_ok as $area_id) {
       if ($cont > 0) {
-        $sql_areaid .= ' OR ';
+        $sql_areaid .= ',';
       }
-      $sql_areaid .= ' FIND_IN_SET(' . $area_id . ', emp.area) ';
+      $sql_areaid .= $area_id;
       $cont++;
     }
-    $sql_mail = "SELECT emp.nombre, emp.apellido, emp.email
-              FROM intranet_empleados emp WHERE 1
-              /*INNER JOIN intranet_areas_emp iae ON iae.area = emp.area*/
-              /* emp.area IN (" . $row_areas['part'] . ") */
-              AND (" . $sql_areaid . ")
-              AND email != '' AND email != '-' AND emp.activo = 1 AND emp.del = 0 GROUP BY emp.id ORDER BY emp.id ";
+    $sql_mail = "
+              SELECT emp.nombre, emp.apellido, emp.email
+              FROM intranet_empleados emp 
+              INNER JOIN intranet_empleados_areas iea ON iea.empleado = emp.id
+              WHERE 1
+              
+              AND iea.area IN (" . $sql_areaid . ")
+              AND email != '' AND email != '-' AND emp.activo = 1 AND emp.del = 0 GROUP BY emp.id ORDER BY emp.id
+              ";
     if ($debug > 0) {
       echo $sql_mail;
     }
@@ -61,10 +65,11 @@ if (mysqli_num_rows($res_areas) == 1) {
         
         //$destin[] = ['name' => 'Sergio Dobke', 'email' => 'sergio@dobke.com.ar'];
         //$site_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'];
-        $site_link = 'https://' . $server;
+        
         //$mail = new PHPMailer(true);
 
         //Server settings
+        // Brevo ex SendinBlue
         $credentials = SendinBlue\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', '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');
         $apiInstance = new SendinBlue\Client\Api\TransactionalEmailsApi(new GuzzleHttp\Client(), $credentials);
         switch ($tipo) {
