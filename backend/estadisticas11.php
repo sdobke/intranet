@@ -148,10 +148,17 @@ function getDia($dato)
 												<script type="text/javascript">
 													google.charts.load('current', {'packages':['corechart']});
 													
+
+													function barHeight(){
+														var chartData = <?php echo $chartData; ?>;
+														return chartData.length * 35;
+													}
+
+													
 													function drawVisualization() {
 														
 														var chartData = <?php echo $chartData; ?>;
-														console.log(chartData[1]);
+														
 														if(chartData[1] != undefined) { 
 															google.charts.setOnLoadCallback(function() {
 																var data = google.visualization.arrayToDataTable(chartData);
@@ -171,8 +178,8 @@ function getDia($dato)
 
 																	var options = {
 																		title: "Total de Accesos por areas",
-																		width: 600,
-																		height: 400,
+																		width: 700,
+																		height: barHeight(),
 																		bar: { groupWidth: "95%" },
 																		legend: { position: "none" },
 																	};
@@ -187,7 +194,11 @@ function getDia($dato)
 														google.charts.setOnLoadCallback(drawVisualization);
 												</script>
 																				
-												<div id="rango" style="width: 900px; height: 500px;"></div>
+												<div id="rango" style="width: 900px; height: "></div>
+
+												<script>
+													 document.getElementById("rango").style.height = barHeight() +15;
+												</script>
 											</div>
 										</div>
 									</div>

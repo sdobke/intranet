@@ -117,6 +117,7 @@ function getDia($dato)
 													$sql .= " GROUP BY rango_etario ";
 													$sql .= " ORDER BY rango_etario ";
 													
+
 													$res = fullQuery($sql);
 													$chartData  = '';
 													$contador = 0;
