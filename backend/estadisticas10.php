@@ -109,14 +109,14 @@ function getDia($dato)
 												<?PHP
 
 
-													$sql .= " SELECT FLOOR((YEAR(CURDATE()) - YEAR(intranet_empleados.fechanac)) / 10) * 10 AS rango_etario, ";
+													$sql .= " SELECT FLOOR((YEAR('$fechahasta') - YEAR(intranet_empleados.fechanac)) / 10) * 10 AS rango_etario, ";
 													$sql .= " SUM(intranet_accesos_detalle.accesos) AS total_accesos ";
 													$sql .= " FROM intranet_accesos_detalle ";
 													$sql .= " INNER JOIN intranet_empleados ON intranet_empleados.id = intranet_accesos_detalle.empleado ";
 													$sql .= " WHERE intranet_accesos_detalle.fecha BETWEEN '$fechadesde' AND '$fechahasta' ";
 													$sql .= " GROUP BY rango_etario ";
 													$sql .= " ORDER BY rango_etario ";
-
+													
 													$res = fullQuery($sql);
 													$chartData  = '';
 													$contador = 0;
