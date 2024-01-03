@@ -8,7 +8,8 @@ $backend = 1;
 $emp_nom = config('nombre');
 $nombredet = "Estad&iacute;sticas";
 $error = new Errores();
-
+$titleDia = "Accesos por dia";
+$titleMes = "Accesos por dia del mes";
 function getDia($dato)
 {
 	$dev = '';
@@ -143,7 +144,7 @@ function getDia($dato)
 
 														let mes = document.getElementById('mes');
 														let mesOpcion = mes.options[mes.selectedIndex].text;
-
+														let title = '<?php  echo $titleDia ?>';
 														let ano = document.getElementById('ano');
 														let anoOpcion = ano.options[ano.selectedIndex].text;
 
@@ -159,6 +160,18 @@ function getDia($dato)
 															height: 300
 														});
 														verificarExistenciaImagen('dia_semanas', mesOpcion, anoOpcion, 'semanas')
+											
+														var xhttp = new XMLHttpRequest();
+														xhttp.onreadystatechange = function() {
+															if (this.readyState == 4 && this.status == 200) {
+																console.log(this.responseText);
+															}
+														};
+														
+														xhttp.open("POST", "inc/create_pdf.php", true);
+														xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+														var postData = "mesOpcion=" + encodeURIComponent(mesOpcion) + "&anoOpcion=" + encodeURIComponent(anoOpcion) + "&title=" + encodeURIComponent(title) + "&location=" + encodeURIComponent('dia_semanas');
+														xhttp.send(postData);
 													}
 													google.setOnLoadCallback(drawVisualization);
 												</script>
@@ -202,7 +215,7 @@ function getDia($dato)
 
 														let mes = document.getElementById('mes');
 														let mesOpcion = mes.options[mes.selectedIndex].text;
-
+														let title = '<?php  echo $titleMes ?>';
 														let ano = document.getElementById('ano');
 														let anoOpcion = ano.options[ano.selectedIndex].text;
 														
@@ -218,6 +231,18 @@ function getDia($dato)
 															height: 300
 														});
 														verificarExistenciaImagen('dia_mes', mesOpcion, anoOpcion, 'meses')
+
+														var xhttp = new XMLHttpRequest();
+														xhttp.onreadystatechange = function() {
+															if (this.readyState == 4 && this.status == 200) {
+																console.log(this.responseText);
+															}
+														};
+														
+														xhttp.open("POST", "inc/create_pdf.php", true);
+														xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+														var postData = "mesOpcion=" + encodeURIComponent(mesOpcion) + "&anoOpcion=" + encodeURIComponent(anoOpcion) + "&title=" + encodeURIComponent(title) + "&location=" + encodeURIComponent('dia_mes');
+														xhttp.send(postData);
 													}
 													google.setOnLoadCallback(drawVisualization);
 												</script>
