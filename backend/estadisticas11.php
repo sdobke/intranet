@@ -8,6 +8,7 @@ $backend = 1;
 $emp_nom = config('nombre');
 $nombredet = "Estad&iacute;sticas";
 $error = new Errores();
+$title = "Accesos por areas";
 
 function getDia($dato)
 {
@@ -85,7 +86,7 @@ function getDia($dato)
 								</ul>
 
 								<h1 id="main-heading">
-									<?PHP echo ucwords(txtcod($nombredet)); ?> <span>Accesos por areas</span>
+									<?PHP echo ucwords(txtcod($nombredet)); ?> <span><?php echo $title ?></span>
 								</h1>
 							</div>
 							<div id="main-content">
@@ -212,7 +213,7 @@ function getDia($dato)
 												</script>
 																				
 												<div id="grafico" style="width: 900px; height: 500px;"></div>
-												<button id="downloadToDeviceButton" data-location="areas" class="btn btn-primary btn-small">Descargar al Dispositivo</button>
+												<button id="downloadToDeviceButton" data-location="areas" class="btn btn-primary btn-small">Descargar PDF</button>
 
 											</div>
 										</div>

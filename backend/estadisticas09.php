@@ -4,6 +4,7 @@ include_once("../inc/funciones.php");
 include_once("../clases/clase_error.php");
 include_once("inc/sechk.php");
 include_once("inc/libreriasJs.php");
+$title = "Accesos por genero";
 $backend = 1;
 $emp_nom = config('nombre');
 $nombredet = "Estad&iacute;sticas";
@@ -86,7 +87,7 @@ function getDia($dato)
 								</ul>
 
 								<h1 id="main-heading">
-									<?PHP echo ucwords(txtcod($nombredet)); ?> <span>Accesos por genero</span>
+									<?PHP echo ucwords(txtcod($nombredet)); ?> <span> <?php echo $title; ?></span>
 								</h1>
 							</div>
 							<div id="main-content">
@@ -107,7 +108,7 @@ function getDia($dato)
 										<div class="widget-content table-container">
 										
 											<div style="width:728px; margin:auto; height:auto">
-												<h1 align="center">Accesos por genero</h1>
+												<h1 align="center"> <?php echo $title; ?></h1>
 												<?PHP
 
 													$sql .= " SELECT intranet_generos.nombre as genero, intranet_generos.id, SUM(intranet_accesos_detalle.accesos) AS total_accesos ";
@@ -146,7 +147,7 @@ function getDia($dato)
 													function drawVisualization() {
 														let mes = document.getElementById('mes');
 														let mesOpcion = mes.options[mes.selectedIndex].text;
-
+														let title = "<?php echo $title ?>";
 														let ano = document.getElementById('ano');
 														let anoOpcion = ano.options[ano.selectedIndex].text;
 
@@ -162,13 +163,25 @@ function getDia($dato)
 															chart.draw(data, options);
 															verificarExistenciaImagen('genero',mesOpcion, anoOpcion)
 
+															xhttp.onreadystatechange = function() {
+																if (this.readyState == 4 && this.status == 200) {
+																	console.log(this.responseText);
+																}
+															};
+															
+															xhttp.open("POST", "inc/create_pdf.php", true);
+															xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+															var postData = "mesOpcion=" + encodeURIComponent(mesOpcion) + "&anoOpcion=" + encodeURIComponent(anoOpcion) + "&title=" + encodeURIComponent(title) + "&location=" + encodeURIComponent('genero');
+															xhttp.send(postData);
+
 														} else {
         												    console.error('Error: google.visualization is undefined. Google Charts may not have loaded properly.');
 														}
 													}
 													google.charts.setOnLoadCallback(drawVisualization);
 													drawVisualization();
-
+													var xhttp = new XMLHttpRequest();
+												
 
 												</script>
 												
