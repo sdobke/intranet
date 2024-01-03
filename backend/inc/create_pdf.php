@@ -20,7 +20,27 @@ if (isset($_POST['mesOpcion']) && isset($_POST['anoOpcion'])) {
     $pdf->Cell(0, 10, $subtitle, 0, 1, 'C');
 
     $imagePath = "../img/estadisticas/$location/$mesOpcion$anoOpcion.png";
-    $pdf->Image($imagePath, 10, 30, 300, 140, 'PNG');
+
+    $imgWidth = 300;
+    $imgheight = 140;
+    switch ($location) {
+        case 'genero':
+            $imgWidth = 220;
+            $imgheight = 110;
+            break;
+        case 'area':
+            # code...
+            break;
+        case 'rango_etario':
+            # code...
+            break;
+        
+        default:
+            # code...
+            break;
+    }
+
+    $pdf->Image($imagePath, 10, 30, $imgWidth, $imgheight, 'PNG');
 
     $pdfFilePath = "../img/pdfs/$location/$mesOpcion$anoOpcion.pdf";
     $pdf->Output('F', $pdfFilePath);
