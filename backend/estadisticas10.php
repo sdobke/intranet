@@ -8,7 +8,7 @@ $backend = 1;
 $emp_nom = config('nombre');
 $nombredet = "Estad&iacute;sticas";
 $error = new Errores();
-
+$title = "Accesos por rango etario";
 function getDia($dato)
 {
 	$dev = '';
@@ -85,7 +85,7 @@ function getDia($dato)
 								</ul>
 
 								<h1 id="main-heading">
-									<?PHP echo ucwords(txtcod($nombredet)); ?> <span>Accesos por rango etario</span>
+									<?PHP echo ucwords(txtcod($nombredet)); ?> <span> <?php echo $title; ?></span>
 								</h1>
 							</div>
 							<div id="main-content">
@@ -95,6 +95,7 @@ function getDia($dato)
 											<span class="title"><i class="icos-looking-glass"></i> Buscar</span>
 										</div>
 										<?PHP include("inc/estadisticas_buscador.php"); ?>
+							
 									</div>
 								</div>
 								<div class="row-fluid">
@@ -106,10 +107,10 @@ function getDia($dato)
 										<div class="widget-content table-container">
 										
 											<div style="width:728px; margin:auto; height:auto">
-												<h1 align="center">Accesos por rango etario</h1>
+												<h1 align="center"><?php echo $title; ?></h1>
 												<?PHP
 
-
+													$sql = ''; 
 													$sql .= " SELECT FLOOR((YEAR(CURDATE()) - YEAR(intranet_empleados.fechanac)) / 10) * 10 AS rango_etario, ";
 													$sql .= " SUM(intranet_accesos_detalle.accesos) AS total_accesos ";
 													$sql .= " FROM intranet_accesos_detalle ";
@@ -161,7 +162,7 @@ function getDia($dato)
 														
 														let mes = document.getElementById('mes');
 														let mesOpcion = mes.options[mes.selectedIndex].text;
-
+														let title = "<?php echo $title ?>";
 														let ano = document.getElementById('ano');
 														let anoOpcion = ano.options[ano.selectedIndex].text;
 
@@ -195,16 +196,53 @@ function getDia($dato)
 																	var chart = new google.visualization.BarChart(document.getElementById("grafico"));
 																	chart.draw(view, options);
 																	verificarExistenciaImagen('rango_etario',mesOpcion, anoOpcion)
+
+																	var xhttp = new XMLHttpRequest();
+																	xhttp.onreadystatechange = function() {
+																		if (this.readyState == 4 && this.status == 200) {
+																			console.log(this.responseText);
+																		}
+																	};
+																	xhttp.open("POST", "inc/create_pdf.php", true);
+																	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+																	var postData = "mesOpcion=" + encodeURIComponent(mesOpcion) + "&anoOpcion=" + encodeURIComponent(anoOpcion) + "&title=" + encodeURIComponent(title);
+																	xhttp.send(postData);
+
 																});
 															}
 														}
 
 														drawVisualization();
 														google.charts.setOnLoadCallback(drawVisualization);
+
+														
 												</script>
-																				
+														
 												<div id="grafico" style="width: 900px; height: 500px;"></div>
 												<button id="downloadToDeviceButton" data-location="rango_etario" class="btn btn-primary btn-small">Descargar al Dispositivo</button>
+												
+												<?php
+
+												// require('libraries/fpdf.php');
+											
+												// if (isset($_POST['mesOpcion']) && isset($_POST['anoOpcion'])) {
+												// 	$mesOpcion = $_POST['mesOpcion'];
+												// 	$anoOpcion = $_POST['anoOpcion'];
+												
+												// 	$pdf = new FPDF();
+												
+												// 	$pdf->AddPage('P','A4');
+												// 	$pdf->SetFont('Arial', 'B', 16);
+												// 	$pdf->Cell(0, 10, $title, 0, 1, 'C'); 
+													
+												// 	$imagePath = "img/estadisticas/rango_etario/$mesOpcion$anoOpcion.png";
+												// 	$pdf->Image($imagePath, 10, 30, 300, 140, 'PNG');
+												
+												// 	$pdfFilePath = "img/pdfs/rango_etario/$mesOpcion$anoOpcion.pdf";
+												// 	$pdf->Output('F', $pdfFilePath);
+												// }
+												?>	
 											</div>
 										</div>
 									</div>
