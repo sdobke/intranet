@@ -28,8 +28,9 @@ if (isset($_POST['mesOpcion']) && isset($_POST['anoOpcion'])) {
             $imgWidth = 220;
             $imgheight = 110;
             break;
-        case 'area':
-            # code...
+        case 'seccion_meses':
+            $imgWidth = 220;
+            $imgheight = 110;
             break;
         case 'rango_etario':
             # code...

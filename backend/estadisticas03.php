@@ -4,6 +4,7 @@ include_once("../inc/funciones.php");
 include_once("../clases/clase_error.php");
 include_once("inc/sechk.php");
 include_once("inc/libreriasJs.php");
+$title = "Secciones por meses";
 $backend = 1;
 $emp_nom = config('nombre');
 $nombredet = "Estad&iacute;sticas";
@@ -60,7 +61,7 @@ $error = new Errores();
 								</ul>
 
 								<h1 id="main-heading">
-									<?PHP echo ucwords(txtcod($nombredet)); ?> <span>Secciones por meses</span>
+									<?PHP echo ucwords(txtcod($nombredet)); ?> <span><?php echo $title ?> </span>
 								</h1>
 							</div>
 							<div id="main-content">
@@ -122,7 +123,7 @@ $error = new Errores();
 													function drawChart() {
 														let mes = document.getElementById('mes');
 														let mesOpcion = mes.options[mes.selectedIndex].text;
-
+														let title = "<?php echo $title ?>";
 														let ano = document.getElementById('ano');
 														let anoOpcion = ano.options[ano.selectedIndex].text;
 
@@ -156,6 +157,18 @@ $error = new Errores();
 														console.log("paso 1");
 
 														verificarExistenciaImagen('seccion_meses',mesOpcion, anoOpcion)
+
+														var xhttp = new XMLHttpRequest();
+														xhttp.onreadystatechange = function() {
+															if (this.readyState == 4 && this.status == 200) {
+																console.log(this.responseText);
+															}
+														};
+														
+														xhttp.open("POST", "inc/create_pdf.php", true);
+														xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+														var postData = "mesOpcion=" + encodeURIComponent(mesOpcion) + "&anoOpcion=" + encodeURIComponent(anoOpcion) + "&title=" + encodeURIComponent(title) + "&location=" + encodeURIComponent('seccion_meses');
+														xhttp.send(postData);
 													}
 												</script>
 												<div style="overflow: hidden; width:1130px; margin:5px" id="marco_grafico">
@@ -169,7 +182,7 @@ $error = new Errores();
                             	<div id="secmesesofi" style="height:650px; position:relative; top:0px; left:-10px; width:950px"></div>
                             <![endif]-->
 												</div>
-												<button id="downloadToDeviceButton" data-location="seccion_meses" class="btn btn-primary btn-small">Descargar al Dispositivo</button>
+												<button id="downloadToDeviceButton" data-location="seccion_meses" class="btn btn-primary btn-small">Descargar PDF</button>
 											<?PHP
 											} else { // período
 												$conso_inicio = $conso_mes = strtotime($fechadesde);
@@ -178,20 +191,20 @@ $error = new Errores();
 												$chart = '';
 												while ($conso_mes < $conso_fin) { // RECORRE CADA MES
 													$sql2_graf = "
-								 SELECT SUM(acc.accesos) AS accesos, sec.nombre AS nombre, sec.id AS secid
-									FROM intranet_accesos_detalle AS acc
-									INNER JOIN intranet_tablas AS sec ON acc.seccion = sec.id 
-									INNER JOIN intranet_empleados AS emp ON emp.id = acc.empleado
-									INNER JOIN intranet_areas AS are ON emp.area = are.id
-									WHERE 1 ";
+																SELECT SUM(acc.accesos) AS accesos, sec.nombre AS nombre, sec.id AS secid
+																	FROM intranet_accesos_detalle AS acc
+																	INNER JOIN intranet_tablas AS sec ON acc.seccion = sec.id 
+																	INNER JOIN intranet_empleados AS emp ON emp.id = acc.empleado
+																	INNER JOIN intranet_areas AS are ON emp.area = are.id
+																	WHERE 1 ";
 													//if($fecha != 'tot'){
 													$sql2_graf .= " AND (DATE(acc.fecha) BETWEEN '" . date('Y-m', $conso_mes) . "-01' AND '" . date('Y-m', $conso_mes) . "-31')";
 													//}
 													$sql2_graf .= "
-									AND emp.oficinas = 1
-									GROUP BY acc.seccion
-									ORDER BY accesos DESC
-									"; //LIMIT 1,1000";
+																	AND emp.oficinas = 1
+																	GROUP BY acc.seccion
+																	ORDER BY accesos DESC
+																	"; //LIMIT 1,1000";
 													$res2_graf = fullQuery($sql2_graf);
 													$chart .= "data.setValue(" . $cantimeses . ", 0, '" . FechaDet(date('Y-m-d', $conso_mes), $formato = 'm-y') . "');
 							";
