@@ -176,7 +176,7 @@ function getDia($dato)
 													google.setOnLoadCallback(drawVisualization);
 												</script>
 												<div id="semanas"></div>
-												<button id="downloadToDeviceButton" data-location="dia_semanas" class="btn btn-primary btn-small">Descargar al Dispositivo</button>
+												<button id="downloadToDeviceButton" data-location="dia_semanas" class="btn btn-primary btn-small">Descargar PDF</button>
 											</div>
 											<div style="width:728px; margin:auto; height:auto">
 												<h1 align="center">Accesos por d&iacute;a del mes</h1>
@@ -247,7 +247,7 @@ function getDia($dato)
 													google.setOnLoadCallback(drawVisualization);
 												</script>
 												<div id="meses"></div>
-												<button id="downloadToDeviceButtonDos" data-location="dia_mes" class="btn btn-primary btn-small">Descargar al Dispositivo</button>
+												<button id="downloadToDeviceButtonDos" data-location="dia_mes" class="btn btn-primary btn-small">Descargar PDF</button>
 											</div>
 										</div>
 									</div>
