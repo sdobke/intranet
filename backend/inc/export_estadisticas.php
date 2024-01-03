@@ -55,11 +55,12 @@
             let mes = $('#mes option:selected').text();
             let ano = $('#ano option:selected').val();
             
-            let imageUrl = `/backend/img/estadisticas/${imgLocation}/${mes}${ano}.png`;
+            let imageUrl = `/backend/img/pdfs/${imgLocation}/${mes}${ano}.pdf`;
+            console.log(imageUrl);
             
             let link = $('<a>', {
                 href: imageUrl,
-                download: `${mes}${ano}.png`
+                download: `${mes}${ano}.pdf`
             });
 
             $('body').append(link);

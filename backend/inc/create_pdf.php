@@ -8,8 +8,6 @@ if (isset($_POST['mesOpcion']) && isset($_POST['anoOpcion'])) {
     $anoOpcion = $_POST['anoOpcion'];
     $title = $_POST['title'];
     $subtitle = $mesOpcion . ' ' . $anoOpcion;
-    print("anoOpcion: " . $anoOpcion);
-    print("mesOpcion: " . $mesOpcion);
 
     $pdf = new FPDF();
 

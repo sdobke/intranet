@@ -222,27 +222,6 @@ function getDia($dato)
 												<div id="grafico" style="width: 900px; height: 500px;"></div>
 												<button id="downloadToDeviceButton" data-location="rango_etario" class="btn btn-primary btn-small">Descargar al Dispositivo</button>
 												
-												<?php
-
-												// require('libraries/fpdf.php');
-											
-												// if (isset($_POST['mesOpcion']) && isset($_POST['anoOpcion'])) {
-												// 	$mesOpcion = $_POST['mesOpcion'];
-												// 	$anoOpcion = $_POST['anoOpcion'];
-												
-												// 	$pdf = new FPDF();
-												
-												// 	$pdf->AddPage('P','A4');
-												// 	$pdf->SetFont('Arial', 'B', 16);
-												// 	$pdf->Cell(0, 10, $title, 0, 1, 'C'); 
-													
-												// 	$imagePath = "img/estadisticas/rango_etario/$mesOpcion$anoOpcion.png";
-												// 	$pdf->Image($imagePath, 10, 30, 300, 140, 'PNG');
-												
-												// 	$pdfFilePath = "img/pdfs/rango_etario/$mesOpcion$anoOpcion.pdf";
-												// 	$pdf->Output('F', $pdfFilePath);
-												// }
-												?>	
 											</div>
 										</div>
 									</div>
