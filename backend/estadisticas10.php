@@ -203,10 +203,10 @@ function getDia($dato)
 																			console.log(this.responseText);
 																		}
 																	};
+																	
 																	xhttp.open("POST", "inc/create_pdf.php", true);
 																	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-																	var postData = "mesOpcion=" + encodeURIComponent(mesOpcion) + "&anoOpcion=" + encodeURIComponent(anoOpcion) + "&title=" + encodeURIComponent(title);
+																	var postData = "mesOpcion=" + encodeURIComponent(mesOpcion) + "&anoOpcion=" + encodeURIComponent(anoOpcion) + "&title=" + encodeURIComponent(title) + "&location=" + encodeURIComponent('rango_etario');
 																	xhttp.send(postData);
 
 																});

@@ -7,6 +7,7 @@ if (isset($_POST['mesOpcion']) && isset($_POST['anoOpcion'])) {
     $mesOpcion = $_POST['mesOpcion'];
     $anoOpcion = $_POST['anoOpcion'];
     $title = $_POST['title'];
+    $location = $_POST['location'];
     $subtitle = $mesOpcion . ' ' . $anoOpcion;
 
     $pdf = new FPDF();
@@ -18,10 +19,10 @@ if (isset($_POST['mesOpcion']) && isset($_POST['anoOpcion'])) {
     $pdf->SetFont('Arial', 'I', 12);
     $pdf->Cell(0, 10, $subtitle, 0, 1, 'C');
 
-    $imagePath = "../img/estadisticas/rango_etario/$mesOpcion$anoOpcion.png";
+    $imagePath = "../img/estadisticas/$location/$mesOpcion$anoOpcion.png";
     $pdf->Image($imagePath, 10, 30, 300, 140, 'PNG');
 
-    $pdfFilePath = "../img/pdfs/rango_etario/$mesOpcion$anoOpcion.pdf";
+    $pdfFilePath = "../img/pdfs/$location/$mesOpcion$anoOpcion.pdf";
     $pdf->Output('F', $pdfFilePath);
 
     error_log("After PDF creation");
