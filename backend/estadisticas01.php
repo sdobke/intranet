@@ -148,7 +148,7 @@ function getDia($dato)
 														let ano = document.getElementById('ano');
 														let anoOpcion = ano.options[ano.selectedIndex].text;
 														let dataChart = '<?PHP echo json_encode($chartPdf); ?>';
-														console.log(dataChart);
+														
 														// Create and populate the data table.
 														var data = new google.visualization.DataTable();
 														data.addColumn('string', 'Días');
@@ -168,7 +168,7 @@ function getDia($dato)
 																console.log(this.responseText);
 															}
 														};
-														console.log(dataChart);
+														
 														xhttp.open("POST", "inc/create_pdf.php", true);
 														xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 														var postData = "mesOpcion=" + encodeURIComponent(mesOpcion)
@@ -243,7 +243,7 @@ function getDia($dato)
 																console.log(this.responseText);
 															}
 														};
-														console.log(dataChart);
+														
 														xhttp.open("POST", "inc/create_pdf.php", true);
 														xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 														var postData = "mesOpcion=" + encodeURIComponent(mesOpcion)

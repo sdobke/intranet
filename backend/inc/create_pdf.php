@@ -11,7 +11,6 @@ if (isset($_POST['mesOpcion']) && isset($_POST['anoOpcion'])) {
     $subtitle = $mesOpcion . ' ' . $anoOpcion;
     $chartData = $_POST['chartData'];
 
-    print_r($chartData);
     $pdf = new FPDF();
 
     $pdf->AddPage('P', 'A4');
@@ -52,9 +51,20 @@ if (isset($_POST['mesOpcion']) && isset($_POST['anoOpcion'])) {
             break;
     }
 
-    if(file_exists($imagePath)) {
-        $pdf->Image($imagePath,  10, $imgTop, $imgWidth, $imgheight , 'PNG');
-    } 
+    $maxIntentos = 2;
+    $intentos = 0;
+    if($location != 'ranking_paginas' || $location != 'ranking_paginas' || $location != 'ranking_paginas' ) {
+        //espero creacion de imagen
+        while (!file_exists($imagePath) && $intentos < $maxIntentos) {
+            sleep(1); 
+            $intentos++;
+        }
+
+        if(file_exists($imagePath)) {
+            $pdf->Image($imagePath,  10, $imgTop, $imgWidth, $imgheight , 'PNG');
+        } 
+    }
+    
 
     $x = 10;
     $y = 40;
@@ -70,17 +80,14 @@ if (isset($_POST['mesOpcion']) && isset($_POST['anoOpcion'])) {
         foreach ($chartDataArray as $c) {
             if($location == 'ranking_paginas') {
                 $acessos =  $c['detalle'] . ': ' . $c['acessos'];
-                  // Dibujar el recuadro
+              
                 $pdf->Rect($x, $y, $anchoBox, $altoBox);
                 
-                // Imprimir el texto dentro del recuadro
-                $pdf->SetXY($x, $y); // Establecer posición antes de imprimir el texto
+                $pdf->SetXY($x, $y); 
                 $pdf->MultiCell($anchoBox, 10, $acessos, 0, 'C');
 
-                // Actualizar la posición Y para el próximo recuadro
-                $y += $altoBox + 5; // Añadir un pequeño espacio vertical entre recuadros
-                // $acessos =  $c['detalle'] . ': ' . $c['acessos'];
-                // $pdf->Cell(0, 10, $acessos, 0, 1);
+                $y += $altoBox + 5;
+
             } else {
                 $diaCant =  $c['dia'] . ': ' . $c['cant'];
                 $pdf->Cell(0, 10, $diaCant, 0, 1, 'C');

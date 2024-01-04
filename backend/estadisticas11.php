@@ -135,6 +135,7 @@ function getDia($dato)
 													while ($dato = mysqli_fetch_array($res)) {
 														$color = generateRandomColor();
 														$chartData .= "['{$dato['areas']}', {$dato['total_accesos']}, 'color: $color'],";
+														$dataCsv[]= ["areas" => $dato['areas'], "total_accesos" => $dato['total_accesos']];
 												?>
 												<?php
 													} 
@@ -213,7 +214,50 @@ function getDia($dato)
 												</script>
 																				
 												<div id="grafico" style="width: 900px; height: 500px;"></div>
-												<button id="downloadToDeviceButton" data-location="areas" class="btn btn-primary btn-small">Descargar PDF</button>
+												<div class="row d-flex">
+													<div class="col-md-2">
+														<button id="downloadToDeviceButton" data-location="areas" class="btn btn-primary btn-small">Descargar PDF</button>
+													</div>
+													<div class="col-md-2">
+														<button id="downloadCsv" data-location="areas" data-formato="csv" class="btn btn-primary btn-small">Descargar CSV</button>		
+													</div>
+												</div>
+												
+												
+
+												<script>
+													
+													$('#downloadCsv').on('click', function() {
+														let mes = document.getElementById('mes');
+														let mesOpcion = mes.options[mes.selectedIndex].text;
+														
+														let ano = document.getElementById('ano');
+														let anoOpcion = ano.options[ano.selectedIndex].text;
+														var chartDataCsv = <?php echo json_encode($dataCsv); ?>;
+
+														var xhttp = new XMLHttpRequest();
+														xhttp.onreadystatechange = function() {
+															if (this.readyState == 4 && this.status == 200) {
+																console.log(this.responseText);
+															}
+														};
+														
+														xhttp.open("POST", "inc/create_csv.php", true);
+														xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+														var postData = "mesOpcion=" + encodeURIComponent(mesOpcion)
+																					+ "&anoOpcion=" + encodeURIComponent(anoOpcion) 
+																					+ "&location=" + encodeURIComponent('areas')
+																					+ "&location=" + encodeURIComponent('areas')
+																					+ "&chartDataCsv=" + encodeURIComponent(JSON.stringify(chartDataCsv));
+														xhttp.send(postData);
+
+														let csvLocation = $(this).data('location');
+														let csvFormato = $(this).data('formato');
+														descargarImagenAlDispositivo(csvLocation, csvFormato);
+													});
+
+
+												</script>
 
 											</div>
 										</div>

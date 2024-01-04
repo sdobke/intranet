@@ -25,7 +25,7 @@
 
     function descargarImagen(imgFolder, grafico) {
         grafico = (grafico == 'grafico' ? 'grafico' : grafico);
-        console.log("imgFolder: "+imgFolder);
+        
         let mes = document.getElementById('mes');
         let mesOpcion = mes.options[mes.selectedIndex].text;
         
@@ -49,28 +49,34 @@
         });
     }
 
-    $(document).ready(function() {
-														
-        function descargarImagenAlDispositivo(imgLocation) {
-            let mes = $('#mes option:selected').text();
-            let ano = $('#ano option:selected').val();
-            
-            let imageUrl = `/backend/img/pdfs/${imgLocation}/${mes}${ano}.pdf`;
-            console.log(imageUrl);
-            
-            let link = $('<a>', {
-                href: imageUrl,
-                download: `${mes}${ano}.pdf`
-            });
+    function descargarImagenAlDispositivo(imgLocation, formato = null) {
+        let mes = $('#mes option:selected').text();
+        let ano = $('#ano option:selected').val();
+        let url = '', file = '';
 
-            $('body').append(link);
-
-            link[0].click();
-
-            setTimeout(function() {
-                link.remove();
-            }, 100);
+        if(formato == null){
+            url = `/backend/img/pdfs/${imgLocation}/${mes}${ano}.pdf`;
+            file = `${mes}${ano}.pdf`;
+        } else {
+            url = `/backend/img/csv/${imgLocation}/${mes}${ano}.csv`;
+            file = `${mes}${ano}.csv`;
         }
+        
+        let link = $('<a>', {
+            href: url,
+            download: file
+        });
+
+        $('body').append(link);
+
+        link[0].click();
+
+        setTimeout(function() {
+            link.remove();
+        }, 100);
+    }
+
+    $(document).ready(function() {
 
         $('#downloadToDeviceButton, #downloadToDeviceButtonDos').on('click', function() {
             let imgLocation = $(this).data('location');
