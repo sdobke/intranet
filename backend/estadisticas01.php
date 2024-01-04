@@ -126,8 +126,8 @@ function getDia($dato)
 													</div>
 												</div>
 												<?PHP
-												$chart .= 'data.addRow(["' . substr($nomdia, 0, 3) . '", ' . $dato['cant'] . ']);
-				';
+												$chart .= 'data.addRow(["' . substr($nomdia, 0, 3) . '", ' . $dato['cant'] . ']);';
+												$chartPdf[] = ["dia" => substr($nomdia, 0, 3), "cant" => $dato['cant']]; 
 												$contador++;
 												?>
 											<?PHP } 
@@ -144,10 +144,11 @@ function getDia($dato)
 
 														let mes = document.getElementById('mes');
 														let mesOpcion = mes.options[mes.selectedIndex].text;
-														let title = '<?php  echo $titleDia ?>';
+														let title = '<?php echo $titleDia ?>';
 														let ano = document.getElementById('ano');
 														let anoOpcion = ano.options[ano.selectedIndex].text;
-
+														let dataChart = '<?PHP echo json_encode($chartPdf); ?>';
+														console.log(dataChart);
 														// Create and populate the data table.
 														var data = new google.visualization.DataTable();
 														data.addColumn('string', 'Días');
@@ -167,10 +168,15 @@ function getDia($dato)
 																console.log(this.responseText);
 															}
 														};
-														
+														console.log(dataChart);
 														xhttp.open("POST", "inc/create_pdf.php", true);
 														xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-														var postData = "mesOpcion=" + encodeURIComponent(mesOpcion) + "&anoOpcion=" + encodeURIComponent(anoOpcion) + "&title=" + encodeURIComponent(title) + "&location=" + encodeURIComponent('dia_semanas');
+														var postData = "mesOpcion=" + encodeURIComponent(mesOpcion)
+																		+ "&anoOpcion=" + encodeURIComponent(anoOpcion) 
+																		+ "&title=" + encodeURIComponent(title) 
+																		+ "&location=" + encodeURIComponent('dia_semanas')
+																		+ "&chartData=" + encodeURIComponent(dataChart);
+
 														xhttp.send(postData);
 													}
 													google.setOnLoadCallback(drawVisualization);
@@ -197,8 +203,8 @@ function getDia($dato)
 														<div style="height:30px;" class="tit"><?PHP echo $dato['dia']; ?>: <span class="nom"><?PHP echo $dato['cant']; ?></span></div>
 													</div>
 													<?PHP
-													$chart .= 'data.addRow(["' . $dato['dia'] . '", ' . $dato['cant'] . ']);
-				';
+													$chart .= 'data.addRow(["' . $dato['dia'] . '", ' . $dato['cant'] . ']);';	
+													$chartPdf2[] = ["dia" => $dato['dia'] , "cant" => $dato['cant']]; 
 													$contador++;
 													?>
 												<?PHP } ?>
@@ -218,7 +224,7 @@ function getDia($dato)
 														let title = '<?php  echo $titleMes ?>';
 														let ano = document.getElementById('ano');
 														let anoOpcion = ano.options[ano.selectedIndex].text;
-														
+														let dataChart = '<?PHP echo json_encode($chartPdf2); ?>';
 														// Create and populate the data table.
 														var data = new google.visualization.DataTable();
 														data.addColumn('string', 'Días');
@@ -231,17 +237,21 @@ function getDia($dato)
 															height: 300
 														});
 														verificarExistenciaImagen('dia_mes', mesOpcion, anoOpcion, 'meses')
-
 														var xhttp = new XMLHttpRequest();
 														xhttp.onreadystatechange = function() {
 															if (this.readyState == 4 && this.status == 200) {
 																console.log(this.responseText);
 															}
 														};
-														
+														console.log(dataChart);
 														xhttp.open("POST", "inc/create_pdf.php", true);
 														xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-														var postData = "mesOpcion=" + encodeURIComponent(mesOpcion) + "&anoOpcion=" + encodeURIComponent(anoOpcion) + "&title=" + encodeURIComponent(title) + "&location=" + encodeURIComponent('dia_mes');
+														var postData = "mesOpcion=" + encodeURIComponent(mesOpcion)
+																		+ "&anoOpcion=" + encodeURIComponent(anoOpcion) 
+																		+ "&title=" + encodeURIComponent(title) 
+																		+ "&location=" + encodeURIComponent('dia_mes')
+																		+ "&chartData=" + encodeURIComponent(dataChart);
+
 														xhttp.send(postData);
 													}
 													google.setOnLoadCallback(drawVisualization);

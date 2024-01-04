@@ -9,7 +9,9 @@ if (isset($_POST['mesOpcion']) && isset($_POST['anoOpcion'])) {
     $title = $_POST['title'];
     $location = $_POST['location'];
     $subtitle = $mesOpcion . ' ' . $anoOpcion;
+    $chartData = $_POST['chartData'];
 
+    print_r($chartData);
     $pdf = new FPDF();
 
     $pdf->AddPage('P', 'A4');
@@ -23,6 +25,7 @@ if (isset($_POST['mesOpcion']) && isset($_POST['anoOpcion'])) {
 
     $imgWidth = 300;
     $imgheight = 140;
+    $imgTop = 50;
     switch ($location) {
         case 'genero':
             $imgWidth = 220;
@@ -35,18 +38,32 @@ if (isset($_POST['mesOpcion']) && isset($_POST['anoOpcion'])) {
         case 'dia_semanas':
             $imgWidth = 180;
             $imgheight = 100;
+            $imgTop = 100;
             break;
         case 'dia_mes':
+            print("entro");
             $imgWidth = 180;
             $imgheight = 100;
+            $imgTop = 100;
             break;
         
         default:
-            # code...
+           
             break;
     }
 
-    $pdf->Image($imagePath, 10, 30, $imgWidth, $imgheight, 'PNG');
+    $pdf->Image($imagePath,  10, $imgTop, $imgWidth, $imgheight , 'PNG');
+
+    if(!empty($chartData)){
+        $chartDataArray = json_decode($chartData, true);
+        $pdf->SetFont('Arial', '', 10);
+    
+        $chartDataArray = json_decode($chartData, true);
+        foreach ($chartDataArray as $c) {
+            $diaCant =  $c['dia'] . ': ' . $c['cant'];
+            $pdf->Cell(0, 10, $diaCant, 0, 1, 'C');
+        }
+    }
 
     $pdfFilePath = "../img/pdfs/$location/$mesOpcion$anoOpcion.pdf";
     $pdf->Output('F', $pdfFilePath);
