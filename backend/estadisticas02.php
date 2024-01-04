@@ -194,7 +194,7 @@ $error = new Errores();
 													<?PHP 
 													$dataAccesos[] = ["detalle" => $dato["detalle"], "acessos" => $accesos];
 													} 
-													
+
 													$dataCsv = $dataAccesos;
 													
 													include_once("inc/export_estadisticas.php");
@@ -233,7 +233,7 @@ $error = new Errores();
 													</div>
 												</div>
 												
-												<?php include_once("inc/csv_events.php"); ?>
+												
 												</div>
 												<div style="clear:both;"></div>
 											</div>

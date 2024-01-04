@@ -1,11 +1,11 @@
 <script>
-    $('#downloadCsv').on('click', function() {
+    $('#downloadCsv, #downloadCsvDos').on('click', function() {
         let mes = document.getElementById('mes');
         let mesOpcion = mes.options[mes.selectedIndex].text;
         
         let ano = document.getElementById('ano');
         let anoOpcion = ano.options[ano.selectedIndex].text;
-        var chartDataCsv = <?php echo json_encode($dataCsv); ?>;
+        var chartDataCsv = <?php echo json_encode(!empty($dataCsv) ? $dataCsv : $dataCsv2 ); ?>; //revisar
 
         let csvLocation = $(this).data('location');
         console.log(chartDataCsv);

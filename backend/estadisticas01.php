@@ -117,6 +117,7 @@ function getDia($dato)
 											$chart = '';
 											$contador = 0;
 											$res = fullQuery($sql);
+											$dataCsv = [];
 											while ($dato = mysqli_fetch_array($res)) {
 												$nomdia = getDia($dato['dia']);
 											?>
@@ -128,6 +129,7 @@ function getDia($dato)
 												<?PHP
 												$chart .= 'data.addRow(["' . substr($nomdia, 0, 3) . '", ' . $dato['cant'] . ']);';
 												$chartPdf[] = ["dia" => substr($nomdia, 0, 3), "cant" => $dato['cant']]; 
+												$dataCsv[] = ["detalle" => substr($nomdia, 0, 3), "acessos" => $dato['cant']]; 
 												$contador++;
 												?>
 											<?PHP } 
@@ -182,7 +184,16 @@ function getDia($dato)
 													google.setOnLoadCallback(drawVisualization);
 												</script>
 												<div id="semanas"></div>
-												<button id="downloadToDeviceButton" data-location="dia_semanas" class="btn btn-primary btn-small">Descargar PDF</button>
+												<div class="row d-flex">
+													<div class="col-md-2">
+														<button id="downloadToDeviceButton" data-location="dia_semanas" class="btn btn-primary btn-small">Descargar PDF</button>
+													</div>
+													<div class="col-md-2">
+														<button id="downloadCsv" data-location="dia_semanas" data-formato="csv" class="btn btn-primary btn-small">Descargar CSV</button>		
+													</div>
+												</div>
+												
+									
 											</div>
 											<div style="width:728px; margin:auto; height:auto">
 												<h1 align="center">Accesos por d&iacute;a del mes</h1>
@@ -197,6 +208,7 @@ function getDia($dato)
 												$res = fullQuery($sql);
 												$chart = '';
 												$contador = 0;
+												$dataCsv = [];
 												while ($dato = mysqli_fetch_array($res)) {
 												?>
 													<div class="estad_grp" style="width:70px;">
@@ -204,7 +216,8 @@ function getDia($dato)
 													</div>
 													<?PHP
 													$chart .= 'data.addRow(["' . $dato['dia'] . '", ' . $dato['cant'] . ']);';	
-													$chartPdf2[] = ["dia" => $dato['dia'] , "cant" => $dato['cant']]; 
+													$chartPdf2[] = ["dia" => $dato['dia'] , "cant" => $dato['cant']];
+													$dataCsv2[] = ["detalle" => $dato['dia'], "acessos" => $dato['cant']];  
 													$contador++;
 													?>
 												<?PHP } ?>
@@ -257,7 +270,17 @@ function getDia($dato)
 													google.setOnLoadCallback(drawVisualization);
 												</script>
 												<div id="meses"></div>
-												<button id="downloadToDeviceButtonDos" data-location="dia_mes" class="btn btn-primary btn-small">Descargar PDF</button>
+												
+												<div class="row d-flex">
+													<div class="col-md-2">
+														<button id="downloadToDeviceButtonDos" data-location="dia_mes" class="btn btn-primary btn-small">Descargar PDF</button>
+													</div>
+													<div class="col-md-2">
+														<button id="downloadCsvDos" data-location="dia_mes" data-formato="csv" class="btn btn-primary btn-small">Descargar CSV</button>		
+													</div>
+												</div>
+												<?php include_once("inc/csv_events.php"); ?>
+
 											</div>
 										</div>
 									</div>
