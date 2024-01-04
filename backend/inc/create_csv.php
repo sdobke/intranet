@@ -6,8 +6,10 @@ if (isset($_POST['mesOpcion']) && isset($_POST['anoOpcion'])) {
     $anoOpcion = $_POST['anoOpcion'];
     $location = $_POST['location'];
     $chartData = json_decode($_POST['chartDataCsv'], true);
-
+    print "acaaa ";
+    print_r($chartData);
     $csvFilePath = "../img/csv/$location/$mesOpcion$anoOpcion.csv";
+    print($csvFilePath);
     $archivo = fopen($csvFilePath, 'w');
 
     if ($archivo) {

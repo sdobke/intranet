@@ -125,6 +125,7 @@ function getDia($dato)
 													while ($dato = mysqli_fetch_array($res)) {
 													
 													$chartData .= "['{$dato['genero']}', {$dato['total_accesos']}],";
+													$dataCsv[]= ["detalle" => $dato['genero'], "total_accesos" => $dato['total_accesos']];
 												?>
 												<?php
 													} 
@@ -186,7 +187,17 @@ function getDia($dato)
 												</script>
 												
 												<div id="grafico" style="width: 900px; height: 500px;"></div>
-												<button id="downloadToDeviceButton" data-location="genero" class="btn btn-primary btn-small">Descargar PDF</button>
+
+												<div class="row d-flex">
+													<div class="col-md-2">
+														<button id="downloadToDeviceButton" data-location="genero" class="btn btn-primary btn-small">Descargar PDF</button>
+													</div>
+													<div class="col-md-2">
+														<button id="downloadCsv" data-location="genero" data-formato="csv" class="btn btn-primary btn-small">Descargar CSV</button>		
+													</div>
+												</div>
+
+												<?php include_once("inc/csv_events.php"); ?>
 											</div>
 										</div>
 									</div>

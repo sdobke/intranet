@@ -139,7 +139,8 @@ function getDia($dato)
 													    $rangoFin = $rangoInicio + 9;
     													$rangoEtario = "{$rangoInicio} - {$rangoFin}";
 														$color = generateRandomColor();
-													$chartData .= "['{$rangoEtario}', {$dato['total_accesos']}, 'color: $color'],";
+														$chartData .= "['{$rangoEtario}', {$dato['total_accesos']}, 'color: $color'],";
+														$dataCsv[]= ["detalle" => $rangoEtario, "total_accesos" => $dato['total_accesos']];
 												?>
 												<?php
 													} 
@@ -220,8 +221,16 @@ function getDia($dato)
 												</script>
 														
 												<div id="grafico" style="width: 900px; height: 500px;"></div>
-												<button id="downloadToDeviceButton" data-location="rango_etario" class="btn btn-primary btn-small">Descargar PDF</button>
-												
+												<div class="row d-flex">
+													<div class="col-md-2">
+														<button id="downloadToDeviceButton" data-location="rango_etario" class="btn btn-primary btn-small">Descargar PDF</button>
+													</div>
+													<div class="col-md-2">
+														<button id="downloadCsv" data-location="rango_etario" data-formato="csv" class="btn btn-primary btn-small">Descargar CSV</button>		
+													</div>
+												</div>
+
+												<?php include_once("inc/csv_events.php"); ?>
 											</div>
 										</div>
 									</div>

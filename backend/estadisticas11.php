@@ -131,11 +131,10 @@ function getDia($dato)
 														return "rgb({$red}, {$green}, {$blue})";
 													}
 
-
 													while ($dato = mysqli_fetch_array($res)) {
 														$color = generateRandomColor();
 														$chartData .= "['{$dato['areas']}', {$dato['total_accesos']}, 'color: $color'],";
-														$dataCsv[]= ["areas" => $dato['areas'], "total_accesos" => $dato['total_accesos']];
+														$dataCsv[]= ["detalle" => $dato['areas'], "total_accesos" => $dato['total_accesos']];
 												?>
 												<?php
 													} 
@@ -223,42 +222,7 @@ function getDia($dato)
 													</div>
 												</div>
 												
-												
-
-												<script>
-													
-													$('#downloadCsv').on('click', function() {
-														let mes = document.getElementById('mes');
-														let mesOpcion = mes.options[mes.selectedIndex].text;
-														
-														let ano = document.getElementById('ano');
-														let anoOpcion = ano.options[ano.selectedIndex].text;
-														var chartDataCsv = <?php echo json_encode($dataCsv); ?>;
-
-														var xhttp = new XMLHttpRequest();
-														xhttp.onreadystatechange = function() {
-															if (this.readyState == 4 && this.status == 200) {
-																console.log(this.responseText);
-															}
-														};
-														
-														xhttp.open("POST", "inc/create_csv.php", true);
-														xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-														var postData = "mesOpcion=" + encodeURIComponent(mesOpcion)
-																					+ "&anoOpcion=" + encodeURIComponent(anoOpcion) 
-																					+ "&location=" + encodeURIComponent('areas')
-																					+ "&location=" + encodeURIComponent('areas')
-																					+ "&chartDataCsv=" + encodeURIComponent(JSON.stringify(chartDataCsv));
-														xhttp.send(postData);
-
-														let csvLocation = $(this).data('location');
-														let csvFormato = $(this).data('formato');
-														descargarImagenAlDispositivo(csvLocation, csvFormato);
-													});
-
-
-												</script>
-
+												<?php include_once("inc/csv_events.php"); ?>
 											</div>
 										</div>
 									</div>
