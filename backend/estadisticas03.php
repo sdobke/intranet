@@ -130,13 +130,17 @@ $error = new Errores();
 														var data = google.visualization.arrayToDataTable([
 															['Sección', 'Accesos'],
 															<?PHP
+															$dataCsv = [];
 															$mosdat = '';
 															while ($dato3 = mysqli_fetch_array($res3)) { // MUESTRA DATOS DE CADA SECCION
 																if ($dato3['accesos'] > 0) {
 																	$mosdat .= "['" . $dato3['nombre'] . "', " . $dato3['accesos'] . "],";
+																	$dataCsv[]= ["detalle" => $dato3['nombre'], "total_accesos" => $dato3['accesos']];
 																}
 															}
+
 															$mosdat = substr($mosdat, 0, -1);
+															
 															echo $mosdat;
 															?>
 														]);
@@ -174,15 +178,22 @@ $error = new Errores();
 												<div style="overflow: hidden; width:1130px; margin:5px" id="marco_grafico">
 													<!--[if !IE]><!-->
 													<div id="grafico" style="height:650px; position:relative; top:-110px; left:-110px; width:1300px"></div>
-													
-
 
 													<!--<![endif]-->
 													<!--[if IE]>
                             	<div id="secmesesofi" style="height:650px; position:relative; top:0px; left:-10px; width:950px"></div>
                             <![endif]-->
 												</div>
-												<button id="downloadToDeviceButton" data-location="seccion_meses" class="btn btn-primary btn-small">Descargar PDF</button>
+												<div class="row d-flex">
+													<div class="col-md-2">
+														<button id="downloadToDeviceButton" data-location="seccion_meses" class="btn btn-primary btn-small">Descargar PDF</button>
+													</div>
+													<div class="col-md-2">
+														<button id="downloadCsv" data-location="seccion_meses" data-formato="csv" class="btn btn-primary btn-small">Descargar CSV</button>		
+													</div>
+												</div>
+												
+												<?php include_once("inc/csv_events.php"); ?>
 											<?PHP
 											} else { // período
 												$conso_inicio = $conso_mes = strtotime($fechadesde);
@@ -222,8 +233,7 @@ $error = new Errores();
 													$conso_mes = strtotime("+1 month", $conso_mes);
 													$contar_secc = 1;
 													foreach ($all_secc as $id_secc => $valor_secc) {
-														$chart .= "data.setValue(" . $cantimeses . ", " . $contar_secc . ", " . $valor_secc . ");
-								";
+														$chart .= "data.setValue(" . $cantimeses . ", " . $contar_secc . ", " . $valor_secc . ");";	
 														$contar_secc++;
 													}
 													$cantimeses++;

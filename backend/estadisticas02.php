@@ -194,6 +194,9 @@ $error = new Errores();
 													<?PHP 
 													$dataAccesos[] = ["detalle" => $dato["detalle"], "acessos" => $accesos];
 													} 
+													
+													$dataCsv = $dataAccesos;
+													
 													include_once("inc/export_estadisticas.php");
 												?>
 												<script>
@@ -220,7 +223,17 @@ $error = new Errores();
 													+ "&chartData=" + encodeURIComponent(dataChart);
 													xhttp.send(postData);
 												</script>
-												<button id="downloadToDeviceButtonDos" data-location="ranking_paginas" class="btn btn-primary btn-small">Descargar PDF</button>
+
+												<div class="row d-flex">
+													<div class="col-md-2">
+														<button id="downloadToDeviceButtonDos" data-location="ranking_paginas" class="btn btn-primary btn-small">Descargar PDF</button>
+													</div>
+													<div class="col-md-2">
+														<button id="downloadCsv" data-location="ranking_paginas" data-formato="csv" class="btn btn-primary btn-small">Descargar CSV</button>		
+													</div>
+												</div>
+												
+												<?php include_once("inc/csv_events.php"); ?>
 												</div>
 												<div style="clear:both;"></div>
 											</div>
