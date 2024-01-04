@@ -52,16 +52,39 @@ if (isset($_POST['mesOpcion']) && isset($_POST['anoOpcion'])) {
             break;
     }
 
-    $pdf->Image($imagePath,  10, $imgTop, $imgWidth, $imgheight , 'PNG');
+    if(file_exists($imagePath)) {
+        $pdf->Image($imagePath,  10, $imgTop, $imgWidth, $imgheight , 'PNG');
+    } 
+
+    $x = 10;
+    $y = 40;
+    $anchoBox = 80;
+    $altoBox = 20;
+
 
     if(!empty($chartData)){
         $chartDataArray = json_decode($chartData, true);
         $pdf->SetFont('Arial', '', 10);
-    
+
         $chartDataArray = json_decode($chartData, true);
         foreach ($chartDataArray as $c) {
-            $diaCant =  $c['dia'] . ': ' . $c['cant'];
-            $pdf->Cell(0, 10, $diaCant, 0, 1, 'C');
+            if($location == 'ranking_paginas') {
+                $acessos =  $c['detalle'] . ': ' . $c['acessos'];
+                  // Dibujar el recuadro
+                $pdf->Rect($x, $y, $anchoBox, $altoBox);
+                
+                // Imprimir el texto dentro del recuadro
+                $pdf->SetXY($x, $y); // Establecer posición antes de imprimir el texto
+                $pdf->MultiCell($anchoBox, 10, $acessos, 0, 'C');
+
+                // Actualizar la posición Y para el próximo recuadro
+                $y += $altoBox + 5; // Añadir un pequeño espacio vertical entre recuadros
+                // $acessos =  $c['detalle'] . ': ' . $c['acessos'];
+                // $pdf->Cell(0, 10, $acessos, 0, 1);
+            } else {
+                $diaCant =  $c['dia'] . ': ' . $c['cant'];
+                $pdf->Cell(0, 10, $diaCant, 0, 1, 'C');
+            }
         }
     }
 

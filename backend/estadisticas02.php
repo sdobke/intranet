@@ -3,6 +3,8 @@ include_once("../cnfg/config.php");
 include_once("../inc/funciones.php");
 include_once("../clases/clase_error.php");
 include_once("inc/sechk.php");
+include_once("inc/libreriasJs.php");	
+$title = "Sección más accedida";
 $backend = 1;
 $emp_nom = config('nombre');
 $nombredet = "Estad&iacute;sticas";
@@ -189,7 +191,36 @@ $error = new Errores();
 																</div>
 															</div>
 														</div>
-													<?PHP } ?>
+													<?PHP 
+													$dataAccesos[] = ["detalle" => $dato["detalle"], "acessos" => $accesos];
+													} 
+													include_once("inc/export_estadisticas.php");
+												?>
+												<script>
+													let mes = document.getElementById('mes');
+													let mesOpcion = mes.options[mes.selectedIndex].text;
+													let title = '<?php  echo $title ?>';
+													let ano = document.getElementById('ano');
+													let anoOpcion = ano.options[ano.selectedIndex].text;
+													let dataChart = '<?php echo json_encode($dataAccesos); ?>';
+
+													var xhttp = new XMLHttpRequest();
+													xhttp.onreadystatechange = function() {
+														if (this.readyState == 4 && this.status == 200) {
+															console.log(this.responseText);
+														}
+													};
+													
+													xhttp.open("POST", "inc/create_pdf.php", true);
+													xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+													var postData = "mesOpcion=" + 
+													encodeURIComponent(mesOpcion) + "&anoOpcion=" + encodeURIComponent(anoOpcion)
+													+ "&title=" + encodeURIComponent(title) 
+													+ "&location=" + encodeURIComponent('ranking_paginas')
+													+ "&chartData=" + encodeURIComponent(dataChart);
+													xhttp.send(postData);
+												</script>
+												<button id="downloadToDeviceButtonDos" data-location="ranking_paginas" class="btn btn-primary btn-small">Descargar PDF</button>
 												</div>
 												<div style="clear:both;"></div>
 											</div>
