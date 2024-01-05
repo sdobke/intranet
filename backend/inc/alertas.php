@@ -87,6 +87,7 @@ $cant_alt = $cant_baj = 0;
 $veralt = $verbaj = '';
 
 if (config("altaemp") == 1) {
+	/*
 	if ($cliente == 'alsea') {
 		// ALTAS
 		$sql_empa = "SELECT valor FROM " . $_SESSION['prefijo'] . "config WHERE parametro = 'altas'";
@@ -106,6 +107,7 @@ if (config("altaemp") == 1) {
 			$verbaj = '<li><a href="emplemod.php">Hay ' . $cant_baj . ' empleados para dar de baja. Haga click ac&aacute; para ir a la p&aacute;gina de configuraci&oacute;n.</a></li>';
 		}
 	}
+	*/
 }
 $hayalerta = ($con_conf > 0 || $con_cump > 0 || $con_comc > 0 || $cant_alt > 0 || $cant_baj > 0 || $concl > 0 || $conre > 0) ? 1 : 0;
 $totalerts = $con_conf + $con_cump + $con_comc + $cant_alt + $cant_baj + $concl + $conre;
