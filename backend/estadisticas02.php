@@ -192,7 +192,7 @@ $error = new Errores();
 															</div>
 														</div>
 													<?PHP 
-													$dataAccesos[] = ["detalle" => $dato["detalle"], "acessos" => $accesos];
+													$dataAccesos[] = ["detalle" => $dato["detalle"], "accesos" => $accesos];
 													} 
 
 													$dataCsv = $dataAccesos;

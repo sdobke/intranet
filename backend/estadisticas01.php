@@ -114,7 +114,7 @@ function getDia($dato)
 											$sql .= "
 											AND empleado > 0 GROUP BY DAYOFWEEK(fecha) ORDER BY DAYOFWEEK(fecha)";
 											//echo $sql;
-											$chart = '';
+											$chart1 = '';
 											$contador = 0;
 											$res = fullQuery($sql);
 											$dataCsv = [];
@@ -127,11 +127,15 @@ function getDia($dato)
 													</div>
 												</div>
 												<?PHP
-												$chart .= 'data.addRow(["' . substr($nomdia, 0, 3) . '", ' . $dato['cant'] . ']);';
+												$chart1 .= 'data.addRow(["' . substr($nomdia, 0, 3) . '", ' . $dato['cant'] . ']);';
+
+												// $chart .= 'data.addRow(["' . substr($nomdia, 0, 3) . '", ' . $dato['cant'] . ']);';
 												$chartPdf[] = ["dia" => substr($nomdia, 0, 3), "cant" => $dato['cant']]; 
-												$dataCsv[] = ["detalle" => substr($nomdia, 0, 3), "acessos" => $dato['cant']]; 
+												$dataCsv[] =  ["detalle" => substr($nomdia, 0, 3), "accesos" => $dato['cant']]; 
+
 												$contador++;
 												?>
+
 											<?PHP } 
 												include_once("inc/export_estadisticas.php");
 											?>
@@ -155,7 +159,7 @@ function getDia($dato)
 														var data = new google.visualization.DataTable();
 														data.addColumn('string', 'Días');
 														data.addColumn('number', 'Visitas');
-														<?PHP echo $chart; ?>
+														<?PHP echo $chart1; ?>
 														// Create and draw the visualization.
 														new google.visualization.LineChart(document.getElementById('semanas')).
 														draw(data, {
@@ -206,18 +210,20 @@ function getDia($dato)
 												$sql .= " AND empleado > 0 GROUP BY DAYOFMONTH(fecha) ORDER BY DAYOFMONTH(fecha)";
 												//echo $sql;
 												$res = fullQuery($sql);
-												$chart = '';
+												$chart2 = '';
 												$contador = 0;
-												$dataCsv = [];
+												$dataCsv2 = [];
 												while ($dato = mysqli_fetch_array($res)) {
 												?>
 													<div class="estad_grp" style="width:70px;">
 														<div style="height:30px;" class="tit"><?PHP echo $dato['dia']; ?>: <span class="nom"><?PHP echo $dato['cant']; ?></span></div>
 													</div>
 													<?PHP
-													$chart .= 'data.addRow(["' . $dato['dia'] . '", ' . $dato['cant'] . ']);';	
+													$chart2 .= 'data.addRow(["' . $dato['dia'] . '", ' . $dato['cant'] . ']);';
+
+													// $chart2 .= 'data.addRow(["' . $dato['dia'] . '", ' . $dato['cant'] . ']);';	
 													$chartPdf2[] = ["dia" => $dato['dia'] , "cant" => $dato['cant']];
-													$dataCsv2[] = ["detalle" => $dato['dia'], "acessos" => $dato['cant']];  
+													$dataCsv2[] = ["detalle" => $dato['dia'], "accesos" => $dato['cant']];  
 													$contador++;
 													?>
 												<?PHP } ?>
@@ -242,7 +248,7 @@ function getDia($dato)
 														var data = new google.visualization.DataTable();
 														data.addColumn('string', 'Días');
 														data.addColumn('number', 'Visitas');
-														<?PHP echo $chart; ?>
+														<?PHP echo $chart2; ?>
 														// Create and draw the visualization.
 														new google.visualization.LineChart(document.getElementById('meses')).
 														draw(data, {
