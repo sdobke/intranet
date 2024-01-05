@@ -192,9 +192,9 @@ function getDia($dato)
 													<div class="col-md-2">
 														<button id="downloadToDeviceButton" data-location="dia_semanas" class="btn btn-primary btn-small">Descargar PDF</button>
 													</div>
-													<div class="col-md-2">
+													<!-- <div class="col-md-2">
 														<button id="downloadCsv" data-location="dia_semanas" data-formato="csv" class="btn btn-primary btn-small">Descargar CSV</button>		
-													</div>
+													</div> -->
 												</div>
 												
 									
@@ -281,9 +281,9 @@ function getDia($dato)
 													<div class="col-md-2">
 														<button id="downloadToDeviceButtonDos" data-location="dia_mes" class="btn btn-primary btn-small">Descargar PDF</button>
 													</div>
-													<div class="col-md-2">
+													<!-- <div class="col-md-2">
 														<button id="downloadCsvDos" data-location="dia_mes" data-formato="csv" class="btn btn-primary btn-small">Descargar CSV</button>		
-													</div>
+													</div> -->
 												</div>
 												<?php include_once("inc/csv_events.php"); ?>
 

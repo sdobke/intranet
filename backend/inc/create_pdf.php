@@ -28,7 +28,7 @@ if (isset($_POST['mesOpcion']) && isset($_POST['anoOpcion'])) {
     switch ($location) {
         case 'genero':
             $imgWidth = 220;
-            $imgheight = 110;
+            $imgheight = 120;
             break;
         case 'seccion_meses':
             $imgWidth = 220;

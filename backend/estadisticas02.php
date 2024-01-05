@@ -227,9 +227,9 @@ $error = new Errores();
 													<div class="col-md-2">
 														<button id="downloadToDeviceButtonDos" data-location="ranking_paginas" class="btn btn-primary btn-small">Descargar PDF</button>
 													</div>
-													<div class="col-md-2">
+													<!-- <div class="col-md-2">
 														<button id="downloadCsv" data-location="ranking_paginas" data-formato="csv" class="btn btn-primary btn-small">Descargar CSV</button>		
-													</div>
+													</div> -->
 												</div>
 												
 												<?php include_once("inc/csv_events.php"); ?>
