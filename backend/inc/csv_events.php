@@ -5,18 +5,16 @@
         
         let ano = document.getElementById('ano');
         let anoOpcion = ano.options[ano.selectedIndex].text;
-        let botonId = $(this).attr('id');
         let  chartDataCsv = null;
+
+        let botonId = $(this).attr('id');
         if (botonId == 'downloadCsvDos'){
             chartDataCsv = <?php echo json_encode($dataCsv2); ?>;
         } else {
             chartDataCsv= <?php echo json_encode($dataCsv); ?>; 
         }
-            
 
         let csvLocation = $(this).data('location');
-        console.log("data csv");
-        console.log(chartDataCsv);
 
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {

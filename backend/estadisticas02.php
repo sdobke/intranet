@@ -196,7 +196,6 @@ $error = new Errores();
 													} 
 
 													$dataCsv = $dataAccesos;
-													
 													include_once("inc/export_estadisticas.php");
 												?>
 												<script>
@@ -233,7 +232,7 @@ $error = new Errores();
 													</div>
 												</div>
 												
-												
+												<?php include_once("inc/csv_events.php"); ?>
 												</div>
 												<div style="clear:both;"></div>
 											</div>
