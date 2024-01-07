@@ -3,10 +3,12 @@ include_once("../cnfg/config.php");
 include_once("../inc/funciones.php");
 include_once("../clases/clase_error.php");
 include_once("inc/sechk.php");
+include_once("inc/libreriasJs.php");
 $backend = 1;
 $emp_nom = config('nombre');
 $nombredet = "Estad&iacute;sticas";
 $error = new Errores();
+
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7" lang="es"> <![endif]-->
@@ -68,6 +70,7 @@ $error = new Errores();
 										<?PHP include("inc/estadisticas_buscador.php"); ?>
 									</div>
 								</div>
+								<?php include_once("inc/export_estadisticas.php");?>
 								<div class="row-fluid">
 									<div class="widget">
 										<div class="widget-header">
@@ -101,15 +104,17 @@ $error = new Errores();
 																</div>
 															</div>
 														</div>
-													<?PHP } ?>
+													<?PHP 
+													$dataAccesosComentarios = ["detalle" => txtcod($dato['detalle']) . ": ". $dato['canti']];
+												} ?>
 												</div>
 												<div style="float:left; width:220px">
 													<h3>Ranking de Novedades</h3>
 													<?PHP
 													$sql = "SELECT COUNT(nov.id) AS canti, nov.titulo FROM intranet_comentarios AS img
-                          INNER JOIN intranet_novedades AS nov ON nov.id = img.item
-                          WHERE 1 ".$sql2." AND img.tipo = 7
-                          GROUP BY img.item ORDER BY canti DESC";
+															INNER JOIN intranet_novedades AS nov ON nov.id = img.item
+															WHERE 1 ".$sql2." AND img.tipo = 7
+															GROUP BY img.item ORDER BY canti DESC";
 													$res = fullQuery($sql);
 													//echo '<br>'.$sql;
 													while ($dato = mysqli_fetch_array($res)) {
@@ -124,11 +129,13 @@ $error = new Errores();
 																</div>
 															</div>
 														</div>
-													<?PHP } ?>
+													<?PHP 
+													$dataAccesosNovedades = ["detalle" => txtcod($dato['titulo']) . ": " . $accesos ];
+												} ?>
 												</div>
 												<!--<div style="float:left; width:220px">
 													<h3>Ranking de comentarios en </h3>
-													<?PHP
+													<?php
 													$sql = "SELECT COUNT(nov.id) AS canti, nov.titulo FROM intranet_comentarios AS img
 															INNER JOIN intranet_beneficios AS nov ON nov.id = img.item
 															WHERE img.tipo = 9
@@ -146,8 +153,44 @@ $error = new Errores();
 																</div>
 															</div>
 														</div>
-													<?PHP } ?>
+														
+													<?PHP
+													
+													} ?>
 												</div>-->
+												<script>
+														let mes = document.getElementById('mes');
+														let mesOpcion = mes.options[mes.selectedIndex].text;
+														let title1 = "Comentarios: por seccion";
+														let title2 = "Ranking novedades";
+														let ano = document.getElementById('ano');
+														let anoOpcion = ano.options[ano.selectedIndex].text;
+														let dataComentarios = <?php echo json_encode($dataAccesosComentarios)?>; 
+														let dataNovedades = <?php echo json_encode($dataAccesosNovedades)?>; 
+
+														var xhttp = new XMLHttpRequest();
+														xhttp.onreadystatechange = function() {
+															if (this.readyState == 4 && this.status == 200) {
+																console.log(this.responseText);
+															}
+														};
+														
+														xhttp.open("POST", "inc/create_pdf.php", true);
+														xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+														var postData = "mesOpcion=" + encodeURIComponent(mesOpcion) + "&anoOpcion=" + encodeURIComponent(anoOpcion) 
+														+ "&title=" + encodeURIComponent(title1) 
+														+ "&title2=" + encodeURIComponent(title2)
+														+ "&location=" + encodeURIComponent('comentarios')
+														+ "&chartData=" + encodeURIComponent(JSON.stringify(dataComentarios))
+														+ "&chartData2=" + encodeURIComponent(JSON.stringify(dataNovedades));
+														xhttp.send(postData);
+												</script>
+												<div class="row d-flex">
+													<div class="col-md-2">
+														<button id="downloadToDeviceButtonDos" data-location="comentarios" class="btn btn-primary btn-small">Descargar PDF</button>
+													</div>
+												</div>
+												<?php include_once("inc/csv_events.php"); ?>
 												<div style="clear:both;"></div>
 											</div>
 										</div>
