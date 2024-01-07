@@ -83,10 +83,10 @@ $error = new Errores();
 													<?PHP
 													$sql2 = " AND (DATE(img.fecha) BETWEEN '" . $fechadesde . "' AND '" . $fechahasta . "')";
 													$sql = "SELECT COUNT(img.id) AS canti, tipo.detalle FROM intranet_comentarios AS img
-                            INNER JOIN intranet_tablas AS tipo ON tipo.id = img.tipo
-														WHERE 1
-														".$sql2."
-                            GROUP BY img.tipo";
+                            								INNER JOIN intranet_tablas AS tipo ON tipo.id = img.tipo
+															WHERE 1
+															".$sql2."
+															GROUP BY img.tipo";
 													$res = fullQuery($sql);
 													//echo '<br>'.$sql;
 													while ($dato = mysqli_fetch_array($res)) {

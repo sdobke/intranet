@@ -59,7 +59,7 @@ function getDia($dato)
 <body data-show-sidebar-toggle-button="true" data-fixed-sidebar="false">
 	<div id="customizer">
 		<div id="showButton"><i class="icon-cogs"></i></div>
-		<div id="layoutMode">
+		<div id="layoutMode">comentarios
 			<label class="checkbox"><input type="checkbox" class="uniform" name="layout-mode" value="boxed"> En Caja</label>
 		</div>
 	</div>

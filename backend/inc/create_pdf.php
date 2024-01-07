@@ -8,25 +8,15 @@ if (isset($_POST['mesOpcion']) && isset($_POST['anoOpcion'])) {
     $anoOpcion = $_POST['anoOpcion'];
     $title = $_POST['title'];
     $title2 = $_POST['title2'];
+    $title3 = $_POST['title3'];
     $location = $_POST['location'];
     $subtitle = $mesOpcion . ' ' . $anoOpcion;
     $chartData = $_POST['chartData'];
     $chartData2 = $_POST['chartData2'];
-
+    $chartData3 = $_POST['chartData3'];
+    $title_aux = null;
     $pdf = new FPDF();
 
-    $pdf->AddPage('P', 'A4');
-    $pdf->SetFont('Arial', 'B', 16);
-    $pdf->Cell(0, 10, (stripos($title, "Comentarios") !== false ? 'Comentarios' : $title) , 0, 1, 'C');
-
-    $pdf->SetFont('Arial', 'I', 12);
-    $pdf->Cell(0, 10, $subtitle, 0, 1, 'C');
-
-    $imagePath = "../img/estadisticas/$location/$mesOpcion$anoOpcion.png";
-
-    $imgWidth = 300;
-    $imgheight = 140;
-    $imgTop = 50;
     switch ($location) {
         case 'genero':
             $imgWidth = 220;
@@ -46,11 +36,30 @@ if (isset($_POST['mesOpcion']) && isset($_POST['anoOpcion'])) {
             $imgheight = 100;
             $imgTop = 100;
             break;
+        case 'comentarios':
+            $title_aux = "Comentarios";
+            break;
+        case 'me_gusta':
+            $title_aux = "Me gusta";
+            break;
         
         default:
            
             break;
     }
+    $pdf->AddPage('P', 'A4');
+    $pdf->SetFont('Arial', 'B', 16);
+    $pdf->Cell(0, 10, ($title_aux != null ? $title_aux : $title ) , 0, 1, 'C');
+
+    $pdf->SetFont('Arial', 'I', 12);
+    $pdf->Cell(0, 10, $subtitle, 0, 1, 'C');
+
+    $imagePath = "../img/estadisticas/$location/$mesOpcion$anoOpcion.png";
+
+    $imgWidth = 300;
+    $imgheight = 140;
+    $imgTop = 50;
+   
 
     $maxIntentos = 2;
     $intentos = 0;
@@ -66,13 +75,13 @@ if (isset($_POST['mesOpcion']) && isset($_POST['anoOpcion'])) {
         } 
     }
     
-
-    $x = 10;
-    $y = 40;
-    $anchoBox = 80;
+    $x = 30; 
+    $y = 50; 
+    $anchoBox = ($pdf->GetPageWidth() - 60) / 3; 
     $altoBox = 20;
-    
-    if($location != "comentarios") {
+    print($location);
+    if($location != "comentarios" && $location != "me_gusta") {
+   
         if(!empty($chartData)){
             $chartDataArray = json_decode($chartData, true);
             $pdf->SetFont('Arial', '', 10);
@@ -98,23 +107,21 @@ if (isset($_POST['mesOpcion']) && isset($_POST['anoOpcion'])) {
             }
         }
     } else {
-      
-        if(!empty($chartData)){
-        
-          
-            $pdf->setY(30);
+        if(!empty($chartData)) {
+            $pdf->setY(35);
             $pdf->setX(30);
             $pdf->SetFont('Arial', 'B', 12); 
             $pdf->Cell(0, 10, $title, 0, 1, 'L');
             
             $pdf->SetFont('Arial', '', 10);
             $chartDataArray = json_decode($chartData, true);
+            print_r($chartDataArray);
             foreach ($chartDataArray as $c) {
                
             $pdf->Rect($x, $y, $anchoBox, $altoBox);
             
             $pdf->SetXY($x, $y); 
-            $pdf->MultiCell($anchoBox, 10, $c , 0, 'C');
+            $pdf->MultiCell($anchoBox, 10, $c , 0, 'L');
 
             $y += $altoBox + 5;
             
@@ -122,15 +129,16 @@ if (isset($_POST['mesOpcion']) && isset($_POST['anoOpcion'])) {
         }
 
         $chartDataArray2 = json_decode($chartData2, true);
+        print_r($chartDataArray2);
         if(!empty($chartDataArray2)) {
        
             $pdf->SetFont('Arial', 'B', 12); 
-            $pdf->setY(30);
-            $pdf->setX(80);
+            $pdf->setY(35);
+            $pdf->setX(25);
             $pdf->Cell(0, 10, $title2, 0, 1, 'C');            
 
-            $y = 40;
-            $newX = 10 + $anchoBox + 10;
+            $y = 50;
+            $newX = 10 + $anchoBox + 30;
 
             $pdf->SetFont('Arial', '', 10);
 
@@ -139,6 +147,30 @@ if (isset($_POST['mesOpcion']) && isset($_POST['anoOpcion'])) {
                 $pdf->Rect($newX, $y, $anchoBox, $altoBox);
         
                 $pdf->SetXY($newX, $y);
+                $pdf->MultiCell($anchoBox, 10, $c2, 0, 'C');
+        
+                $y += $altoBox + 5;
+            }        
+        }
+        $chartDataArray3 = json_decode($chartData3, true);
+        print_r($chartDataArray3);
+        if(!empty($chartDataArray3)) {
+       
+            $pdf->SetFont('Arial', 'B', 12); 
+            $pdf->setY(35);
+            $pdf->setX(140);
+            $pdf->Cell(0, 10, $title3, 0, 1, 'C');            
+
+            $y = 50;
+            $newX2 = 10 + $anchoBox + 90;
+
+            $pdf->SetFont('Arial', '', 10);
+
+            foreach ($chartDataArray3 as $c2) {
+            
+                $pdf->Rect($newX2, $y, $anchoBox, $altoBox);
+        
+                $pdf->SetXY($newX2, $y);
                 $pdf->MultiCell($anchoBox, 10, $c2, 0, 'C');
         
                 $y += $altoBox + 5;
