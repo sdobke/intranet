@@ -93,6 +93,7 @@ $error = new Errores();
 													ORDER BY accesos DESC "; //LIMIT 1,1000";
 											$res2 = fullQuery($sql2);
 											$all_secc = array();
+
 											while ($dato2 = mysqli_fetch_array($res2)) { // MUESTRA DATOS DE CADA SECCION
 												$seccid = $dato2['secid'];
 												$all_secc[$seccid] = 0;
@@ -101,12 +102,12 @@ $error = new Errores();
 											// Preparación de gráfica
 											$perhasta = substr($fechahasta, 0, 4) . substr($fechahasta, 5, 2);
 											$perdesde = substr($fechadesde, 0, 4) . substr($fechadesde, 5, 2);
-
 											$sql_graf = "SELECT PERIOD_DIFF('" . $perhasta . "','" . $perdesde . "') AS meses";
 											$res_graf = fullQuery($sql_graf);
 											$row_graf = mysqli_fetch_array($res_graf);
 											$meses = $row_graf['meses'];
 											//if($meses > 0){ // Si hay más de 1 mes de período
+
 											if ($fecha == 'mes') { // Si es un mes solamente
 												$res3 = fullQuery($sql2);
 												include_once("inc/export_estadisticas.php");
@@ -132,7 +133,8 @@ $error = new Errores();
 															<?PHP
 															$dataCsv = [];
 															$mosdat = '';
-															while ($dato3 = mysqli_fetch_array($res3)) { // MUESTRA DATOS DE CADA SECCION
+
+															while ($dato3 = mysqli_fetch_array($res3)) { 
 																if ($dato3['accesos'] > 0) {
 																	$mosdat .= "['" . $dato3['nombre'] . "', " . $dato3['accesos'] . "],";
 																	$dataCsv[]= ["detalle" => $dato3['nombre'], "total_accesos" => $dato3['accesos']];

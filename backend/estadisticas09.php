@@ -120,8 +120,8 @@ function getDia($dato)
 
 													$res = fullQuery($sql);
 													$chartData  = '';
-													$contador = 0;
 													$chartData = "['Genero', 'Visitas'],";
+
 													while ($dato = mysqli_fetch_array($res)) {
 													
 													$chartData .= "['{$dato['genero']}', {$dato['total_accesos']}],";
@@ -157,7 +157,8 @@ function getDia($dato)
 															var data = google.visualization.arrayToDataTable(chartData);
 
 															var options = {
-																title: ''
+																title: '',
+														
 															};
 
 															var chart = new google.visualization.PieChart(document.getElementById('grafico'));

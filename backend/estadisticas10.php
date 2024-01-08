@@ -123,24 +123,17 @@ function getDia($dato)
 													$chartData  = '';
 													$contador = 0;
 													$chartData = " [['Rango Etario', 'Total Accesos', { role: 'style' }],";
-
-
-													function generateRandomColor() {
-														$red = rand(0, 255);
-														$green = rand(0, 255);
-														$blue = rand(0, 255);
-														
-														return "rgb({$red}, {$green}, {$blue})";
-													}
-
+													$colores = generarGamaColoresOscuros('#6AE665', 20, 15);
+													$nColor = 0;
 
 													while ($dato = mysqli_fetch_array($res)) {
 														$rangoInicio = $dato['rango_etario'];
 													    $rangoFin = $rangoInicio + 9;
     													$rangoEtario = "{$rangoInicio} - {$rangoFin}";
-														$color = generateRandomColor();
+														$color = $colores[$nColor];
 														$chartData .= "['{$rangoEtario}', {$dato['total_accesos']}, 'color: $color'],";
 														$dataCsv[]= ["detalle" => $rangoEtario, "total_accesos" => $dato['total_accesos']];
+														$nColor++;
 												?>
 												<?php
 													} 
@@ -172,7 +165,7 @@ function getDia($dato)
 														if(chartData[1] != undefined) { 
 															google.charts.setOnLoadCallback(function() {
 																var data = google.visualization.arrayToDataTable(chartData);
-
+															
 																var view = new google.visualization.DataView(data);
 																	view.setColumns([
 																		0,

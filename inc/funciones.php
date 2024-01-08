@@ -1023,3 +1023,28 @@ function debug($data, $show = 0)
 	}
 	echo '</div>';
 }
+
+						
+function generarGamaColoresOscuros($baseColor, $cantidad = 5, $incremento = 20) {
+	$colores = array();
+
+	list($r, $g, $b) = sscanf($baseColor, "#%02x%02x%02x");
+
+	for ($i = 0; $i < $cantidad; $i++) {
+		$r = max(0, $r - $incremento);
+		$g = max(0, $g - $incremento);
+		$b = max(0, $b - $incremento);
+
+		$luminosidad = 0.299 * $r + 0.587 * $g + 0.114 * $b;
+
+		$ajuste = max(0, 50 - $luminosidad);
+		
+		$r = min(255, $r + $ajuste);
+		$g = min(255, $g + $ajuste);
+		$b = min(255, $b + $ajuste);
+
+		$colores[] = sprintf("#%02x%02x%02x", $r, $g, $b);
+	}
+
+	return $colores;
+}

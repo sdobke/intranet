@@ -122,19 +122,14 @@ function getDia($dato)
 													$contador = 0;
 													$chartData = " [['Areas', 'Total Accesos', { role: 'style' }],";
 
-													//Pasarla a un fichero para poder consumirla de ambos ficheros de estadisticas
-													function generateRandomColor() {
-														$red = rand(0, 255);
-														$green = rand(0, 255);
-														$blue = rand(0, 255);
-														
-														return "rgb({$red}, {$green}, {$blue})";
-													}
-
+													$colores = generarGamaColoresOscuros('#3EE672', 20, 5);
+													$nColor = 0;
+													
 													while ($dato = mysqli_fetch_array($res)) {
-														$color = generateRandomColor();
+														$color = $colores[$nColor];
 														$chartData .= "['{$dato['areas']}', {$dato['total_accesos']}, 'color: $color'],";
 														$dataCsv[]= ["detalle" => $dato['areas'], "total_accesos" => $dato['total_accesos']];
+														$nColor++;
 												?>
 												<?php
 													} 
